@@ -23,6 +23,7 @@ class ProductSeeder extends Seeder
         for ($i = 1; $i <= $count; $i++) {
             $name = $faker->realText($faker->numberBetween(10, 30)) . "_$i";
             $product = [
+                'category_id' => 1,
                 'name' => $name,
                 'slug' => Str::slug($name),
                 'title' => $faker->realText($faker->numberBetween(10, 20)),

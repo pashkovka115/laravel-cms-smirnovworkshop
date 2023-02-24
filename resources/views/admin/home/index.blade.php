@@ -1,2 +1,2 @@
-ADMIN Home
+ADMIN template Home
 <?php
