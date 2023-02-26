@@ -27,7 +27,7 @@ class ProductSeeder extends Seeder
                 'name' => $name,
                 'slug' => Str::slug($name),
                 'title' => $faker->realText($faker->numberBetween(10, 20)),
-                'meta_title' => $faker->realText($faker->numberBetween(10, 20)),
+                'meta_keywords' => $faker->realText($faker->numberBetween(10, 20)),
                 'meta_description' => $faker->realText($faker->numberBetween(20, 30)),
                 'description' => $faker->realText($faker->numberBetween(50, 100)),
                 'img' => $faker->imageUrl($width = 640, $height = 480),

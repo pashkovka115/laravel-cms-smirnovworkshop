@@ -8,6 +8,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class CategoryProduct extends Model
 {
+    protected $table = 'categories_product';
     use HasFactory;
 
 

@@ -6,14 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\CategoryProduct;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ProductCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return view('admin.category.index', ['categories' => CategoryProduct::paginate()]);
     }
 
     /**

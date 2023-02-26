@@ -16,9 +16,13 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('slug')->unique();
             $table->string('name');
+
             $table->string('title')->nullable();
-            $table->string('meta_title')->nullable();
+            $table->string('meta_keywords')->nullable();
             $table->string('meta_description')->nullable();
+
+            $table->string('name_lavel', 2)->default('h1');
+
             $table->longText('description')->nullable();
             $table->string('img')->nullable();
             $table->timestamps();
