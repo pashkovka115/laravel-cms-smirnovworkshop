@@ -24,7 +24,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function (){
     Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
 
     Route::prefix('category')->group(function (){
-        Route::get('', [\App\Http\Controllers\Admin\ProductCategoryController::class, 'index'])->name('admin.product.category');
+        Route::get('', [\App\Http\Controllers\Admin\Category\ProductCategoryController::class, 'index'])->name('admin.product.category');
+
+        Route::post('product-category-columns-update', [\App\Http\Controllers\Admin\Category\ProductCategoryColumnController::class, 'update'])->name('admin.product.category.columns.update');
     });
 
     Route::prefix('product')->group(function (){

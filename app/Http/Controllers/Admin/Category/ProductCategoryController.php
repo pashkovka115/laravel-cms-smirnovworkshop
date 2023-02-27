@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Category;
 
 use App\Http\Controllers\Controller;
+use App\Models\CategoriesProductColumns;
 use App\Models\CategoryProduct;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,14 @@ class ProductCategoryController extends Controller
 {
     public function index()
     {
-        return view('admin.category.index', ['categories' => CategoryProduct::paginate()]);
+//        $columns = CategoriesProductColumns::orderBy('sort')->get()->toArray();
+//        $categories = CategoryProduct::paginate();
+//        dd($columns, $categories);
+
+        return view('admin.category.index', [
+            'columns' => CategoriesProductColumns::orderBy('sort')->get()->toArray(),
+            'categories' => CategoryProduct::paginate()
+        ]);
     }
 
     /**

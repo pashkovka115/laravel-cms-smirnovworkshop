@@ -23,7 +23,7 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt($request->only(['email', 'password']), $request->boolean('remember'))){
-            return redirect()->route('site.home');
+            return redirect()->intended('site.home'); // редирект куда собирался до авторизации
         }
 
         $request->session()->regenerate();

@@ -18,7 +18,7 @@ class CategoryProductsSeeder extends Seeder
             $name = "Категория $i";
             $category = [
                 'name' => $name,
-                'slug' => Str::slug($name)
+                'slug' => Str::slug($name),
             ];
 
             $categories[] = $category;

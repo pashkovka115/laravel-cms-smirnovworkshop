@@ -26,4 +26,9 @@ class CategoryProduct extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
+
+    /*public function columns()
+    {
+        return $this->hasOne(CategoriesProductColumns::class, '')
+    }*/
 }
