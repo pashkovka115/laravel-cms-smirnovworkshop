@@ -29,6 +29,6 @@ class CategoryProduct extends Model
 
     /*public function columns()
     {
-        return $this->hasOne(CategoriesProductColumns::class, '')
+        return $this->hasOne(CategoryProductColumns::class, '')
     }*/
 }

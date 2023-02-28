@@ -36,7 +36,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalCenterTitle">Настройки колонок</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
@@ -44,11 +44,10 @@
                             <ul class="list-group">
                                 <li class="list-group-item">
                                     <ul class="list-group list-group-horizontal">
-                                        <li class="list-group-item color-swatch-header bg-light-primary">Отображаемое имя поля</li>
-                                        <li class="list-group-item color-swatch-header bg-light-secondary">Сортировка в списке</li>
-                                        <li class="list-group-item color-swatch-header bg-light-info">Сортировка на детальной</li>
-                                        <li class="list-group-item color-swatch-header bg-light-danger">Показывать в ленте</li>
-                                        <li class="list-group-item color-swatch-header bg-light-dark">Показывать на детальной</li>
+                                        <li class="list-group-item">Имя</li>
+                                        <li class="list-group-item">Сортировка</li>
+                                        <li class="list-group-item">Показывать в анонсе</li>
+                                        <li class="list-group-item">Показывать в описании</li>
                                     </ul>
                                 </li>
                                 <form action="{{ route('admin.product.category.columns.update') }}" method="post">
@@ -56,23 +55,19 @@
                                     @foreach($columns as $column)
                                         <li class="list-group-item">
                                             <ul class="list-group list-group-horizontal">
-                                                <li class="list-group-item color-swatch-header bg-light-primary">
+                                                <li class="list-group-item">
                                                     <input type="text" name="{{ $column['id'] }}[show_name]"
                                                            value="{{ $column['show_name'] }}">
                                                 </li>
-                                                <li class="list-group-item color-swatch-header bg-light-secondary">
-                                                    <input type="text" name="{{ $column['id'] }}[sort_list]"
-                                                           value="{{ $column['sort_list'] }}">
+                                                <li class="list-group-item">
+                                                    <input type="text" name="{{ $column['id'] }}[sort]"
+                                                           value="{{ $column['sort'] }}">
                                                 </li>
-                                                <li class="list-group-item color-swatch-header bg-light-info">
-                                                    <input type="text" name="{{ $column['id'] }}[sort_single]"
-                                                           value="{{ $column['sort_single'] }}">
-                                                </li>
-                                                <li class="list-group-item color-swatch-header bg-light-danger">
+                                                <li class="list-group-item">
                                                     <input type="checkbox" name="{{ $column['id'] }}[is_show_anons]"
                                                            @if($column['is_show_anons'] == '1') checked @endif>
                                                 </li>
-                                                <li class="list-group-item color-swatch-header bg-light-dark">
+                                                <li class="list-group-item">
                                                     <input type="checkbox" name="{{ $column['id'] }}[is_show_single]"
                                                            @if($column['is_show_single'] == '1') checked @endif>
                                                 </li>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Category;
 
 use App\Http\Controllers\Controller;
-use App\Models\CategoriesProductColumns;
+use App\Models\CategoryProductColumns;
 use Illuminate\Http\Request;
 
 class ProductCategoryColumnController extends Controller
@@ -57,12 +57,13 @@ class ProductCategoryColumnController extends Controller
             if ($id != '_token') {
                 $item = [
                     'show_name' => $column['show_name'],
-                    'sort' => $column['sort'],
+                    'sort_list' => $column['sort_list'],
+                    'sort_single' => $column['sort_single'],
                     'is_show_anons' => isset($column['is_show_anons']) ? 1 : 0,
                     'is_show_single' => isset($column['is_show_single']) ? 1 : 0,
                 ];
 
-                CategoriesProductColumns::where('id', (int)$id)->update($item);
+                CategoryProductColumns::where('id', (int)$id)->update($item);
             }
         }
 

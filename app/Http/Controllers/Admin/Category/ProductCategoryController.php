@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Category;
 
 use App\Http\Controllers\Controller;
-use App\Models\CategoriesProductColumns;
+use App\Models\CategoryProductColumns;
 use App\Models\CategoryProduct;
 use Illuminate\Http\Request;
 
@@ -11,12 +11,8 @@ class ProductCategoryController extends Controller
 {
     public function index()
     {
-//        $columns = CategoriesProductColumns::orderBy('sort')->get()->toArray();
-//        $categories = CategoryProduct::paginate();
-//        dd($columns, $categories);
-
         return view('admin.category.index', [
-            'columns' => CategoriesProductColumns::orderBy('sort')->get()->toArray(),
+            'columns' => CategoryProductColumns::column_meta_sort_list(),
             'categories' => CategoryProduct::paginate()
         ]);
     }
@@ -26,7 +22,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**

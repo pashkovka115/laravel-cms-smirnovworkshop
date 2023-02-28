@@ -15,7 +15,7 @@ Route::post('forgot-password', [\App\Http\Controllers\Auth\ForgotPasswordControl
 Route::get('reset-password', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'create'])->middleware('guest')->name('password.reset');
 
 
-// https://www.youtube.com/watch?v=yfxwAH3MbLY&list=PL-FhWbGlJPfZoUC9ApOR3isDIG88I_lj_
+// Auth: https://www.youtube.com/watch?v=yfxwAH3MbLY&list=PL-FhWbGlJPfZoUC9ApOR3isDIG88I_lj_
 
 
 Route::get('/', [\App\Http\Controllers\Site\HomeController::class, 'index'])->name('site.home');
@@ -25,6 +25,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function (){
 
     Route::prefix('category')->group(function (){
         Route::get('', [\App\Http\Controllers\Admin\Category\ProductCategoryController::class, 'index'])->name('admin.product.category');
+        Route::get('create', [\App\Http\Controllers\Admin\Category\ProductCategoryController::class, 'create'])->name('admin.product.category.create');
 
         Route::post('product-category-columns-update', [\App\Http\Controllers\Admin\Category\ProductCategoryColumnController::class, 'update'])->name('admin.product.category.columns.update');
     });

@@ -9,16 +9,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
-class CategoryProductsSeeder extends Seeder
+class ProductsSeeder extends Seeder
 {
     public function run(Faker $faker): void
     {
-        $count = 5;
+        $count = 10;
 
-        $categories = [];
+        $products = [];
         for ($i = 1; $i <= $count; $i++){
-            $name = "Категория $i";
-            $category = [
+
+            $product = [
+                'category_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
@@ -26,9 +27,9 @@ class CategoryProductsSeeder extends Seeder
             $class = include 'templates/TemplateMetaSeeder.php';
             $template = $class::template($faker)();
 
-            $categories[] = $category + $template;
+            $products[] = $product + $template;
         }
 
-        DB::table('categories_product')->insert($categories);
+        DB::table('products')->insert($products);
     }
 }

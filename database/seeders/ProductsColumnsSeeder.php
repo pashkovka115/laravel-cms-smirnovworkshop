@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class CategoriesProductColumnsSeeder extends Seeder
+class ProductsColumnsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,6 +17,6 @@ class CategoriesProductColumnsSeeder extends Seeder
         $class = include 'templates/TemplateTableColumnsSeeder.php';
         $fields = $class::template()();
 
-        DB::table('categories_product_columns')->insert($fields);
+        DB::table('products_columns')->insert($fields);
     }
 }

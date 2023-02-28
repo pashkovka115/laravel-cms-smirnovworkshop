@@ -11,15 +11,8 @@ return new class extends Migration
         Schema::create('categories_product', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title')->nullable();
-            $table->string('meta_keywords')->nullable();
-            $table->string('meta_description')->nullable();
-            $table->string('name_lavel', 2)->default('h1');
-
-            $table->string('name');
-            $table->string('slug');
-            $table->string('img')->nullable();
-            $table->text('description')->nullable();
+            $class = include 'templates/TemplateMetaFieldsMigration.php';
+            $class::meta_template_for_up($table)();
 
             $table->timestamps();
         });

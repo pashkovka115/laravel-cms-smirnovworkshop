@@ -11,7 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories_product_columns', function (Blueprint $table) {
+        Schema::create('products_columns', function (Blueprint $table) {
+            /*$table->id();
+            $table->string('origin_name');
+            $table->string('show_name');
+            $table->integer('sort');
+            $table->boolean('is_show_anons');
+            $table->boolean('is_show_single');*/
+
             $class = include 'templates/TemplateColumnTableMigration.php';
             $class::template($table)();
         });
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories_product_columns');
+        Schema::dropIfExists('products_columns');
     }
 };

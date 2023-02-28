@@ -17,6 +17,7 @@
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('assets/admin/css/theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/style.css') }}">
     @yield('style_top')
     @yield('script_top')
     <title>@yield('title')</title>
