@@ -16,6 +16,7 @@ return new class
         $func = function () use ($table) {
             $table->id();
             $table->string('origin_name');
+            $table->string('type');
             $table->string('show_name');
             $table->integer('sort_list');
             $table->integer('sort_single');

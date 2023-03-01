@@ -5,3 +5,6 @@
 .line *:not(:nth-child(1)){
     margin-left: 5px;
 }
+ul.errors {
+    list-style-type: none !important;
+}

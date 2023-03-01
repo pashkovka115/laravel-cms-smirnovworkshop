@@ -4,12 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class CategoryProduct extends Model
 {
-    protected $table = 'categories_product';
     use HasFactory;
+    use HasSlug;
+
+    protected $table = 'categories_product';
+    protected $fillable = [
+        'title',
+        'meta_keywords',
+        'meta_description',
+        'name_lavel',
+        'name',
+        'slug',
+        'img_announce',
+        'img_detail',
+        'announce',
+        'description',
+        'created_at',
+        'updated_at',
+    ];
 
 
     public function getRouteKeyName(): string

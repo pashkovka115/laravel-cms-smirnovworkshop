@@ -26,6 +26,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function (){
     Route::prefix('category')->group(function (){
         Route::get('', [\App\Http\Controllers\Admin\Category\ProductCategoryController::class, 'index'])->name('admin.product.category');
         Route::get('create', [\App\Http\Controllers\Admin\Category\ProductCategoryController::class, 'create'])->name('admin.product.category.create');
+        Route::post('store', [\App\Http\Controllers\Admin\Category\ProductCategoryController::class, 'store'])->name('admin.product.category.store');
+        Route::get('edit/{id}', [\App\Http\Controllers\Admin\Category\ProductCategoryController::class, 'edit'])->name('admin.product.category.edit');
 
         Route::post('product-category-columns-update', [\App\Http\Controllers\Admin\Category\ProductCategoryColumnController::class, 'update'])->name('admin.product.category.columns.update');
     });
