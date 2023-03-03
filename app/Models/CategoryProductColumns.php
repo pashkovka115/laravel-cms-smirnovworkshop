@@ -11,4 +11,13 @@ class CategoryProductColumns extends General //Model
 
     protected $table = 'categories_product_columns';
     public $timestamps = false;
+
+
+    /*
+     * Заглушка. Пока не используется.
+     */
+    public function properties()
+    {
+        return $this->hasMany(CategoryProductProperty::class, 'category_id', 'category_id');
+    }
 }

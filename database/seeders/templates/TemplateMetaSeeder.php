@@ -22,8 +22,8 @@ return new class {
                 'name_lavel' => 'h1',
                 'name' => $name,
                 'slug' => Str::slug($name),
-                'img_announce' => '/assets/admin/images/no_image.jpg',
-                'img_detail' => '/assets/admin/images/no_image.jpg',
+                'img_announce' => '',
+                'img_detail' => '',
                 'announce' => $faker->realText($faker->numberBetween(30, 50)),
                 'description' => $faker->realText($faker->numberBetween(100, 200)),
             ];

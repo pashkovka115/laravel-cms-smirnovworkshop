@@ -13,20 +13,18 @@ class CategoryProduct extends Model
     use HasSlug;
 
     protected $table = 'categories_product';
-    protected $fillable = [
-        'title',
-        'meta_keywords',
-        'meta_description',
-        'name_lavel',
-        'name',
-        'slug',
-        'img_announce',
-        'img_detail',
-        'announce',
-        'description',
-        'created_at',
-        'updated_at',
-    ];
+    protected $guarded = ['id'];
+
+
+    public function properties()
+    {
+        return $this->hasMany(CategoryProductProperty::class, 'category_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 
 
     public function getRouteKeyName(): string
@@ -43,9 +41,4 @@ class CategoryProduct extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
-
-    /*public function columns()
-    {
-        return $this->hasOne(CategoryProductColumns::class, '')
-    }*/
 }

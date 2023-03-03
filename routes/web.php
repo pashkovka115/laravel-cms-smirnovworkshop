@@ -28,8 +28,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function (){
         Route::get('create', [\App\Http\Controllers\Admin\Category\ProductCategoryController::class, 'create'])->name('admin.product.category.create');
         Route::post('store', [\App\Http\Controllers\Admin\Category\ProductCategoryController::class, 'store'])->name('admin.product.category.store');
         Route::get('edit/{id}', [\App\Http\Controllers\Admin\Category\ProductCategoryController::class, 'edit'])->name('admin.product.category.edit');
+        Route::post('update/{id}', [\App\Http\Controllers\Admin\Category\ProductCategoryController::class, 'update'])->name('admin.product.category.update');
+        Route::get('destroy/{id}', [\App\Http\Controllers\Admin\Category\ProductCategoryController::class, 'destroy'])->name('admin.product.category.destroy');
 
         Route::post('product-category-columns-update', [\App\Http\Controllers\Admin\Category\ProductCategoryColumnController::class, 'update'])->name('admin.product.category.columns.update');
+
+        Route::post('add-property', [\App\Http\Controllers\Admin\Category\ProductCategoryPropertyController::class, 'store'])->name('admin.product.category.property.store');
     });
 
     Route::prefix('product')->group(function (){

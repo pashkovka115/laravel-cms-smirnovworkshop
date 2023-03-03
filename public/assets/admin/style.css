@@ -8,3 +8,21 @@
 ul.errors {
     list-style-type: none !important;
 }
+.card-title{
+    margin-bottom: 0.5rem;
+}
+.card-body{
+    padding: 1rem;
+}
+
+.btn-group.save-group{
+    /*margin-top: 10px;*/
+    position: fixed;
+    bottom: min(25px);
+}
+.category-product-property > label{
+    width: 100%;
+}
+span.red{
+    color: red !important;
+}
