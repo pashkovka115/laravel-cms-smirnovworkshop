@@ -7,7 +7,7 @@ return new class
     /**
      * Общий шаблон для описания большинства типов контента(страниц).
      */
-    public static function meta_template_for_up(Blueprint $table): \Closure
+    public static function template(Blueprint $table): Closure
     {
         $fields = function () use ($table) {
             $table->string('title')->nullable();

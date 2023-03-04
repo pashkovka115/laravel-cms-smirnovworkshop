@@ -14,9 +14,9 @@
 	<!-- content -->
 	<div class="line">
 		<!-- Modal -->
-		@include('admin.parts.modal_settings_columns')
+		@include('admin.parts.modal_settings_columns', ['route' => 'admin.product_category.columns.update'])
 		<!-- End Modal -->
-		<a href="{{ route('admin.product.category.create') }}" class="btn btn-outline-success mb-2"><i
+		<a href="{{ route('admin.product_category.create') }}" class="btn btn-outline-success mb-2"><i
 					class="bi bi-plus-circle"></i></a>
 	</div>
 	<div class="py-2">
@@ -45,9 +45,9 @@
 												@if($column['origin_name'] == 'actions_column')
 													<a class="btn btn-warning mb-2" target="_blank"><i
 																class="bi bi-eye"></i></a>
-													<a href="{{ route('admin.product.category.edit', ['id' => $category->id]) }}"
+													<a href="{{ route('admin.product_category.edit', ['id' => $category->id]) }}"
 														 class="btn btn-info mb-2"><i class="bi bi-pencil-square"></i></a>
-													<a href="{{ route('admin.product.category.destroy', ['id' => $category->id]) }}"
+													<a href="{{ route('admin.product_category.destroy', ['id' => $category->id]) }}"
 														 class="btn btn-danger mb-2"
 														 onclick="return window.confirm('Удалить категорию и все вложенные элементы?')"><i
 																class="bi bi-trash"></i></a>

@@ -10,9 +10,12 @@ return new class extends Migration
     {
         Schema::create('categories_product_property', function (Blueprint $table) {
             $table->unsignedBigInteger('category_id');
-            $table->string('key');
+            /*$table->string('key');
             $table->string('type')->nullable();
-            $table->longText('value')->nullable();
+            $table->longText('value')->nullable();*/
+
+            $class = include "templates/TemplateProperties.php";
+            $class::template($table)();
 
             $table->index(["category_id"], 'fk_category_property2_idx');
 

@@ -27,19 +27,19 @@
                 <div id="navPages" class="collapse  show " data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link  active " href="{{route('admin.product.category')}}">Категории</a>
+                            <a class="nav-link  {{ active('admin.product_category*') }}" href="{{route('admin.product_category')}}">Категории</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link has-arrow   "  href="../pages/settings.html" >Settings</a>
+                            <a class="nav-link {{ active(['admin.product', 'admin.product.*']) }}" href="{{route('admin.product')}}">Товары</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../pages/billing.html">Billing</a>
+                            <a class="nav-link " href="#">Billing</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../pages/pricing.html">Pricing</a>
+                            <a class="nav-link " href="#">Pricing</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../pages/404-error.html">404 Error</a>
+                            <a class="nav-link " href="#">404 Error</a>
                         </li>
                     </ul>
                 </div>

@@ -12,20 +12,15 @@ class ProductPropertySeeder extends Seeder
 {
     public function run(): void
     {
-        $count = 5;
-
         $properties = [];
-        for ($i = 1; $i <= $count; $i++){
-            $property = [
-                'product_id' => 1,
-                'key' => Str::slug("key $i"),
-                'value' => "value $i",
-                'name' => "Name $i",
-                'description' => "Description $i Lorem ipsum dolor sit amet, consectetur adipisicing elit. ",
-                'created_at' => Carbon::now()
-            ];
 
-            $properties[] = $property;
+        for ($i = 1; $i <= 5; $i++){
+            $properties[] = [
+                'product_id' => 1,
+                'type' => 'type' . $i,
+                'key' => 'Key' . $i,
+                'value' => 'Value' . $i,
+            ];
         }
 
         DB::table('product_properties')->insert($properties);

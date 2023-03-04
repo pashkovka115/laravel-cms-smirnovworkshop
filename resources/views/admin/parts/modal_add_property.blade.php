@@ -12,11 +12,15 @@
                     <span aria-hidden="true"></span>
                 </button>
             </div>
-            <form action="{{ route('admin.product.category.property.store') }}" method="post">
+            <form action="{{ route($route) }}" method="post">
                 @csrf
                 <input type="hidden" name="{{ $field }}" value="{{ $id }}">
             <div class="modal-body">
                 <div class="card-body category-product-property">
+                    <label class="form-label" title="Произвольно">Имя
+                        <input type="text" name="name" class="form-control" value="">
+                    </label>
+                    <br>
                     <label class="form-label" title="Произвольно">Тип
                         <input type="text" name="type" class="form-control" value="">
                     </label>

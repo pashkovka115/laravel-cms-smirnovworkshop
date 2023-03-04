@@ -1,10 +1,10 @@
 @extends('admin.layouts.default')
 
 @section('title')
-	Редактируем категорию
+	Редактируем товар
 @endsection
 @section('page_header')
-	Редактируем категорию
+	Редактируем товар
 @endsection
 
 @section('style_top') @endsection
@@ -13,13 +13,12 @@
 @section('content')
 	<!-- content -->
 	<div class="line">
-		<!-- Modal -->
-		@include('admin.parts.modal_settings_columns', ['route' => 'admin.product_category.columns.update'])
-		<!-- End Modal -->
-		@include('admin.parts.modal_add_property', ['field' => 'category_id', 'id' => $item->id, 'route' => 'admin.product_category.property.store'])
+
+		@include('admin.parts.modal_settings_columns', ["route" => "admin.product.columns.update"])
+		@include('admin.parts.modal_add_property', ['field' => 'product_id', 'id' => $item->id, 'route' => 'admin.product.property.store'])
 	</div>
 	<div class="py-2">
-		<form action="{{ route('admin.product_category.update', ['id' => $item->id]) }}" method="post"
+		<form action="{{ route('admin.product.update', ['id' => $item->id]) }}" method="post"
 					enctype="multipart/form-data">
 			@csrf
 			<ul class="nav nav-line-bottom nav-example" id="pills-tabTwo" role="tablist">

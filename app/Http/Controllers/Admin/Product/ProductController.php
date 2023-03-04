@@ -1,61 +1,65 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Category;
+namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryProductRequest;
-use App\Http\Requests\UpdateCategoryProductRequest;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\CategoryProduct;
 use App\Models\CategoryProductColumns;
 use App\Models\CategoryProductProperty;
+use App\Models\Product;
+use App\Models\ProductColumns;
+use App\Models\ProductProperty;
 use Illuminate\Support\Facades\DB;
 
-class ProductCategoryController extends Controller
+class ProductController extends Controller
 {
-    const IMAGE_PATH = 'product_category';
+    const IMAGE_PATH = 'products';
 
 
     public function index()
     {
-        return view('admin.category.index', [
-            'columns' => CategoryProductColumns::column_meta_sort_list(),
-            'categories' => CategoryProduct::paginate()
+        return view('admin.product.index', [
+            'columns' => ProductColumns::column_meta_sort_list(),
+            'items' => Product::paginate()
         ]);
     }
 
 
     public function create()
     {
-        return view('admin.category.create', [
-            'columns' => CategoryProductColumns::column_meta_sort_single(),
+        return view('admin.product.create', [
+            'columns' => ProductColumns::column_meta_sort_single(),
         ]);
     }
 
 
-    public function store(StoreCategoryProductRequest $request)
+    public function store(StoreProductRequest $request)
     {
-        $category = CategoryProduct::create($this->base_fields($request, self::IMAGE_PATH));
+        $category = Product::create($this->base_fields($request, self::IMAGE_PATH));
 
         if ($request->has('save_and_edit')) {
-            return redirect()->route('admin.product.category.edit', ['id' => $category->id]);
+            return redirect()->route('admin.product.edit', ['id' => $category->id]);
         } elseif ($request->has('save_and_back')) {
-            return redirect()->route('admin.product.category');
+            return redirect()->route('admin.product');
         } elseif ($request->has('save_and_new')) {
-            return redirect()->route('admin.product.category.create');
+            return redirect()->route('admin.product.create');
         }
     }
 
 
     public function edit($id)
     {
-        return view('admin.category.edit', [
-            'item' => CategoryProduct::where('id', $id)->firstOrFail(),
-            'columns' => CategoryProductColumns::column_meta_sort_single(),
+        return view('admin.product.edit', [
+            'item' => Product::where('id', $id)->firstOrFail(),
+            'columns' => ProductColumns::column_meta_sort_single(),
         ]);
     }
 
 
-    public function update(UpdateCategoryProductRequest $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
         /*
          * Работа со свойствами
@@ -77,7 +81,8 @@ class ProductCategoryController extends Controller
             $new_props = [];
             foreach ($data_properties['key'] as $key => $value) {
                 $new_props[] = [
-                    'category_id' => $id,
+                    'product_id' => $id,
+                    'name' => $data_properties['name'][$key],
                     'type' => $data_properties['type'][$key],
                     'key' => $data_properties['key'][$key],
                     'value' => $data_properties['value'][$key],
@@ -85,8 +90,8 @@ class ProductCategoryController extends Controller
             }
 
             DB::transaction(function () use ($id, $new_props){
-                CategoryProductProperty::where('category_id', $id)->delete();
-                CategoryProductProperty::insert($new_props);
+                ProductProperty::where('product_id', $id)->delete();
+                ProductProperty::insert($new_props);
             });
 
         }
@@ -94,7 +99,7 @@ class ProductCategoryController extends Controller
         /*
          * Работа с категорией
          */
-        $category = CategoryProduct::where('id', $id)->firstOrFail();
+        $category = Product::where('id', $id)->firstOrFail();
 
         $data = $this->base_fields($request, self::IMAGE_PATH);
 
@@ -125,18 +130,18 @@ class ProductCategoryController extends Controller
          * Перенаправляем взависимости от нажатой кнопки
          */
         if ($request->has('save_and_edit')) {
-            return redirect()->route('admin.product.category.edit', ['id' => $id]);
+            return redirect()->route('admin.product.edit', ['id' => $id]);
         } elseif ($request->has('save_and_back')) {
-            return redirect()->route('admin.product.category');
+            return redirect()->route('admin.product');
         } elseif ($request->has('save_and_new')) {
-            return redirect()->route('admin.product.category.create');
+            return redirect()->route('admin.product.create');
         }
     }
 
 
     public function destroy($id)
     {
-        CategoryProduct::destroy($id);
+        Product::destroy($id);
 
         return back();
     }

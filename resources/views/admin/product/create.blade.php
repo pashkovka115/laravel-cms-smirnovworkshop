@@ -1,10 +1,10 @@
 @extends('admin.layouts.default')
 
 @section('title')
-	Новая категория
+	Новый товар
 @endsection
 @section('page_header')
-	Новая категория
+	Новый товар
 @endsection
 
 @section('style_top') @endsection
@@ -19,7 +19,7 @@
 	</div>
 
 	<div class="py-2">
-		<form action="{{ route('admin.product_category.store') }}" method="post" enctype="multipart/form-data">
+		<form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
 			@csrf
 			<div class="row">
 				@foreach($columns as $column)

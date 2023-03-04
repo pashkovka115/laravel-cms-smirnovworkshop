@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
@@ -16,7 +13,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
 
             $class = include 'templates/TemplateMetaFieldsMigration.php';
-            $class::meta_template_for_up($table)();
+            $class::template($table)();
 
             $table->timestamps();
 
@@ -30,9 +27,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::table('products', function (Blueprint $table) {

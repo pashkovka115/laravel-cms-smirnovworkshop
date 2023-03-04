@@ -12,6 +12,19 @@ class Product extends Model
     use HasFactory;
     use HasSlug;
 
+    protected $table = 'products';
+    protected $guarded = ['id'];
+
+    public function properties()
+    {
+        return $this->hasMany(ProductProperty::class, 'product_id');
+    }
+
+    public function category()
+    {
+        return $this->hasOne(CategoryProduct::class);
+    }
+
 
     public function getRouteKeyName(): string
     {

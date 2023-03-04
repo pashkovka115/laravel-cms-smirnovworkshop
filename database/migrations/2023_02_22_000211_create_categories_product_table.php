@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
 
             $class = include 'templates/TemplateMetaFieldsMigration.php';
-            $class::meta_template_for_up($table)();
+            $class::template($table)();
 
             $table->timestamps();
         });

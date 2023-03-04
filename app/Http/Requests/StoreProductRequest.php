@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCategoryProductRequest extends StoreCategoryProductRequest
+class StoreProductRequest extends MetaGeneralRequest
 {
     /**
      * Determine if the user is authorized to make this request.

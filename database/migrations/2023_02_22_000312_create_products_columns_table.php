@@ -6,22 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        /*Schema::create('categories_product_columns', function (Blueprint $table) {
+        Schema::create('products_columns', function (Blueprint $table) {
             $class = include 'templates/TemplateColumnTableMigration.php';
             $class::template($table)();
-        });*/
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
-//        Schema::dropIfExists('categories_product_columns');
+        Schema::dropIfExists('products_columns');
     }
 };
