@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Product;
+namespace App\Http\Controllers\Admin\Feedback;
 
 use App\Http\Controllers\Controller;
-use App\Models\ProductColumns;
+use App\Models\FeedbackColumns;
 use Illuminate\Http\Request;
 
-class ProductColumnController extends Controller
+class FeedbackColumnController extends Controller
 {
     public function update(Request $request)
     {
@@ -20,7 +20,7 @@ class ProductColumnController extends Controller
                     'is_show_single' => isset($column['is_show_single']) ? 1 : 0,
                 ];
 
-                ProductColumns::where('id', (int)$id)->update($item);
+                FeedbackColumns::where('id', (int)$id)->update($item);
             }
         }
 

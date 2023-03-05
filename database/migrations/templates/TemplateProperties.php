@@ -14,6 +14,7 @@ return new class
             $table->string('name')->nullable();
             $table->string('type')->nullable();
             $table->longText('value')->nullable();
+            $table->boolean('is_show')->default(true);
         };
 
         return $fields;

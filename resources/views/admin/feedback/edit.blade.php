@@ -1,10 +1,10 @@
 @extends('admin.layouts.default')
 
 @section('title')
-	Редактируем товар
+	Редактируем сообщение
 @endsection
 @section('page_header')
-	Редактируем товар
+	Редактируем сообщение
 @endsection
 
 @section('style_top') @endsection
@@ -14,11 +14,11 @@
 	<!-- content -->
 	<div class="line">
 
-		@include('admin.parts.modal_settings_columns', ["route" => "admin.product.columns.update"])
-		@include('admin.parts.modal_add_property', ['field' => 'product_id', 'id' => $item->id, 'route' => 'admin.product.property.store'])
+		@include('admin.parts.modal_settings_columns', ["route" => "admin.feedback.columns.update"])
+		@include('admin.parts.modal_add_property', ['field' => 'feedback_id', 'id' => $item->id, 'route' => 'admin.feedback.property.store'])
 	</div>
 	<div class="py-2">
-		<form action="{{ route('admin.product.update', ['id' => $item->id]) }}" method="post"
+		<form action="{{ route('admin.feedback.update', ['id' => $item->id]) }}" method="post"
 					enctype="multipart/form-data">
 			@csrf
 			<ul class="nav nav-line-bottom nav-example" id="pills-tabTwo" role="tablist">
@@ -79,6 +79,7 @@
 															</label>
 														</div>
 													@endif
+
 												@endif
 											</div>
 										</div>
@@ -116,11 +117,20 @@
 																rows="1">{{ $prop->value }}</textarea>
 										</label>
 										<br>
+										<div class="checkbox-line">
 										<div class="form-check">
 											<input name="properties[delete_property][{{ $loop->iteration }}]"
 														 class="form-check-input delete-property" type="checkbox" value="{{ $loop->iteration }}"
 														 id="flexCheckChecked{{ $loop->iteration }}">
 											<label class="form-check-label" for="flexCheckChecked{{ $loop->iteration }}">Удалить</label>
+										</div>
+											<br>
+										<div class="form-check">
+											<input name="properties[is_show][{{ $loop->iteration }}]"
+														 class="form-check-input delete-property" type="checkbox" value="{{ $loop->iteration }}"
+														 id="is_show{{ $loop->iteration }}" @if($prop->is_show) checked @endif>
+											<label class="form-check-label" for="is_show{{ $loop->iteration }}">Видимость</label>
+											</div>
 										</div>
 									</div>
 								</div>

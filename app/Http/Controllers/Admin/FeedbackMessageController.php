@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFeedbackMessageRequest;
 use App\Http\Requests\UpdateFeedbackMessageRequest;
-use App\Models\FeedbackMessage;
+use App\Models\Feedback;
 
 class FeedbackMessageController extends Controller
 {
@@ -36,7 +36,7 @@ class FeedbackMessageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(FeedbackMessage $feedbackMessage)
+    public function show(Feedback $feedbackMessage)
     {
         //
     }
@@ -44,7 +44,7 @@ class FeedbackMessageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(FeedbackMessage $feedbackMessage)
+    public function edit(Feedback $feedbackMessage)
     {
         //
     }
@@ -52,7 +52,7 @@ class FeedbackMessageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFeedbackMessageRequest $request, FeedbackMessage $feedbackMessage)
+    public function update(UpdateFeedbackMessageRequest $request, Feedback $feedbackMessage)
     {
         //
     }
@@ -60,7 +60,7 @@ class FeedbackMessageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FeedbackMessage $feedbackMessage)
+    public function destroy(Feedback $feedbackMessage)
     {
         //
     }

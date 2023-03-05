@@ -32,15 +32,6 @@
                         <li class="nav-item">
                             <a class="nav-link {{ active(['admin.product', 'admin.product.*']) }}" href="{{route('admin.product')}}">Товары</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">Billing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">404 Error</a>
-                        </li>
                     </ul>
                 </div>
             </li>
@@ -49,23 +40,17 @@
             <!-- Nav item -->
             <li class="nav-item">
                 <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navAuthentication" aria-expanded="false" aria-controls="navAuthentication">
-                    <i data-feather="lock" class="nav-icon icon-xs me-2">
-                    </i> Authentication
+                    <i data-feather="lock" class="nav-icon icon-xs me-2"></i> Страницы
                 </a>
                 <div id="navAuthentication" class="collapse " data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link " href="../pages/sign-in.html"> Sign In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  " href="../pages/sign-up.html"> Sign Up</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="../pages/forget-password.html">
-                                Forget Password
-                            </a>
-                        </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link {{ active('admin.feedback*') }}" href="{{route('admin.feedback')}}">Обратная связь</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="#">Контакты</a>
+                        </li>
                     </ul>
                 </div>
             </li>

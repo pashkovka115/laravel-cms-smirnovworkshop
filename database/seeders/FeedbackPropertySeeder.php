@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class ProductPropertySeeder extends Seeder
+class FeedbackPropertySeeder extends Seeder
 {
     public function run(): void
     {
@@ -16,13 +16,13 @@ class ProductPropertySeeder extends Seeder
 
         for ($i = 1; $i <= 5; $i++){
             $properties[] = [
-                'product_id' => 1,
+                'feedback_id' => 1,
                 'type' => 'type' . $i,
                 'key' => 'Key' . $i,
                 'value' => 'Value' . $i,
             ];
         }
 
-        DB::table('product_properties')->insert($properties);
+        DB::table('feedback_properties')->insert($properties);
     }
 }

@@ -40,8 +40,7 @@
 					<div class="row">
 						@foreach($columns as $column)
 							@if($column['is_show_single'] and
-									$column['type'] != 'actions_column' and
-									$column['type'] != 'date'
+									$column['type'] != 'actions_column'
 									)
 								<div class="col-xl-6 col-lg-12 col-md-12 col-12 mb-1">
 									<div class="card">
@@ -51,6 +50,7 @@
 												@if($column['type'] == 'string')
 													<input type="text" name="{{ $column['origin_name'] }}"
 																 value="{{ $item->{$column['origin_name']} }}" class="form-control">
+
 												@elseif($column['type'] == 'name_lavel')
 													<select name="{{ $column['origin_name'] }}" class="form-select"
 																	aria-label="Default select example">
@@ -59,9 +59,14 @@
 																h{{ $i }}</option>
 														@endfor
 													</select>
+
 												@elseif($column['type'] == 'text')
 													<textarea name="{{ $column['origin_name'] }}" class="form-control"
 																		rows="3">{{ $item->{$column['origin_name']} }}</textarea>
+
+												@elseif($column['type'] == 'date')
+													{{ $item->{$column['origin_name']} }}
+
 												@elseif($column['type'] == 'img')
 													<input type="file" name="{{ $column['origin_name'] }}" class="form-control">
 													@if($item->{$column['origin_name']})
@@ -75,6 +80,7 @@
 															</label>
 														</div>
 													@endif
+
 												@endif
 											</div>
 										</div>

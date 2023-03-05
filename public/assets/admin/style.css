@@ -26,3 +26,7 @@ ul.errors {
 span.red{
     color: red !important;
 }
+.checkbox-line{
+    display: flex;
+    justify-content: space-around;
+}

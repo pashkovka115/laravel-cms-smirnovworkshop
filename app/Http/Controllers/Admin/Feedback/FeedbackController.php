@@ -1,61 +1,61 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Product;
+namespace App\Http\Controllers\Admin\Feedback;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
-use App\Models\Product;
-use App\Models\ProductColumns;
-use App\Models\ProductProperty;
+use App\Http\Requests\StoreFeedbackRequest;
+use App\Http\Requests\UpdateFeedbackRequest;
+use App\Models\Feedback;
+use App\Models\FeedbackColumns;
+use App\Models\FeedbackProperty;
 use Illuminate\Support\Facades\DB;
 
-class ProductController extends Controller
+class FeedbackController extends Controller
 {
-    const IMAGE_PATH = 'products';
+    const IMAGE_PATH = 'feedback';
 
 
     public function index()
     {
-        return view('admin.product.index', [
-            'columns' => ProductColumns::column_meta_sort_list(),
-            'items' => Product::paginate()
+        return view('admin.feedback.index', [
+            'columns' => FeedbackColumns::column_meta_sort_list(),
+            'items' => Feedback::paginate()
         ]);
     }
 
 
     public function create()
     {
-        return view('admin.product.create', [
-            'columns' => ProductColumns::column_meta_sort_single(),
+        return view('admin.feedback.create', [
+            'columns' => FeedbackColumns::column_meta_sort_single(),
         ]);
     }
 
 
-    public function store(StoreProductRequest $request)
+    public function store(StoreFeedbackRequest $request)
     {
-        $category = Product::create($this->base_fields($request, self::IMAGE_PATH));
+        $category = Feedback::create($this->base_fields($request, self::IMAGE_PATH));
 
         if ($request->has('save_and_edit')) {
-            return redirect()->route('admin.product.edit', ['id' => $category->id]);
+            return redirect()->route('admin.feedback.edit', ['id' => $category->id]);
         } elseif ($request->has('save_and_back')) {
-            return redirect()->route('admin.product');
+            return redirect()->route('admin.feedback');
         } elseif ($request->has('save_and_new')) {
-            return redirect()->route('admin.product.create');
+            return redirect()->route('admin.feedback.create');
         }
     }
 
 
     public function edit($id)
     {
-        return view('admin.product.edit', [
-            'item' => Product::where('id', $id)->firstOrFail(),
-            'columns' => ProductColumns::column_meta_sort_single(),
+        return view('admin.feedback.edit', [
+            'item' => Feedback::where('id', $id)->firstOrFail(),
+            'columns' => FeedbackColumns::column_meta_sort_single(),
         ]);
     }
 
 
-    public function update(UpdateProductRequest $request, $id)
+    public function update(UpdateFeedbackRequest $request, $id)
     {
         /*
          * Работа со свойствами
@@ -76,8 +76,10 @@ class ProductController extends Controller
 
             $new_props = [];
             foreach ($data_properties['key'] as $key => $value) {
+//                dd($data_properties);
                 $new_props[] = [
-                    'product_id' => $id,
+                    'feedback_id' => $id,
+                    'is_show' => isset($data_properties['is_show'][$key]) ? 1 : 0,
                     'name' => $data_properties['name'][$key],
                     'type' => $data_properties['type'][$key],
                     'key' => $data_properties['key'][$key],
@@ -86,8 +88,8 @@ class ProductController extends Controller
             }
 
             DB::transaction(function () use ($id, $new_props){
-                ProductProperty::where('product_id', $id)->delete();
-                ProductProperty::insert($new_props);
+                FeedbackProperty::where('feedback_id', $id)->delete();
+                FeedbackProperty::insert($new_props);
             });
 
         }
@@ -95,7 +97,7 @@ class ProductController extends Controller
         /*
          * Работа с категорией
          */
-        $category = Product::where('id', $id)->firstOrFail();
+        $category = Feedback::where('id', $id)->firstOrFail();
 
         $data = $this->base_fields($request, self::IMAGE_PATH);
 
@@ -126,18 +128,18 @@ class ProductController extends Controller
          * Перенаправляем взависимости от нажатой кнопки
          */
         if ($request->has('save_and_edit')) {
-            return redirect()->route('admin.product.edit', ['id' => $id]);
+            return redirect()->route('admin.feedback.edit', ['id' => $id]);
         } elseif ($request->has('save_and_back')) {
-            return redirect()->route('admin.product');
+            return redirect()->route('admin.feedback');
         } elseif ($request->has('save_and_new')) {
-            return redirect()->route('admin.product.create');
+            return redirect()->route('admin.feedback.create');
         }
     }
 
 
     public function destroy($id)
     {
-        Product::destroy($id);
+        Feedback::destroy($id);
 
         return back();
     }

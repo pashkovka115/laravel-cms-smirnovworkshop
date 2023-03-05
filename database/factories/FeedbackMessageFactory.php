@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\FeedbackMessage>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Feedback>
  */
 class FeedbackMessageFactory extends Factory
 {

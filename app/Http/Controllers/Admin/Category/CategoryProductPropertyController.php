@@ -2,39 +2,16 @@
 
 namespace App\Http\Controllers\Admin\Category;
 
-use App\Http\Controllers\Controller;
-use App\Models\CategoryProductColumns;
+use App\Http\Controllers\Admin\Abstracts\AdminController;
 use App\Models\CategoryProductProperty;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
-class CategoryProductPropertyController extends Controller
+class CategoryProductPropertyController extends AdminController
 {
-    public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'category_id' => 'required',
-            'name' => 'nullable|string',
-            'type' => 'nullable|string',
-            'key' => 'required|string|unique:categories_product_property',
-            'value' => 'nullable|string',
-        ]);
+    const FOREIGN_FIELD = 'category_id';
+    const MODEL = CategoryProductProperty::class;
 
-        if ($validator->fails()) {
-            return back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-
-        $property = new CategoryProductProperty();
-        $property->category_id = $request->input('category_id');
-        $property->name = $request->input('name') ?? '';
-        $property->type = $request->input('type') ?? '';
-        $property->key = $request->input('key');
-        $property->value = $request->input('value') ?? '';
-        $property->save();
-
-        return back();
+    public function store(Request $request){
+        return parent::store($request);
     }
 }
