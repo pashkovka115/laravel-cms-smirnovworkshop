@@ -33,6 +33,10 @@ class DatabaseSeeder extends Seeder
         $this->call(FeedbackColumnsSeeder::class);
         $this->call(FeedbackPropertySeeder::class);
 
+        $this->call(ContactsSeeder::class);
+        $this->call(ContactsColumnsSeeder::class);
+        $this->call(ContactsPropertySeeder::class);
+
         $this->call(ReviewsSeeder::class);
         $this->call(FeedbackSeeder::class);
     }

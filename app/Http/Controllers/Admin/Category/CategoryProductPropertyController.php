@@ -10,6 +10,7 @@ class CategoryProductPropertyController extends AdminController
 {
     const FOREIGN_FIELD = 'category_id';
     const MODEL = CategoryProductProperty::class;
+    const TABLE = 'categories_product_property';
 
     public function store(Request $request){
         return parent::store($request);

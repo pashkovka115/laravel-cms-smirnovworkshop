@@ -13,6 +13,7 @@ abstract class AdminController extends Controller
 {
     /**
      * @const MODEL - Модель.
+     * @const TABLE - Таблица в БД.
      * @const FOREIGN_FIELD - Поле в таблице, связь с родительской таблицей.
      */
     public function __construct()
@@ -24,6 +25,10 @@ abstract class AdminController extends Controller
         if (!defined('static::FOREIGN_FIELD'))
         {
             throw new Exception('Константа FOREIGN_FIELD не определена в подклассе ' . get_class($this));
+        }
+        if (!defined('static::TABLE'))
+        {
+            throw new Exception('Константа TABLE не определена в подклассе ' . get_class($this));
         }
     }
 
@@ -40,7 +45,7 @@ abstract class AdminController extends Controller
             'key' => [ // проверка по двум полям
                 'required',
                 'string',
-                Rule::unique('categories_product_property')->where(function ($query) use ($input_key, $input_category_id) {
+                Rule::unique(static::TABLE)->where(function ($query) use ($input_key, $input_category_id) {
                     return $query->where('key', $input_key)
                         ->where(static::FOREIGN_FIELD, $input_category_id);
                 }),

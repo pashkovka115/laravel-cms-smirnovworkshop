@@ -49,7 +49,7 @@
                             <a class="nav-link {{ active('admin.feedback*') }}" href="{{route('admin.feedback')}}">Обратная связь</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#">Контакты</a>
+                            <a class="nav-link {{ active('admin.contact*') }}" href="{{route('admin.contact')}}">Контакты</a>
                         </li>
                     </ul>
                 </div>

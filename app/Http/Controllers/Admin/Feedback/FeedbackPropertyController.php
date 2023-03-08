@@ -10,6 +10,7 @@ class FeedbackPropertyController extends AdminController
 {
     const FOREIGN_FIELD = 'feedback_id';
     const MODEL = FeedbackProperty::class;
+    const TABLE = 'feedback_properties';
 
 
     public function store(Request $request){

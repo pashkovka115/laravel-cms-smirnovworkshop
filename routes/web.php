@@ -20,46 +20,23 @@ Route::get('reset-password', [\App\Http\Controllers\Auth\ResetPasswordController
 
 Route::get('/', [\App\Http\Controllers\Site\HomeController::class, 'index'])->name('site.home');
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function (){
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
 
-    Route::prefix('category')->group(function (){
-        Route::get('', [\App\Http\Controllers\Admin\Category\CategoryProductController::class, 'index'])->name('admin.product_category');
-        Route::get('create', [\App\Http\Controllers\Admin\Category\CategoryProductController::class, 'create'])->name('admin.product_category.create');
-        Route::post('store', [\App\Http\Controllers\Admin\Category\CategoryProductController::class, 'store'])->name('admin.product_category.store');
-        Route::get('edit/{id}', [\App\Http\Controllers\Admin\Category\CategoryProductController::class, 'edit'])->name('admin.product_category.edit');
-        Route::post('update/{id}', [\App\Http\Controllers\Admin\Category\CategoryProductController::class, 'update'])->name('admin.product_category.update');
-        Route::get('destroy/{id}', [\App\Http\Controllers\Admin\Category\CategoryProductController::class, 'destroy'])->name('admin.product_category.destroy');
+    Route::prefix('category')->group(
+        base_path('routes/admin/category_product.php'),
+    );
 
-        Route::post('product-category-columns-update', [\App\Http\Controllers\Admin\Category\CategoryProductColumnController::class, 'update'])->name('admin.product_category.columns.update');
+    Route::prefix('product')->group(
+        base_path('routes/admin/product.php'),
+    );
 
-        Route::post('add-property', [\App\Http\Controllers\Admin\Category\CategoryProductPropertyController::class, 'store'])->name('admin.product_category.property.store');
-    });
+    Route::prefix('feedback')->group(
+        base_path('routes/admin/feedback.php'),
+    );
 
-    Route::prefix('product')->group(function (){
-        Route::get('', [\App\Http\Controllers\Admin\Product\ProductController::class, 'index'])->name('admin.product');
-        Route::get('create', [\App\Http\Controllers\Admin\Product\ProductController::class, 'create'])->name('admin.product.create');
-        Route::post('store', [\App\Http\Controllers\Admin\Product\ProductController::class, 'store'])->name('admin.product.store');
-        Route::get('edit/{id}', [\App\Http\Controllers\Admin\Product\ProductController::class, 'edit'])->name('admin.product.edit');
-        Route::post('update/{id}', [\App\Http\Controllers\Admin\Product\ProductController::class, 'update'])->name('admin.product.update');
-        Route::get('destroy/{id}', [\App\Http\Controllers\Admin\Product\ProductController::class, 'destroy'])->name('admin.product.destroy');
-
-        Route::post('product-category-columns-update', [\App\Http\Controllers\Admin\Product\ProductColumnController::class, 'update'])->name('admin.product.columns.update');
-
-        Route::post('add-property', [\App\Http\Controllers\Admin\Product\ProductPropertyController::class, 'store'])->name('admin.product.property.store');
-    });
-
-    Route::prefix('feedback')->group(function (){
-        Route::get('', [\App\Http\Controllers\Admin\Feedback\FeedbackController::class, 'index'])->name('admin.feedback');
-        Route::get('create', [\App\Http\Controllers\Admin\Feedback\FeedbackController::class, 'create'])->name('admin.feedback.create');
-        Route::post('store', [\App\Http\Controllers\Admin\Feedback\FeedbackController::class, 'store'])->name('admin.feedback.store');
-        Route::get('edit/{id}', [\App\Http\Controllers\Admin\Feedback\FeedbackController::class, 'edit'])->name('admin.feedback.edit');
-        Route::post('update/{id}', [\App\Http\Controllers\Admin\Feedback\FeedbackController::class, 'update'])->name('admin.feedback.update');
-        Route::get('destroy/{id}', [\App\Http\Controllers\Admin\Feedback\FeedbackController::class, 'destroy'])->name('admin.feedback.destroy');
-
-        Route::post('product-category-columns-update', [\App\Http\Controllers\Admin\Feedback\FeedbackColumnController::class, 'update'])->name('admin.feedback.columns.update');
-
-        Route::post('add-property', [\App\Http\Controllers\Admin\Feedback\FeedbackPropertyController::class, 'store'])->name('admin.feedback.property.store');
-    });
+    Route::prefix('contact')->group(
+        base_path('routes/admin/contact.php'),
+    );
 });
 
