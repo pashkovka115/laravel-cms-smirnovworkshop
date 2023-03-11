@@ -18,4 +18,7 @@ yarn-error.log
 /.idea
 /.vscode
 _*
-/TEMPLATE
+/TEMPLATE/admin/*
+!TEMPLATE/admin/5662_Dash-UI.zip
+TEMPLATE/site/*
+!TEMPLATE/site/Diana.zip
