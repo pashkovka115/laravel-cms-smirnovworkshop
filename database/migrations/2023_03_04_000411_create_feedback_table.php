@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable()->default(null);
-            $table->longText('message');
+            $table->string('email');
             $table->boolean('checked')->default(false);
 
             $class = include 'templates/TemplateMetaFieldsMigration.php';

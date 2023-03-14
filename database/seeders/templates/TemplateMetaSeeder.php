@@ -19,7 +19,7 @@ return new class {
                 'title' => $faker->realText($faker->numberBetween(10, 30)),
                 'meta_keywords' => $faker->realText($faker->numberBetween(10, 30)),
                 'meta_description' => $faker->realText($faker->numberBetween(50, 100)),
-                'name_lavel' => 'h1',
+                'name_lavel' => 'h2',
                 'name' => $name,
                 'slug' => Str::slug($name),
                 'img_announce' => '',

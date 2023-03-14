@@ -13,7 +13,7 @@ return new class
             $table->string('title')->nullable();
             $table->string('meta_keywords')->nullable();
             $table->string('meta_description')->nullable();
-            $table->string('name_lavel', 2)->default('h1');
+            $table->string('name_lavel', 2)->default('h2');
 
             $table->string('name');
             $table->string('slug');
@@ -21,6 +21,7 @@ return new class
             $table->string('img_detail')->nullable();
             $table->text('announce')->nullable();
             $table->longText('description')->nullable();
+            $table->boolean('is_show')->default(true);
         };
 
         return $fields;

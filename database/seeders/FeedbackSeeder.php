@@ -16,11 +16,13 @@ class FeedbackSeeder extends Seeder
         $count = 5;
         $messages = [];
         for ($i = 1; $i <= $count; $i++){
+            $name = $faker->unique()->name;
             $message = [
                 'user_id' => $i === 1 ? 1 : null,
-                'name' => 'Тема ' . $i,
-                'slug' => Str::slug('Тема ' . $i),
-                'message' => $faker->realText(),
+                'name' => $name,
+                'email' => $faker->unique()->email,
+                'slug' => Str::slug($name),
+                'description' => $faker->realText(),
                 'checked' => 0,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

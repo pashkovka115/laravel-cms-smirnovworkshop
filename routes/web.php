@@ -20,6 +20,13 @@ Route::get('reset-password', [\App\Http\Controllers\Auth\ResetPasswordController
 
 Route::get('/', [\App\Http\Controllers\Site\HomeController::class, 'index'])->name('site.home');
 
+Route::prefix('contact')->group(function (){
+    Route::get('', [\App\Http\Controllers\Site\ContactController::class, 'show'])->name('site.contact');
+    Route::post('store', [\App\Http\Controllers\Site\FeedbackController::class, 'store'])->name('site.contact.store');
+});
+
+
+// ============================= ADMIN =========================================================================
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
 
@@ -39,4 +46,4 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         base_path('routes/admin/contact.php'),
     );
 });
-
+// ============================= END ADMIN =========================================================================

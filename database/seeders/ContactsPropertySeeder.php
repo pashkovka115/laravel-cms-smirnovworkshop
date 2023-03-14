@@ -25,7 +25,30 @@ class ContactsPropertySeeder extends Seeder
                 'name' => 'Телефон',
                 'type' => 'contacts',
                 'key' => 'phone',
-                'value' => '+7928000000',
+                'value' => '<a href="tel:+8801234 567 890">+8801234 567 890</a>
+								<a href="tel:+8801234 567 890">+8801234 567 890</a>',
+            ],
+            [
+                'contact_id' => 1,
+                'name' => 'Web',
+                'type' => 'contacts',
+                'key' => 'web',
+                'value' => '<a href="mailto:info@example.com">info@example.com</a>
+								<a href="mailto:www.example.com">www.example.com</a>',
+            ],
+            [
+                'contact_id' => 1,
+                'name' => 'Заголовок формы',
+                'type' => 'contacts',
+                'key' => 'form_title',
+                'value' => 'Напишите нам!',
+            ],
+            [
+                'contact_id' => 1,
+                'name' => 'Комментарий к форме',
+                'type' => 'contacts',
+                'key' => 'form_brief',
+                'value' => 'Не откладывай на завтра.',
             ],
         ];
 
