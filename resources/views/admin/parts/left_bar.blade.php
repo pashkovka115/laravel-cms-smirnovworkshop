@@ -55,41 +55,18 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="../pages/layout.html">
-                    <i
-                        data-feather="sidebar"
-
-                        class="nav-icon icon-xs me-2"
-                    >
-                    </i
-                    >
-                    Layouts
+                <a class="nav-link " href="#">
+                    <i data-feather="sidebar" class="nav-icon icon-xs me-2"></i>
+                    Меню
                 </a>
             </li>
 
-            <!-- Nav item -->
-            <li class="nav-item">
-                <div class="navbar-heading">UI Components</div>
-            </li>
-
-            <!-- Nav item -->
-            <li class="nav-item">
-                <a class="nav-link has-arrow " href="../docs/accordions.html" >
-                    <i data-feather="package" class="nav-icon icon-xs me-2" >
-                    </i>  Components
-                </a>
-            </li>
 
 
             <li class="nav-item">
                 <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navMenuLevel" aria-expanded="false" aria-controls="navMenuLevel">
-                    <i
-                        data-feather="corner-left-down"
-
-                        class="nav-icon icon-xs me-2"
-                    >
-                    </i
-                    > Menu Level
+                    <i data-feather="corner-left-down" class="nav-icon icon-xs me-2"></i>
+                    Menu Level
                 </a>
                 <div id="navMenuLevel" class="collapse " data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">

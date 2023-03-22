@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Menu;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreFeedbackMessageRequest;
-use App\Http\Requests\UpdateFeedbackMessageRequest;
-use App\Models\Feedback;
+use Illuminate\Http\Request;
 
-class FeedbackMessageController extends Controller
+class MenuItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,13 +20,13 @@ class FeedbackMessageController extends Controller
      */
     public function create()
     {
-        //
+        ['categories' => Category::with('children')->where('parent_id', 0)->get()];
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFeedbackMessageRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -36,7 +34,7 @@ class FeedbackMessageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Feedback $feedbackMessage)
+    public function show(string $id)
     {
         //
     }
@@ -44,7 +42,7 @@ class FeedbackMessageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Feedback $feedbackMessage)
+    public function edit(string $id)
     {
         //
     }
@@ -52,7 +50,7 @@ class FeedbackMessageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFeedbackMessageRequest $request, Feedback $feedbackMessage)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -60,7 +58,7 @@ class FeedbackMessageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Feedback $feedbackMessage)
+    public function destroy(string $id)
     {
         //
     }
