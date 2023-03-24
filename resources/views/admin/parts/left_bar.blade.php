@@ -10,7 +10,6 @@
                 <a class="nav-link has-arrow " href="{{ route('admin.home') }}">
                     <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Панел администратора
                 </a>
-
             </li>
             <!-- Nav item -->
             <li class="nav-item">
@@ -55,7 +54,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">
+                <a class="nav-link {{ active('admin.menu') }}" href="{{ route('admin.menu') }}">
                     <i data-feather="sidebar" class="nav-icon icon-xs me-2"></i>
                     Меню
                 </a>

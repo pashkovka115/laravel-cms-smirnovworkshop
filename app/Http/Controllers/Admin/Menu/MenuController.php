@@ -10,56 +10,55 @@ class MenuController extends Controller
 {
     public function index()
     {
-        $menus = json_decode(Menu::with('items')->get());
+        $menus = json_decode(Menu::all());
 
-        return view('admin.menu.index', ['menus' => $menus, 'delimeter' => '']);
+        return view('admin.menu.index', ['menus' => $menus]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        Menu::create($data);
+
+        return back();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $menu = Menu::where('id', $id)->firstOrFail();
+
+        return view('admin.menu.edit', compact('menu'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        Menu::where('id', $id)->update(['name' => $data['name']]);
+
+        /*
+         * Перенаправляем взависимости от нажатой кнопки
+         */
+        if ($request->has('save_and_edit')) {
+            return redirect()->route('admin.menu.edit', ['id' => $id]);
+        } elseif ($request->has('save_and_back')) {
+            return redirect()->route('admin.menu');
+        } /*elseif ($request->has('save_and_new')) {
+            return redirect()->route('admin.*.create');
+        }*/
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
-        //
+        dd($id);
     }
 }

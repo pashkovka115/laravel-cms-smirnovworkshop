@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Menu;
 
 use App\Http\Controllers\Controller;
+use App\Models\Menu;
+use App\Models\MenuItem;
 use Illuminate\Http\Request;
 
 class MenuItemController extends Controller
@@ -20,7 +22,7 @@ class MenuItemController extends Controller
      */
     public function create()
     {
-        ['categories' => Category::with('children')->where('parent_id', 0)->get()];
+//        ['categories' => Category::with('children')->where('parent_id', 0)->get()];
     }
 
     /**
@@ -44,7 +46,11 @@ class MenuItemController extends Controller
      */
     public function edit(string $id)
     {
-        //
+//        $menus = json_decode(Menu::with('items')->where('id', $id)->get());
+        $menu = Menu::where('id', $id)->firstOrFail();
+        $items = MenuItem::with('children')->where('menu_id', $id)->where('parent_id', 0)->get();
+
+        return view('admin.menu_item.edit', compact('items', 'menu'));
     }
 
     /**
