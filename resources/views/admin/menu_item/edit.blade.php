@@ -1,203 +1,195 @@
 @extends('admin.layouts.default')
 
 @section('title')
-	Редактируем пункты меню
+    Редактируем пункты меню
 @endsection
 @section('page_header')
-	Редактируем пункты меню "{{ $menu->name }}"
+    Редактируем пункты меню "{{ $menu->name }}"
 @endsection
 
 @section('style_top')
-	<style>
-      .menu-item-bar {
-          background: #eee;
-          padding: 5px 10px;
-          border: 1px solid #d7d7d7;
-          margin-bottom: 5px;
-          width: 100%;
-          cursor: move;
-          display: block;
-      }
+    <style>
+        .menu-item-bar {
+            background: #eee;
+            padding: 5px 10px;
+            border: 1px solid #d7d7d7;
+            margin-bottom: 5px;
+            width: 100%;
+            cursor: move;
+            display: block;
+        }
 
-      .dragged {
-          position: absolute;
-          z-index: 1;
-      }
+        .dragged {
+            position: absolute;
+            z-index: 1;
+        }
 
-      body.dragging, body.dragging * {
-          cursor: move !important;
-      }
-	</style>
+        body.dragging, body.dragging * {
+            cursor: move !important;
+        }
+    </style>
 @endsection
 
 @section('content')
-	<div class="line"></div>
-	<div class="py-2">
+    <div class="line">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addLinkToMenu">
+            Добавить пункт меню
+        </button>
+    </div>
+    <div class="py-2">
 
-		<div class="row">
-			<div class="col-12 mb-1">
-				<div class="card">
-					<div class="card-body category-product-property">
-{{--	data-id="0" data-parent_id="0" - нужно для коректной работы сортировки НЕ УДАЛЯТЬ!!!					--}}
-						<ol id="menuitems" class="menu ui-sortable" data-id="0" data-parent_id="0">
-							@include('admin.menu_item.-recursiya')
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
+        <div class="row">
+            <div class="col-12 mb-1">
+                <div class="card">
+                    <div class="card-body category-product-property">
+                        {{--	data-id="0" data-parent_id="0" - нужно для коректной работы сортировки НЕ УДАЛЯТЬ!!!					--}}
+                        <ol id="menuitems" class="menu ui-sortable" data-id="0" data-parent_id="0">
+                            @include('admin.menu_item.-recursiya')
+                        </ol>
+                        <form action="{{ route('admin.menu_item.update') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="input_menu_json" value="" id="input_menu_json">
+                            <input type="hidden" name="menu_id" value="{{ $menu->id }}">
+                            <input type="submit" id="btn_save_json" class="btn btn-outline-success" value="Сохранить" disabled>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-1">
+                <div class="card">
+                    <div class="card-body category-product-property">
+                        <h5 class="card-title">Существующие ссылки</h5>
+                        @foreach($links as $link)
+                        <p class="badge bg-dark-info">{{ $link }}</p>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Для отладки --}}
+        {{--<div class="row">
+            <div class="col-12 mb-1">
+                <div class="card">
+                    <div class="card-body category-product-property">
+                        <pre id="serialize_output2"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>--}}
+    </div>
 
-		<div class="row">
-			<div class="col-12 mb-1">
-				<div class="card">
-					<div class="card-body category-product-property">
-						<pre id="serialize_output2"></pre>
-					</div>
-				</div>
-			</div>
-		</div>
 
-
-	</div>
-
+    <!-- Modal -->
+    <div class="modal fade" id="addLinkToMenu" tabindex="-1" role="dialog" aria-labelledby="addLinkToMenuTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addLinkToMenuTitle">Новый пункт меню</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <form action="{{ route('admin.menu_item.store') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="menu_id" value="{{ $menu->id }}">
+                    <input type="hidden" name="parent_id" value="0">
+                    <div class="modal-body">
+                        <div class="card-body category-product-property">
+                            <label class="form-label" title="Произвольно">Якорь
+                                <input type="text" name="name" class="form-control" value="">
+                            </label>
+                            <br>
+                            <label class="form-label" title="Произвольно">Ссылка
+                                <input type="text" name="slug" class="form-control" value="">
+                            </label>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 
 @section('script_buttom')
-	<script src="{{ url('assets/admin/js/jquery-sortable.js')}}"></script>
-	<script>
-      function sleep(ms) {
-          return new Promise(resolve => setTimeout(resolve, ms));
-      }
+    <script src="{{ url('assets/admin/js/jquery-sortable.js')}}"></script>
+    <script>
+        $(function () {
+            let global_selector = '#menuitems';
 
-      $(function () {
+            var group = $(global_selector).sortable({
+                group: 'serialization',
+                delay: 500,
+                onDrop: function ($item, container, _super) {
 
-          /*$('#menuitems').sortable({
-							group: 'serialization',
-							onDrop: function ($item, container, _super) {
-									var data = group.sortable("serialize").get();
-									var jsonString = JSON.stringify(data, null, ' ');
-									$('#serialize_output').text(jsonString);
-									_super($item, container);
-							}
-					});*/
+                    let parent_container;
 
-          // $('body').addClass('dragging');
+                    setTimeout(function () {
+                        parent_container = $item.parent().parent();
+                        if (parent_container.prop('tagName') !== 'LI') {
+                            parent_container = $item.parent();
+                        }
+                        $item.attr('data-parent_id', parent_container.attr('data-id'));
 
-          // $("ol.example").sortable();
+                        let arr = [];
+                        function toJSON(node) {
+                            if (node.tagName === 'OL' || node.tagName === 'UL' || node.tagName === 'LI') {
+                                let obj = {};
+                                if (node.tagName === 'LI') {
+                                    for (let key in node.dataset) {
+                                        if (key === 'id') {
+                                            obj.id = node.dataset.id;
+                                        } else if (key === 'parent_id') {
+                                            obj.parent_id = node.dataset.parent_id;
+                                        } else if (key === 'menu_id') {
+                                            obj.menu_id = node.dataset.menu_id;
+                                        } else if (key === 'slug') {
+                                            obj.slug = node.dataset.slug;
+                                        } else if (key === 'name') {
+                                            obj.name = node.dataset.name;
+                                        }
+                                    }
+                                    arr.push(obj);
+                                }
 
-					let global_selector = '#menuitems';
+                                let children = node.childNodes;
+                                for (let i = 0; i < children.length; i++) {
+                                    if (children[i].nodeType === 1) {
+                                        let item = toJSON(children[i]);
+                                        if (item !== undefined) {
+                                            arr.push(item);
+                                        }
+                                    }
+                                }
+                            }
+                        }
 
-          var group = $(global_selector).sortable({
-              group: 'serialization',
-              delay: 500,
-              onDrop: function ($item, container, _super) {
+                        let btn_save_json = document.querySelector('#btn_save_json');
+                        btn_save_json.removeAttribute('disabled');
+                        let global_container = document.querySelector(global_selector);
+                        toJSON(global_container);
 
-                  let parent_container;
+                        // JSON для отправки в БД
+                        let jsonString = JSON.stringify(arr, null, ' ');
+                        document.querySelector('#input_menu_json').setAttribute('value', jsonString);
+                        // $('#serialize_output2').text(jsonString);
 
-                  setTimeout(function (){
-                      parent_container = $item.parent().parent();
-                      if (parent_container.prop('tagName') !== 'LI'){
-                          parent_container = $item.parent();
-											}
-                      // $item.data('parent_id', parent_container.data('id'));
-                      $item.attr('data-parent_id', parent_container.attr('data-id'));
-                      // console.log($item.attr('data-parent_id'), $item.data())
-									}, 300);
-                  sleep(500);
+                    }, 300);
+                    // sleep(500);
 
-
-
-                  var data = group.sortable("serialize").get();
-                  // var data = $("#menuitems").sortable("serialize").get();
-
-									// My
-                  // console.log(global_container.children())
-
-                  let global_container = document.querySelector(global_selector);
-
-                  function toJSON(node) {
-                      if (node.tagName === 'ul' || node.tagName === 'ol' || node.tagName === 'li') {
-                          let propFix = {for: 'htmlFor', class: 'className'};
-                          let specialGetters = {
-                              style: (node) => node.style.cssText,
-                          };
-                          let attrDefaultValues = {style: ''};
-                          let obj = {
-                              nodeType: node.nodeType,
-                          };
-                          if (node.tagName) {
-                              obj.tagName = node.tagName.toLowerCase();
-                          } else if (node.nodeName) {
-                              obj.nodeName = node.nodeName;
-                          }
-                          if (node.nodeValue) {
-                              obj.nodeValue = node.nodeValue;
-                          }
-                          let attrs = node.attributes;
-                          if (attrs) {
-                              let defaultValues = new Map();
-                              for (let i = 0; i < attrs.length; i++) {
-                                  let name = attrs[i].nodeName;
-                                  defaultValues.set(name, attrDefaultValues[name]);
-                              }
-                              // Add some special cases that might not be included by enumerating
-                              // attributes above. Note: this list is probably not exhaustive.
-                              /*switch (obj.tagName) {
-																	case 'input': {
-																			if (node.type === 'checkbox' || node.type === 'radio') {
-																					defaultValues.set('checked', false);
-																			} else if (node.type !== 'file') {
-																					// Don't store the value for a file input.
-																					defaultValues.set('value', '');
-																			}
-																			break;
-																	}
-																	case 'option': {
-																			defaultValues.set('selected', false);
-																			break;
-																	}
-																	case 'textarea': {
-																			defaultValues.set('value', '');
-																			break;
-																	}
-															}*/
-                              let arr = [];
-                              for (let [name, defaultValue] of defaultValues) {
-                                  let propName = propFix[name] || name;
-                                  let specialGetter = specialGetters[propName];
-                                  let value = specialGetter ? specialGetter(node) : node[propName];
-                                  if (value !== defaultValue) {
-                                      arr.push([name, value]);
-                                  }
-                              }
-                              if (arr.length) {
-                                  obj.attributes = arr;
-                              }
-                          }
-                          let childNodes = node.childNodes;
-                          // Don't process children for a textarea since we used `value` above.
-                          if (obj.tagName !== 'textarea' && childNodes && childNodes.length) {
-                              let arr = (obj.childNodes = []);
-                              for (let i = 0; i < childNodes.length; i++) {
-                                  arr[i] = toJSON(childNodes[i]);
-                              }
-                          }
-                      return obj;
-                  }
-                  }
-
-                  console.log(toJSON(global_container));
-									// End My
-
-
-
-                  var jsonString = JSON.stringify(data, null, ' ');
-
-                  $('#serialize_output2').text(jsonString);
-                  _super($item, container);
-              }
-          });
-      });
-	</script>
+                    /*var jsonString = JSON.stringify(data, null, ' ');
+                    $('#serialize_output2').text(jsonString);*/
+                    _super($item, container);
+                }
+            });
+        });
+    </script>
 @endsection

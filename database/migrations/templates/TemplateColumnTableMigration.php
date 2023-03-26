@@ -19,7 +19,7 @@ return new class
             $table->string('type');
             $table->string('show_name');
             $table->integer('sort_list');
-            $table->integer('sort_single');
+            $table->integer('sort_single')->default(100);
             $table->boolean('is_show_anons');
             $table->boolean('is_show_single');
         };

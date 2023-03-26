@@ -36,12 +36,13 @@
 			<div class="tab-content py-4" id="pills-tabTwoContent">
 				<div class="tab-pane tab-example-design fade show active" id="pills-accordions-design"
 						 role="tabpanel" aria-labelledby="pills-accordions-design-tab">
-					<div class="row">
+					<div id="sortable" class="row">
+                        <input type="hidden" name="_model" value="{{ \App\Models\Product::class }}">
 						@foreach($columns as $column)
 							@if($column['is_show_single'] and
 									$column['type'] != 'actions_column'
 									)
-								<div class="col-xl-6 col-lg-12 col-md-12 col-12 mb-1">
+								<div class="col-lg-12 col-md-12 col-12 mb-1">
 									<div class="card">
 										<div class="card-body">
 											<h4 class="card-title">{{ $column['show_name'] }}</h4>
@@ -142,5 +143,5 @@
 @endsection
 
 @section('script_buttom')
-
+<script src="{{ asset('assets/admin/js/sortable-content-block.js') }}"></script>
 @endsection

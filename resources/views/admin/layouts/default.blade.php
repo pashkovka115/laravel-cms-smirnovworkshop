@@ -18,6 +18,10 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('assets/admin/css/theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/style.css') }}">
+    <script>
+{{--     Для сохранения сортировки блоков   --}}
+        let url_save_order_blocks = "{{ route('admin.ajax.save_order_blocks.store') }}";
+    </script>
     @yield('style_top')
     @yield('script_top')
     <title>@yield('title')</title>
@@ -95,6 +99,13 @@
 
 <!-- Theme JS -->
 <script src="{{ asset('assets/admin/js/theme.min.js') }}"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    });
+</script>
 @yield('script_buttom')
 </body>
 

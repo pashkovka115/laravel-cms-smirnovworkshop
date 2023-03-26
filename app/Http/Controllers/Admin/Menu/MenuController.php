@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Menu;
 
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
+use App\Models\MenuItem;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -59,6 +60,9 @@ class MenuController extends Controller
 
     public function destroy(string $id)
     {
-        dd($id);
+        MenuItem::where('menu_id', $id)->delete();
+        Menu::where('id', $id)->delete();
+
+        return back();
     }
 }

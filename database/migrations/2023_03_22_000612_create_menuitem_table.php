@@ -14,6 +14,7 @@ return new class extends Migration
             $table->unsignedBigInteger('parent_id');
             $table->string('name');
             $table->string('slug')->unique();
+            $table->integer('sort')->default(100);
 
             $table->foreign('menu_id')->references('id')->on('menu')
                 ->onDelete('cascade')->onUpdate('cascade');

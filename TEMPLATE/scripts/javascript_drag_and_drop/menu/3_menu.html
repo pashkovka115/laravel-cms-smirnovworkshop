@@ -9,6 +9,9 @@
           padding: 20px;
           list-style: none;
       }
+      div.item, li{
+          margin-bottom: 20px;
+      }
 
       .item {
           width: 600px;
@@ -38,47 +41,43 @@
 <body>
 
 
-<ul id="wrapper">
-  <li class="item excluded-element">
-    <div class="current">excluded-element</div>
-    <div class="random"></div>
-  </li>
-  <li class="item" data-id="1" data-parent-id="0">
+<div id="wrapper">
+  <div class="item" data-id="1" data-parent-id="0">
     <div class="current">Item 1</div>
     <div class="flex">
-      <div class="parent"></div>
-      <div class="children"></div>
+      <div class="parent">Text 1</div>
+      <div class="children">Text 2</div>
     </div>
-  </li>
-  <li class="item" data-id="2" data-parent-id="0">
+  </div>
+  <div class="item" data-id="2" data-parent-id="0">
     <div class="current">Item 2</div>
     <div class="flex">
-      <div class="parent"></div>
-      <div class="children"></div>
+        <div class="parent">Text 1</div>
+        <div class="children">Text 2</div>
     </div>
-  </li>
-  <li class="item" data-id="3" data-parent-id="0">
+  </div>
+  <div class="item" data-id="3" data-parent-id="0">
     <div class="current">Item 3</div>
     <div class="flex">
-      <div class="parent"></div>
-      <div class="children"></div>
+        <div class="parent">Text 1</div>
+        <div class="children">Text 2</div>
     </div>
-  </li>
-  <li class="item" data-id="4" data-parent-id="0">
+  </div>
+  <div class="item" data-id="4" data-parent-id="0">
     <div class="current">Item 4</div>
     <div class="flex">
-      <div class="parent"></div>
-      <div class="children"></div>
+        <div class="parent">Text 1</div>
+        <div class="children">Text 2</div>
     </div>
-  </li>
-  <li class="item" data-id="5" data-parent-id="0">
+  </div>
+  <div class="item" data-id="5" data-parent-id="0">
     <div class="current">Item 5</div>
     <div class="flex">
-      <div class="parent"></div>
-      <div class="children"></div>
+        <div class="parent">Text 1</div>
+        <div class="children">Text 2</div>
     </div>
-  </li>
-</ul>
+  </div>
+</div>
 
 
 <script>
@@ -140,7 +139,7 @@
 
         return function (options){
             options = options || {};
-            
+
             this.onUpdate = options.stop || null;
             let excludedElements = options.excludedElements && options.excludedElements.split(/,*\s+/) || null;
             [...this.children].forEach(item => {
@@ -176,38 +175,6 @@
             });
         });
     }
-
-
-    /* Children */
-    let container_children = document.querySelectorAll('li > .flex > .children');
-    if (container_children.length){
-        container_children.forEach(item => {
-            item.addEventListener('dragover', function (e){
-                e.preventDefault();
-            }, false);
-
-            // Если перетягивать в дочернюю зону
-            item.addEventListener('drop', function (e){
-                let elem = document.querySelector('[data-id="' + e.dataTransfer.getData('id') + '"]')
-                item.appendChild(elem)
-            }, false);
-        });
-    }
-
-
-    /*let children = document.querySelectorAll('li > .children > *');
-
-    if (children.length){
-        children.forEach(item => {
-            item.sortable({
-                stop: function (dragEl){
-                    // console.log(this)
-                    // console.log(dragEl)
-                }
-            });
-        });
-    }*/
-    /* End children */
 
 </script>
 
