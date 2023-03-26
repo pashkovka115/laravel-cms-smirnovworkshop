@@ -24,8 +24,6 @@ Element.prototype.sortable = (function () {
 
         this.addEventListener('dragover', _onDragOver, false);
         this.addEventListener('dragend', _onDragEnd, false);
-
-        this.addEventListener('drop', _saveOrder, false);
     }
 
     function _onDragOver(e) {
@@ -47,36 +45,6 @@ Element.prototype.sortable = (function () {
         }
     }
 
-    function _saveOrder(e){
-        let arr = [];
-        let wrapper = document.querySelector(sortableSelector);
-        let fields = wrapper.querySelectorAll('[name]');
-        for (let i = 0; i < fields.length; i++){
-            let obj = {};
-            for (let key in fields[i]){
-                if (key === 'name'){
-                    // todo: добавить название модели для сохранения в нужную таблицу
-                    obj[key] = fields[i][key];
-                }
-            }
-            arr.push(obj);
-        }
-
-        let jsonString = JSON.stringify(arr, null, ' ');
-        // console.log('jsonString', jsonString)
-
-        // route: admin.ajax.save_order_blocks.store
-        $.ajax({
-            type: 'POST',
-            url: url_save_order_blocks,
-            data:  {data: jsonString}
-        }).done(function(response) {
-            console.log('Success:', response)
-        }).fail(function(data) {
-            console.log('FAIL:', data);
-        });
-    }
-
     function _onDragEnd(e){
         e.preventDefault();
         this.removeEventListener('dragover', _onDragOver, false);
@@ -85,7 +53,6 @@ Element.prototype.sortable = (function () {
         if (nextEl !== dragEl.nextSibling){
             this.onUpdate && this.onUpdate(dragEl);
         }
-        // _saveOrder();
     }
 
     return function (options){

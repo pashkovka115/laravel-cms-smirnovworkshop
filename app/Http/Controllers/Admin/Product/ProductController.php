@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use App\Models\ProductColumns;
 use App\Models\ProductProperty;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -57,6 +58,8 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, $id)
     {
+        $this->updateOrder($request, ProductColumns::class);
+
         /*
          * Работа со свойствами
          */
@@ -85,7 +88,7 @@ class ProductController extends Controller
                 ];
             }
 
-            DB::transaction(function () use ($id, $new_props){
+            DB::transaction(function () use ($id, $new_props) {
                 ProductProperty::where('product_id', $id)->delete();
                 ProductProperty::insert($new_props);
             });
@@ -93,9 +96,9 @@ class ProductController extends Controller
         }
 
         /*
-         * Работа с категорией
+         * Работа с товаром
          */
-        $category = Product::where('id', $id)->firstOrFail();
+        $product = Product::where('id', $id)->firstOrFail();
 
         $data = $this->base_fields($request, self::IMAGE_PATH);
 
@@ -107,20 +110,22 @@ class ProductController extends Controller
         }
 
         if ($request->has('delete_img_announce')) {
-            if (file_exists('storage/' . $category->img_announce)) {
-                unlink('storage/' . $category->img_announce);
+            if (file_exists('storage/' . $product->img_announce)) {
+                unlink('storage/' . $product->img_announce);
             }
             $data['img_announce'] = '';
         }
 
         if ($request->has('delete_img_detail')) {
-            if (file_exists('storage/' . $category->img_detail)) {
-                unlink('storage/' . $category->img_detail);
+            if (file_exists('storage/' . $product->img_detail)) {
+                unlink('storage/' . $product->img_detail);
             }
             $data['img_detail'] = '';
         }
 
-        $category->update($data);
+        $product->update($data);
+
+//        ProductColumns::updateOrder($request);
 
         /*
          * Перенаправляем взависимости от нажатой кнопки

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductColumns;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class Controller extends BaseController
 
     public function save_img(Request $request, $field_name, $path = '', $disk = 'public')
     {
-        if ($request->has($field_name)) {
+        if ($request->has($field_name) and $request->input($field_name)) {
             return $request->file($field_name)->store('uploads/' . $path, $disk);
         }
 
@@ -54,5 +55,41 @@ class Controller extends BaseController
         }
 
         return $data;
+    }
+
+
+    /**
+     * @param Request $request
+     * @return void
+     * Обновить сортировку полей.
+     */
+    protected function updateOrder(Request $request, string $model)
+    {
+        // поля сортировки
+        $white_list = [
+            'id',
+            'name',
+            'slug',
+            'title',
+            'meta_keywords',
+            'meta_description',
+            'name_lavel',
+            'img_announce',
+            'img_detail',
+            'announce',
+            'description',
+            'created_at',
+            'updated_at',
+            'actions_column',
+        ];
+
+        $fields = $request->all();
+        $sort = 0;
+        foreach ($fields as $field => $value) {
+            if (in_array($field, $white_list)) {
+                $sort += 100;
+                $model::where('origin_name', $field)->update(['sort_single' => $sort]);
+            }
+        }
     }
 }

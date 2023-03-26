@@ -66,9 +66,13 @@
 
 												@elseif($column['type'] == 'date')
 													{{ $item->{$column['origin_name']} }}
+													{{--	Для коректного сохранения сортировки	--}}
+													<input type="hidden" name="{{ $column['origin_name'] }}">
 
 												@elseif($column['type'] == 'img')
 													<input type="file" name="{{ $column['origin_name'] }}" class="form-control">
+                          {{--	Для коректного сохранения сортировки	--}}
+													<input type="hidden" name="{{ $column['origin_name'] }}">
 													@if($item->{$column['origin_name']})
 														<img src="/storage/{{ $item->{$column['origin_name']} }}" alt=""
 																 style="width: auto; margin-top: 10px" height="150px">
