@@ -46,6 +46,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         base_path('routes/admin/contact.php'),
     );
 
+    Route::prefix('user')->group(
+        base_path('routes/admin/user.php'),
+    );
+
     Route::prefix('menu')->group(
         base_path('routes/admin/menu.php'),
     );

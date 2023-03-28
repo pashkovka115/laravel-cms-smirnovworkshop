@@ -59,6 +59,12 @@
                     Меню
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.user') }}">
+                    <i data-feather="sidebar" class="nav-icon icon-xs me-2"></i>
+                    Профиль
+                </a>
+            </li>
 
 
 
