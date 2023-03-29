@@ -27,6 +27,7 @@ class MetaGeneralRequest extends FormRequest
             'name_lavel' => ['nullable', 'string'],
             'img_announce' => ['nullable', 'image'],
             'img_detail' => ['nullable', 'image'],
+            'img_gallery.*' => ['nullable', 'image'],
         ];
     }
 }

@@ -94,6 +94,15 @@ return new class
                     'type' => 'img'
                 ],
                 [
+                    'origin_name' => 'img_gallery',
+                    'show_name' => 'Галерея изображений',
+                    'sort_list' => 500,
+                    'sort_single' => 100,
+                    'is_show_anons' => 0,
+                    'is_show_single' => 1,
+                    'type' => 'img_gallery'
+                ],
+                [
                     'origin_name' => 'announce',
                     'show_name' => 'Анонс',
                     'sort_list' => 500,

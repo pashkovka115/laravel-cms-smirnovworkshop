@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductColumns;
+use App\Models\ProductProperty;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\DB;
 
 class Controller extends BaseController
 {
@@ -30,7 +32,7 @@ class Controller extends BaseController
      */
     public function base_fields(Request $request, string $path_save_img = '')
     {
-        if ($path_save_img){
+        if ($path_save_img) {
             $path_img_announce = $this->save_img($request, 'img_announce', $path_save_img);
             $path_img_detail = $this->save_img($request, 'img_detail', $path_save_img);
         }
@@ -49,7 +51,7 @@ class Controller extends BaseController
             'name_lavel' => $request->name_lavel,
         ];
 
-        if ($path_save_img){
+        if ($path_save_img) {
             $data['img_announce'] = $path_img_announce;
             $data['img_detail'] = $path_img_detail;
         }
@@ -81,6 +83,7 @@ class Controller extends BaseController
             'created_at',
             'updated_at',
             'actions_column',
+            'img_gallery',
         ];
 
         $fields = $request->all();
@@ -90,6 +93,85 @@ class Controller extends BaseController
                 $sort += 100;
                 $model::where('origin_name', $field)->update(['sort_single' => $sort]);
             }
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @param $item_name_for_route
+     * @param $item_id
+     * @return \Illuminate\Http\RedirectResponse|void
+     * При правильном определении кнопок отправки формы в рамках админки
+     * перенаправляет на соответствующий маршрут в конце действия в контроллере.
+     */
+    protected function redirectAdmin(Request $request, $item_name_for_route, $item_id)
+    {
+        if ($request->has('save_and_edit')) {
+            return redirect()->route('admin.' . $item_name_for_route . '.edit', ['id' => $item_id]);
+        } elseif ($request->has('save_and_back')) {
+            return redirect()->route('admin.' . $item_name_for_route);
+        } elseif ($request->has('save_and_new')) {
+            return redirect()->route('admin.' . $item_name_for_route . '.create');
+        }
+    }
+
+
+    /**
+     * @param Request $request
+     * @param $request_field
+     * @param $foreign_key
+     * @param $item_id
+     * @param string $model
+     * @return void
+     * Сохраняет масив изображений
+     */
+    protected function saveGallary(Request $request, $request_field, $foreign_key, $item_id, string $model)
+    {
+        if ($request->has($request_field) and is_array($request->file($request_field))) {
+            $sort = 0;
+            foreach ($request->file($request_field) as $img) {
+                $model::create([
+                    $foreign_key => $item_id,
+                    'sort' => $sort += 10,
+                    'src' => $img->store('uploads/' . $foreign_key . '/' . $item_id, 'public')
+                ]);
+            }
+        }
+    }
+
+
+    protected function updateProperties(Request $request, $foreign_key, $item_id, $model)
+    {
+        if ($request->has('properties')) {
+            $data_properties = $request->input('properties');
+            foreach ($data_properties as $field => $property) {
+                if (isset($data_properties['delete_property']) and count($data_properties['delete_property']) > 0) {
+                    foreach ($data_properties['delete_property'] as $index) {
+                        if ($field != 'delete_property') {
+                            unset($data_properties[$field][$index]);
+                        }
+
+                    }
+                }
+            }
+            unset($data_properties['delete_property']);
+
+            $new_props = [];
+            foreach ($data_properties['key'] as $key => $value) {
+                $new_props[] = [
+                    $foreign_key => $item_id,
+                    'name' => $data_properties['name'][$key],
+                    'type' => $data_properties['type'][$key],
+                    'key' => $data_properties['key'][$key],
+                    'value' => $data_properties['value'][$key],
+                ];
+            }
+
+            DB::transaction(function () use ($foreign_key, $item_id, $new_props, $model) {
+                $model::where($foreign_key, $item_id)->delete();
+                $model::insert($new_props);
+            });
+
         }
     }
 }

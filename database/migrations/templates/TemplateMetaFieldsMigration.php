@@ -2,8 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 
-return new class
-{
+return new class {
     /**
      * Общий шаблон для описания большинства типов контента(страниц).
      */
@@ -22,6 +21,9 @@ return new class
             $table->text('announce')->nullable();
             $table->longText('description')->nullable();
             $table->boolean('is_show')->default(true);
+
+            // Сама галерея хранится в другой таблице. Например "product_images"
+            $table->string('img_gallery')->nullable()->comment('Для поля галереи. Нужно для сортировки в админке');
         };
 
         return $fields;
