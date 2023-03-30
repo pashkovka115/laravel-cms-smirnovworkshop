@@ -3,13 +3,9 @@
 namespace App\Http\Controllers\Admin\Users;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateCategoryProductsRequest;
-use App\Models\CategoryProduct;
-use App\Models\CategoryProductColumns;
-use App\Models\CategoryProductProperty;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -65,35 +61,54 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-
         $data = $request->validate([
             'name' => ['required','string'],
             'email' => ['required', 'email'],
+            'new_email' => ['nullable', 'email'],
             'password_old' => ['nullable', 'string'],
             'password' => ['nullable', 'confirmed', 'min:8'],
+            'avatar' => ['nullable', 'image', 'max:10240', 'dimensions:max_width=500,max_height=700'],
         ]);
+        // Check email
+        $user = User::where('email', $data['email'])->firstOrFail();
 
-        dd($data);
-
-        /*if ($request->has('delete_img_detail')) {
-            if (file_exists('storage/' . $item->img_detail)) {
-                unlink('storage/' . $item->img_detail);
+        if ($data['password']){
+            // Check password
+            if (!$user or !Hash::check($data['password_old'], $user->password)){
+                return response([
+                    'message' => 'Не верная пара логин/пароль'
+                ], 401);
             }
-            $data['img_detail'] = '';
-        }*/
+        }else{
+            if (isset($data['password'])){
+                unset($data['password']);
+            }
+        }
 
-        $item->update($data);
+        if (isset($data['password_old'])){
+            unset($data['password_old']);
+        }
+
+        if ($avatar = $this->save_img($request, 'avatar', self::IMAGE_PATH)){
+            $data['avatar'] = $avatar;
+            if (file_exists(base_path('public/storage/' . $user->avatar))){
+                unlink(base_path('public/storage/' . $user->avatar));
+            }
+        }
+
+        $data['password'] = Hash::make($data['password']);
+
+        if ($request->has('new_email') and $data['new_email']){
+            $data['email'] = $data['new_email'];
+            unset($data['new_email']);
+        }
+
+        $user->update($data);
 
         /*
          * Перенаправляем взависимости от нажатой кнопки
          */
-        if ($request->has('save_and_edit')) {
-            return redirect()->route('admin.product_category.edit', ['id' => $id]);
-        } elseif ($request->has('save_and_back')) {
-            return redirect()->route('admin.product_category');
-        } elseif ($request->has('save_and_new')) {
-            return redirect()->route('admin.product_category.create');
-        }
+        return $this->redirectAdmin($request, 'user', $id);
     }
 
 

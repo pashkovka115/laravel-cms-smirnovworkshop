@@ -55,6 +55,7 @@ class ProductController extends Controller
         return view('admin.product.edit', [
             'item' => Product::where('id', $id)->firstOrFail(),
             'columns' => ProductColumns::column_meta_sort_single(),
+            'gallery' => ProductImages::where('product_id', $id)->orderBy('sort')->get(),
         ]);
     }
 
@@ -62,12 +63,15 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, $id)
     {
         /*
+         * Удаляем изображения из галереи
+         */
+        $this->deleteGallery($request, 'delete_gallery', ProductImages::class);
+        /*
          * Сохраняем галерею
          */
         $this->saveGallary($request, 'img_gallery', 'product_id', $id, ProductImages::class);
-        // todo: Реализовать удаление из галереи
         /*
-         * Сортировка
+         * Обновляем сортировку
          */
         $this->updateOrder($request, ProductColumns::class);
 
@@ -89,30 +93,20 @@ class ProductController extends Controller
         if (is_null($data['img_detail'])) {
             unset($data['img_detail']);
         }
-        /*if (is_null($data['img_gallery'])) {
-            unset($data['img_gallery']);
-        }*/
 
         if ($request->has('delete_img_announce')) {
-            if (file_exists('storage/' . $product->img_announce)) {
-                unlink('storage/' . $product->img_announce);
+            if (file_exists(base_path('public/storage/' . $product->img_announce))) {
+                unlink(base_path('public/storage/' . $product->img_announce));
             }
             $data['img_announce'] = '';
         }
 
         if ($request->has('delete_img_detail')) {
-            if (file_exists('storage/' . $product->img_detail)) {
-                unlink('storage/' . $product->img_detail);
+            if (file_exists(base_path('public/storage/' . $product->img_detail))) {
+                unlink(base_path('public/storage/' . $product->img_detail));
             }
             $data['img_detail'] = '';
         }
-
-        /*if ($request->has('img_gallery')) {
-            if (file_exists('storage/' . $product->img_detail)) {
-                unlink('storage/' . $product->img_detail);
-            }
-            $data['img_detail'] = '';
-        }*/
 
         $product->update($data);
 
@@ -126,66 +120,4 @@ class ProductController extends Controller
 
         return back();
     }
-
-    /*private function saveGallary(Request $request, $request_field, $foreign_key, $item_id, string $model)
-    {
-        if ($request->has($request_field)){
-            $sort = 0;
-            foreach ($request->file($request_field) as $img){
-                $model::create([
-                    $foreign_key => $item_id,
-                    'sort' => $sort += 10,
-                    'src' => $img->store('uploads/products/'.$item_id, 'public')
-                ]);
-            }
-        }
-    }*/
-
-
-    /*private function redirectAdmin(Request $request, $item_name_for_route, $item_id)
-    {
-        if ($request->has('save_and_edit')) {
-            return redirect()->route('admin.'.$item_name_for_route.'.edit', ['id' => $item_id]);
-        } elseif ($request->has('save_and_back')) {
-            return redirect()->route('admin.'.$item_name_for_route);
-        } elseif ($request->has('save_and_new')) {
-            return redirect()->route('admin.'.$item_name_for_route.'.create');
-        }
-    }*/
-
-
-    /*private function updateProperties(Request $request, $product_id)
-    {
-        if ($request->has('properties')) {
-            $data_properties = $request->input('properties');
-            foreach ($data_properties as $field => $property) {
-                if (isset($data_properties['delete_property']) and count($data_properties['delete_property']) > 0) {
-                    foreach ($data_properties['delete_property'] as $index) {
-                        if ($field != 'delete_property') {
-                            unset($data_properties[$field][$index]);
-                        }
-
-                    }
-                }
-            }
-            unset($data_properties['delete_property']);
-
-            $new_props = [];
-            foreach ($data_properties['key'] as $key => $value) {
-                $new_props[] = [
-                    'product_id' => $product_id,
-                    'name' => $data_properties['name'][$key],
-                    'type' => $data_properties['type'][$key],
-                    'key' => $data_properties['key'][$key],
-                    'value' => $data_properties['value'][$key],
-                ];
-            }
-
-            DB::transaction(function () use ($product_id, $new_props) {
-                ProductProperty::where('product_id', $product_id)->delete();
-                ProductProperty::insert($new_props);
-            });
-
-        }
-    }*/
 }

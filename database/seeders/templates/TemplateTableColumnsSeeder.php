@@ -16,79 +16,79 @@ return new class
                     'origin_name' => 'id',
                     'show_name' => 'ID',
                     'sort_list' => 500,
-                    'sort_single' => 100,
+                    'sort_single' => 10,
                     'is_show_anons' => 1,
                     'is_show_single' => 0,
                     'type' => 'id'
                 ],
                 [
-                    'origin_name' => 'name',
-                    'show_name' => 'Заголовок страницы',
-                    'sort_list' => 500,
-                    'sort_single' => 100,
-                    'is_show_anons' => 1,
-                    'is_show_single' => 1,
-                    'type' => 'string'
-                ],
-                [
-                    'origin_name' => 'slug',
-                    'show_name' => 'Алиас',
-                    'sort_list' => 500,
-                    'sort_single' => 100,
-                    'is_show_anons' => 1,
-                    'is_show_single' => 0,
-                    'type' => 'string'
-                ],
-                [
                     'origin_name' => 'title',
                     'show_name' => 'Заголовок окна',
                     'sort_list' => 500,
-                    'sort_single' => 100,
+                    'sort_single' => 20,
                     'is_show_anons' => 0,
                     'is_show_single' => 1,
                     'type' => 'string'
                 ],
                 [
-                    'origin_name' => 'meta_keywords',
-                    'show_name' => 'meta keywords',
+                    'origin_name' => 'name',
+                    'show_name' => 'Заголовок страницы',
                     'sort_list' => 500,
-                    'sort_single' => 150,
-                    'is_show_anons' => 0,
+                    'sort_single' => 30,
+                    'is_show_anons' => 1,
                     'is_show_single' => 1,
                     'type' => 'string'
-                ],
-                [
-                    'origin_name' => 'meta_description',
-                    'show_name' => 'meta description',
-                    'sort_list' => 500,
-                    'sort_single' => 100,
-                    'is_show_anons' => 0,
-                    'is_show_single' => 1,
-                    'type' => 'text'
                 ],
                 [
                     'origin_name' => 'name_lavel',
                     'show_name' => 'Уровень заголовка',
                     'sort_list' => 500,
-                    'sort_single' => 100,
+                    'sort_single' => 40,
                     'is_show_anons' => 0,
                     'is_show_single' => 1,
                     'type' => 'name_lavel'
                 ],
                 [
+                    'origin_name' => 'slug',
+                    'show_name' => 'Алиас',
+                    'sort_list' => 500,
+                    'sort_single' => 50,
+                    'is_show_anons' => 1,
+                    'is_show_single' => 1,
+                    'type' => 'string'
+                ],
+                [
+                    'origin_name' => 'announce',
+                    'show_name' => 'Анонс',
+                    'sort_list' => 500,
+                    'sort_single' => 60,
+                    'is_show_anons' => 1,
+                    'is_show_single' => 1,
+                    'type' => 'text'
+                ],
+                [
                     'origin_name' => 'img_announce',
                     'show_name' => 'Изображение в анонсе',
                     'sort_list' => 500,
-                    'sort_single' => 100,
+                    'sort_single' => 70,
                     'is_show_anons' => 0,
                     'is_show_single' => 1,
                     'type' => 'img'
                 ],
                 [
+                    'origin_name' => 'description',
+                    'show_name' => 'Детальное описание',
+                    'sort_list' => 500,
+                    'sort_single' => 80,
+                    'is_show_anons' => 0,
+                    'is_show_single' => 1,
+                    'type' => 'text'
+                ],
+                [
                     'origin_name' => 'img_detail',
                     'show_name' => 'Изображение в детальном описании',
                     'sort_list' => 500,
-                    'sort_single' => 100,
+                    'sort_single' => 90,
                     'is_show_anons' => 0,
                     'is_show_single' => 1,
                     'type' => 'img'
@@ -103,19 +103,19 @@ return new class
                     'type' => 'img_gallery'
                 ],
                 [
-                    'origin_name' => 'announce',
-                    'show_name' => 'Анонс',
+                    'origin_name' => 'meta_keywords',
+                    'show_name' => 'meta keywords',
                     'sort_list' => 500,
-                    'sort_single' => 100,
-                    'is_show_anons' => 1,
+                    'sort_single' => 110,
+                    'is_show_anons' => 0,
                     'is_show_single' => 1,
-                    'type' => 'text'
+                    'type' => 'string'
                 ],
                 [
-                    'origin_name' => 'description',
-                    'show_name' => 'Описание',
+                    'origin_name' => 'meta_description',
+                    'show_name' => 'meta description',
                     'sort_list' => 500,
-                    'sort_single' => 100,
+                    'sort_single' => 120,
                     'is_show_anons' => 0,
                     'is_show_single' => 1,
                     'type' => 'text'
@@ -124,7 +124,7 @@ return new class
                     'origin_name' => 'created_at',
                     'show_name' => 'Время создания',
                     'sort_list' => 500,
-                    'sort_single' => 100,
+                    'sort_single' => 130,
                     'is_show_anons' => 0,
                     'is_show_single' => 1,
                     'type' => 'date'
@@ -133,7 +133,7 @@ return new class
                     'origin_name' => 'updated_at',
                     'show_name' => 'Время обновления',
                     'sort_list' => 500,
-                    'sort_single' => 100,
+                    'sort_single' => 140,
                     'is_show_anons' => 0,
                     'is_show_single' => 1,
                     'type' => 'date'
@@ -142,7 +142,7 @@ return new class
                     'origin_name' => 'actions_column',
                     'show_name' => 'Действия',
                     'sort_list' => 500,
-                    'sort_single' => 100,
+                    'sort_single' => 150,
                     'is_show_anons' => 1,
                     'is_show_single' => 0,
                     'type' => 'actions_column'

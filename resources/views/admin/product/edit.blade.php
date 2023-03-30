@@ -61,7 +61,7 @@
 													</select>
 
 												@elseif($column['type'] == 'text')
-													<textarea name="{{ $column['origin_name'] }}" class="form-control"
+													<textarea id="{{ $column['origin_name'] }}" name="{{ $column['origin_name'] }}" class="form-control"
 																		rows="3">{{ $item->{$column['origin_name']} }}</textarea>
 
 												@elseif($column['type'] == 'date')
@@ -89,17 +89,22 @@
 													<input type="file" name="{{ $column['origin_name'] }}[]" class="form-control" multiple>
                           {{--	Для коректного сохранения сортировки	--}}
 													<input type="hidden" name="{{ $column['origin_name'] }}">
-													@if($item->{$column['origin_name']})
-														<img src="/storage/{{ $item->{$column['origin_name']} }}" alt=""
-																 style="width: auto; margin-top: 10px" height="150px">
-														<div class="form-check" style="margin-top: 10px">
-															<input name="delete_{{ $column['origin_name'] }}" class="form-check-input" type="checkbox"
-																		 value="" id="flexCheckChecked{{ $loop->iteration }}">
-															<label class="form-check-label" for="flexCheckChecked{{ $loop->iteration }}">
-																Удалить изображение
-															</label>
+													@isset($gallery)
+														<div class="row">
+															@foreach($gallery as $img)
+																<div class="col-2 mt-2">
+																<img src="/storage/{{ $img->src }}" alt="" style="width: auto; height: 110px">
+																<div class="form-check" style="margin-top: 10px">
+																	<input name="delete_gallery[]" class="form-check-input" type="checkbox"
+																				 value="{{ $img->src }}" id="flexCheckChecked{{ $loop->iteration }}">
+																	<label class="form-check-label" for="flexCheckChecked{{ $loop->iteration }}">
+																		Удалить изображение
+																	</label>
+																</div>
+																</div>
+															@endforeach
 														</div>
-													@endif
+													@endisset
 
 												@endif
 											</div>

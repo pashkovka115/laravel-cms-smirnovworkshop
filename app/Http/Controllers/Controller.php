@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductColumns;
+use App\Models\ProductImages;
 use App\Models\ProductProperty;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -16,11 +17,12 @@ class Controller extends BaseController
 
     public function save_img(Request $request, $field_name, $path = '', $disk = 'public')
     {
-        if ($request->has($field_name) and $request->input($field_name)) {
-            return $request->file($field_name)->store('uploads/' . $path, $disk);
+        if ($request->has($field_name) and $request->file($field_name)) {
+            $subdir = substr(md5(microtime()), mt_rand(0, 30), 2) . '/' . substr(md5(microtime()), mt_rand(0, 30), 2);
+            return $request->file($field_name)->store("uploads/$subdir/" . $path, $disk);
         }
 
-        return null;
+        return false;
     }
 
     /**
@@ -135,6 +137,18 @@ class Controller extends BaseController
                     'sort' => $sort += 10,
                     'src' => $img->store('uploads/' . $foreign_key . '/' . $item_id, 'public')
                 ]);
+            }
+        }
+    }
+
+
+    protected function deleteGallery(Request $request, $request_field, string $model){
+        if ($request->has($request_field) and $request->input($request_field)){
+            $model::whereIn('src', $request->input($request_field))->delete();
+            foreach ($request->input($request_field) as $path){
+                if (file_exists(base_path('public/storage/' . $path))){
+                    unlink(base_path('public/storage/' . $path));
+                }
             }
         }
     }

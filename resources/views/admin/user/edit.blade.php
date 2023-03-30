@@ -27,8 +27,14 @@
                     <div class="card-body">
                         <div class="">
                             <input type="text" name="name" class="form-control" value="{{ $item->name }}"><br>
-                            <input type="email" name="email" class="form-control" value="{{ $item->email }}"><br>
+                            <input type="email" name="email" class="form-control" value="{{ $item->email }}" readonly><br>
+                            <input type="email" name="new_email" class="form-control" value="" placeholder="Новый Email"><br>
                             <input type="file" name="avatar" class="form-control"><br>
+													@if($item->avatar)
+														<img src="/storage/{{ $item->avatar }}" alt="Аватар"
+																 style="width: auto; margin-top: 10px" height="150px">
+													@endif
+													<br><br>
                             <p>Изменить пароль</p>
                             <input type="password" name="password_old" class="form-control" placeholder="Старый пароль"><br>
                             <input type="password" name="password" class="form-control" placeholder="Новый пароль"><br>
