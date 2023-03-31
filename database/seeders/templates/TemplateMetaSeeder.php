@@ -24,8 +24,8 @@ return new class {
                 'slug' => Str::slug($name),
                 'img_announce' => '',
                 'img_detail' => '',
-                'announce' => $faker->realText($faker->numberBetween(30, 50)),
-                'description' => $faker->realText($faker->numberBetween(100, 200)),
+                'announce' => $faker->realText($faker->numberBetween(100, 300)),
+                'description' => $faker->realText($faker->numberBetween(500, 1000)),
             ];
         };
 

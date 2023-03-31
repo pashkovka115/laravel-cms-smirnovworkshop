@@ -27,7 +27,7 @@
 							<ul class="nav-menu">
 								<li><a href="page-search.html">Search</a></li>
 								<li><a href="about.html">About</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li><a href="contact.html">Page</a></li>
 								<li><a href="shipping-policy.html">Shipping policy</a></li>
 								<li><a href="wishlist.html">Wishlist</a></li>
 								<li><a href="shop.html">All Products</a></li>

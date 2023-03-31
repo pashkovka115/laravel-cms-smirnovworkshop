@@ -26,7 +26,7 @@
 @endsection
 
 @section('content')
-	<!--== Start Contact Area Wrapper ==-->
+	<!--== Start Page Area Wrapper ==-->
 	<section class="contact-area">
 		<div class="container">
 			<div class="row">
@@ -47,7 +47,7 @@
 					</div>
 				</div>
 				<div class="col-lg-7">
-					<!--== Start Contact Form ==-->
+					<!--== Start Page Form ==-->
 					<div class="contact-form">
 						<!-- key title: form_title -->
 						@foreach($page_item->properties as $prop)
@@ -64,7 +64,7 @@
 							@endif
 						@endforeach
 
-						<form id="contact-form" action="{{ route('site.contact.store') }}" method="post">
+						<form id="contact-form" action="{{ route('site.feedback.store') }}" method="post">
 							@csrf
 							<div class="row row-gutter-20">
 								<div class="col-md-6">
@@ -90,7 +90,7 @@
 							</div>
 						</form>
 					</div>
-					<!--== End Contact Form ==-->
+					<!--== End Page Form ==-->
 
 					<!--== Message Notification ==-->
 					<div class="form-message"></div>
@@ -98,6 +98,6 @@
 			</div>
 		</div>
 	</section>
-	<!--== End Contact Area Wrapper ==-->
+	<!--== End Page Area Wrapper ==-->
 
 @endsection

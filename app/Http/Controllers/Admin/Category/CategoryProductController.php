@@ -37,13 +37,7 @@ class CategoryProductController extends Controller
     {
         $category = CategoryProduct::create($this->base_fields($request, self::IMAGE_PATH));
 
-        if ($request->has('save_and_edit')) {
-            return redirect()->route('admin.product.category.edit', ['id' => $category->id]);
-        } elseif ($request->has('save_and_back')) {
-            return redirect()->route('admin.product.category');
-        } elseif ($request->has('save_and_new')) {
-            return redirect()->route('admin.product.category.create');
-        }
+        $this->redirectAdmin($request, 'product_category', $category->id);
     }
 
 
@@ -59,38 +53,14 @@ class CategoryProductController extends Controller
     public function update(UpdateCategoryProductsRequest $request, $id)
     {
         /*
+         * Обновляем сортировку
+         */
+        $this->updateOrder($request, CategoryProductColumns::class);
+
+        /*
          * Работа со свойствами
          */
-        if ($request->has('properties')) {
-            $data_properties = $request->input('properties');
-            foreach ($data_properties as $field => $property) {
-                if (isset($data_properties['delete_property']) and count($data_properties['delete_property']) > 0) {
-                    foreach ($data_properties['delete_property'] as $index) {
-                        if ($field != 'delete_property') {
-                            unset($data_properties[$field][$index]);
-                        }
-
-                    }
-                }
-            }
-            unset($data_properties['delete_property']);
-
-            $new_props = [];
-            foreach ($data_properties['key'] as $key => $value) {
-                $new_props[] = [
-                    'category_id' => $id,
-                    'name' => $data_properties['name'][$key],
-                    'type' => $data_properties['type'][$key],
-                    'key' => $data_properties['key'][$key],
-                    'value' => $data_properties['value'][$key],
-                ];
-            }
-
-            DB::transaction(function () use ($id, $new_props){
-                CategoryProductProperty::where('category_id', $id)->delete();
-                CategoryProductProperty::insert($new_props);
-            });
-        }
+        $this->updateProperties($request, 'category_id', $id, CategoryProductProperty::class);
 
         /*
          * Работа с категорией
@@ -122,16 +92,7 @@ class CategoryProductController extends Controller
 
         $category->update($data);
 
-        /*
-         * Перенаправляем взависимости от нажатой кнопки
-         */
-        if ($request->has('save_and_edit')) {
-            return redirect()->route('admin.product_category.edit', ['id' => $id]);
-        } elseif ($request->has('save_and_back')) {
-            return redirect()->route('admin.product_category');
-        } elseif ($request->has('save_and_new')) {
-            return redirect()->route('admin.product_category.create');
-        }
+        return $this->redirectAdmin($request, 'product_category', $id);
     }
 
 

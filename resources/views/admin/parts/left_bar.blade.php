@@ -50,10 +50,10 @@
                     <ul class="nav flex-column">
 
                         <li class="nav-item">
-                            <a class="nav-link {{ active('admin.feedback*') }}" href="{{route('admin.feedback')}}">Обратная связь</a>
+                            <a class="nav-link {{ active('admin.feedback*') }}" href="{{route('admin.feedback')}}">Сообщения</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ active('admin.contact*') }}" href="{{route('admin.contact')}}">Контакты</a>
+                            <a class="nav-link {{ active('admin.page*') }}" href="{{route('admin.page')}}">Страницы</a>
                         </li>
                     </ul>
                 </div>
@@ -67,7 +67,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.user') }}">
                     <i data-feather="sidebar" class="nav-icon icon-xs me-2"></i>
-                    Профиль
+                    Пользователи
                 </a>
             </li>
 

@@ -36,7 +36,8 @@
 			<div class="tab-content py-4" id="pills-tabTwoContent">
 				<div class="tab-pane tab-example-design fade show active" id="pills-accordions-design"
 						 role="tabpanel" aria-labelledby="pills-accordions-design-tab">
-					<div class="row">
+                    @include('admin.parts.form_edit')
+					{{--<div class="row">
 						@foreach($columns as $column)
 							@if($column['is_show_single'] and
 									$column['type'] != 'actions_column'
@@ -87,11 +88,12 @@
 								</div>
 							@endif
 						@endforeach
-					</div>
+					</div>--}}
 				</div>
 				<div class="tab-pane tab-example-html fade" id="pills-accordions-html" role="tabpanel"
 						 aria-labelledby="pills-accordions-html-tab">
-					<div class="row">
+                    @include('admin.parts.template_properties')
+					{{--<div class="row">
 						@foreach($item->properties as $prop)
 							<div class="col-xl-3 col-lg-3 col-md-6 col-12 mb-1">
 								<div class="card">
@@ -136,7 +138,7 @@
 								</div>
 							</div>
 						@endforeach
-					</div>
+					</div>--}}
 				</div>
 			</div>
 			<div class="">

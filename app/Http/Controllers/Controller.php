@@ -73,6 +73,7 @@ class Controller extends BaseController
         $white_list = [
             'id',
             'name',
+            'email',
             'slug',
             'title',
             'meta_keywords',

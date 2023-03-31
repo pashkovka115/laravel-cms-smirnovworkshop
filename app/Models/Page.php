@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Contact extends Model
+class Page extends Model
 {
     use HasFactory;
     use HasSlug;
@@ -16,7 +16,7 @@ class Contact extends Model
 
     public function properties()
     {
-        return $this->hasMany(ContactProperty::class, 'contact_id');
+        return $this->hasMany(PageProperty::class, 'page_id');
     }
 
 

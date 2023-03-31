@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ContactColumns extends General
+class PageColumns extends General
 {
     use HasFactory;
 
-    protected $table = 'contacts_columns';
+    protected $table = 'page_columns';
     public $timestamps = false;
 
 
@@ -18,6 +18,6 @@ class ContactColumns extends General
      */
     public function properties()
     {
-        return $this->hasMany(ContactProperty::class, 'contact_id', 'contact_id');
+        return $this->hasMany(PageProperty::class, 'page_id', 'page_id');
     }
 }

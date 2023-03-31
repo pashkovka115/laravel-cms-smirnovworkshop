@@ -7,13 +7,13 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class ContactsColumnsSeeder extends Seeder
+class PageColumnsSeeder extends Seeder
 {
     public function run(): void
     {
         $class = include 'templates/TemplateTableColumnsSeeder.php';
         $fields = $class::template()();
 
-        DB::table('contacts_columns')->insert($fields);
+        DB::table('page_columns')->insert($fields);
     }
 }

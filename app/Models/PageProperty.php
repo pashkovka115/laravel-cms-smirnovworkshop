@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ContactProperty extends Model
+class PageProperty extends Model
 {
     use HasFactory;
 
-    protected $table = 'contacts_properties';
+    protected $table = 'page_properties';
     public $timestamps = false;
     protected $fillable = [
-        'contact_id',
+        'page_id',
         'key',
         'name',
         'type',

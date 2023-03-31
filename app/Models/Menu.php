@@ -18,6 +18,7 @@ class Menu extends Model
     {
         return $this->hasMany(MenuItem::class, 'menu_id')
             ->with('children')
-            ->where('parent_id', 0);
+            ->where('parent_id', 0)
+            ->orderBy('sort');
     }
 }

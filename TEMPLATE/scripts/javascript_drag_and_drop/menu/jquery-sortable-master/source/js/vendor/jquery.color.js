@@ -525,7 +525,7 @@ each( spaces, function( spaceName, space ) {
 
 	// makes red() green() blue() alpha() hue() saturation() lightness()
 	each( props, function( key, prop ) {
-		// alpha is included in more than one space
+		// alpha is Included in more than one space
 		if ( color.fn[ key ] ) {
 			return;
 		}

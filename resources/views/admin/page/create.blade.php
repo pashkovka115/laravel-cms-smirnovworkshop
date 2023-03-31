@@ -19,7 +19,7 @@
 	</div>
 
 	<div class="py-2">
-		<form action="{{ route('admin.contact.store') }}" method="post" enctype="multipart/form-data">
+		<form action="{{ route('admin.page.store') }}" method="post" enctype="multipart/form-data">
 			@csrf
 			<div class="row">
 				@foreach($columns as $column)

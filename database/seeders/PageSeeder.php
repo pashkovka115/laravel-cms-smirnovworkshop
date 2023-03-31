@@ -9,7 +9,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class ContactsSeeder extends Seeder
+class PageSeeder extends Seeder
 {
     public function run(Faker $faker): void
     {
@@ -21,6 +21,6 @@ class ContactsSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ];
 
-        DB::table('contacts')->insert($message);
+        DB::table('pages')->insert($message);
     }
 }

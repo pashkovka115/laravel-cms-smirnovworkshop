@@ -1,5 +1,5 @@
 (function($) {
-  
+
   "use strict";
 
   // Preloader
@@ -319,7 +319,7 @@
     $button.parent().find('input').val(newVal);
   });
 
-  // Countdown Js 
+  // Countdown Js
   $(".ht-countdown").each(function(index, element) {
     var $element = $(element),
     $date = $element.data('date');
@@ -333,8 +333,8 @@
     });
   });
 
-  // Ajax Contact Form JS
-  var form = $('#contact-form');
+  // Ajax Page Form JS
+  var form = $('#page-form');
   var formMessages = $('.form-message');
 
   $(form).submit(function(e) {
@@ -354,7 +354,7 @@
       formMessages.append(response);
 
       // Clear the form.
-      $('#contact-form input,#contact-form textarea').val('');
+      $('#page-form input,#page-form textarea').val('');
     }).fail(function(data) {
       // Make sure that the formMessages div has the 'error' class.
       $(formMessages).removeClass('alert alert-success');
@@ -393,7 +393,7 @@
     });
   }
   scrollToTop();
-  
+
 /* ==========================================================================
    When document is loading, do
    ========================================================================== */

@@ -556,7 +556,7 @@ var Prism = (function (_self) {
 		 * to improve performance and avoid blocking the UI when highlighting very large chunks of code. This option is
 		 * [disabled by default](https://prismjs.com/faq.html#why-is-asynchronous-highlighting-disabled-by-default).
 		 *
-		 * Note: All language definitions required to highlight the code must be included in the main `prism.js` file for
+		 * Note: All language definitions required to highlight the code must be Included in the main `prism.js` file for
 		 * asynchronous highlighting to work. You can build your own bundle on the
 		 * [Download page](https://prismjs.com/download.html).
 		 * @param {HighlightCallback} [callback] An optional callback to be invoked after the highlighting is done.
@@ -1213,7 +1213,7 @@ if (typeof module !== 'undefined' && module.exports) {
 	module.exports = Prism;
 }
 
-// hack for components to work correctly in node.js
+// hack for mycomponents to work correctly in node.js
 if (typeof global !== 'undefined') {
 	global.Prism = Prism;
 }

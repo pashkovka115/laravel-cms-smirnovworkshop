@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Menu;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use App\Models\MenuItem;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,12 @@ class MenuItemController extends Controller
     public function edit(string $id)
     {
         $links = ['register', 'login', 'logout'];
+        $page_aliases = Page::all('slug');
+
+        foreach ($page_aliases as $slug){
+            $links[] = $slug->slug;
+        }
+
         $routes = Route::getRoutes()->getRoutes();
 
         foreach ($routes as $route){

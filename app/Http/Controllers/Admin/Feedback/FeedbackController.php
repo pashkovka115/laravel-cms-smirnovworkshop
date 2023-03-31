@@ -34,15 +34,9 @@ class FeedbackController extends Controller
 
     public function store(StoreFeedbackRequest $request)
     {
-        $category = Feedback::create($this->base_fields($request, self::IMAGE_PATH));
+        $feedback = Feedback::create($this->base_fields($request, self::IMAGE_PATH));
 
-        if ($request->has('save_and_edit')) {
-            return redirect()->route('admin.feedback.edit', ['id' => $category->id]);
-        } elseif ($request->has('save_and_back')) {
-            return redirect()->route('admin.feedback');
-        } elseif ($request->has('save_and_new')) {
-            return redirect()->route('admin.feedback.create');
-        }
+        return $this->redirectAdmin($request, 'feedback', $feedback->id);
     }
 
 
@@ -58,44 +52,18 @@ class FeedbackController extends Controller
     public function update(UpdateFeedbackRequest $request, $id)
     {
         /*
-         * Работа со свойствами
+         * Обновляем сортировку
          */
-        if ($request->has('properties')) {
-            $data_properties = $request->input('properties');
-            foreach ($data_properties as $field => $property) {
-                if (isset($data_properties['delete_property']) and count($data_properties['delete_property']) > 0) {
-                    foreach ($data_properties['delete_property'] as $index) {
-                        if ($field != 'delete_property') {
-                            unset($data_properties[$field][$index]);
-                        }
-
-                    }
-                }
-            }
-            unset($data_properties['delete_property']);
-
-            $new_props = [];
-            foreach ($data_properties['key'] as $key => $value) {
-//                dd($data_properties);
-                $new_props[] = [
-                    'feedback_id' => $id,
-                    'is_show' => isset($data_properties['is_show'][$key]) ? 1 : 0,
-                    'name' => $data_properties['name'][$key],
-                    'type' => $data_properties['type'][$key],
-                    'key' => $data_properties['key'][$key],
-                    'value' => $data_properties['value'][$key],
-                ];
-            }
-
-            DB::transaction(function () use ($id, $new_props){
-                FeedbackProperty::where('feedback_id', $id)->delete();
-                FeedbackProperty::insert($new_props);
-            });
-
-        }
+        $this->updateOrder($request, FeedbackColumns::class);
 
         /*
-         * Работа с категорией
+         * Работа со свойствами
+         */
+        $this->updateProperties($request, 'feedback_id', $id, FeedbackProperty::class);
+
+
+        /*
+         * Работа с сообщением
          */
         $category = Feedback::where('id', $id)->firstOrFail();
 
@@ -127,13 +95,7 @@ class FeedbackController extends Controller
         /*
          * Перенаправляем взависимости от нажатой кнопки
          */
-        if ($request->has('save_and_edit')) {
-            return redirect()->route('admin.feedback.edit', ['id' => $id]);
-        } elseif ($request->has('save_and_back')) {
-            return redirect()->route('admin.feedback');
-        } elseif ($request->has('save_and_new')) {
-            return redirect()->route('admin.feedback.create');
-        }
+        return $this->redirectAdmin($request, 'feedback', $id);
     }
 
 

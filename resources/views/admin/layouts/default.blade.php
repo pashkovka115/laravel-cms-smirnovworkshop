@@ -120,7 +120,7 @@
         },
         menubar: 'favs file edit view insert format tools table help',
     });
-    
+
     tinymce.init({
         selector: 'textarea#description',
         language: 'ru',

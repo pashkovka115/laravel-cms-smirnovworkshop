@@ -37,7 +37,10 @@
 						</a>
 					</div>
 				</div>
-				@include('site.parts.top_menu')
+{{--				@include('site.parts.top_menu')--}}
+{{--                <x-menu></x-menu>--}}
+                {{--Верхнее меню--}}
+                {!! \App\Included\Classes\Menu::name('Верхнее меню'); !!}
 				<div class="col">
 					<div class="header-action-area">
 						<ul class="header-action">

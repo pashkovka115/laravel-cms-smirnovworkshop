@@ -69,10 +69,13 @@ class UserController extends Controller
             'password' => ['nullable', 'confirmed', 'min:8'],
             'avatar' => ['nullable', 'image', 'max:10240', 'dimensions:max_width=500,max_height=700'],
         ]);
+//        dd($request->all());
         // Check email
         $user = User::where('email', $data['email'])->firstOrFail();
 
         if ($data['password']){
+
+            $data['password'] = Hash::make($data['password']);
             // Check password
             if (!$user or !Hash::check($data['password_old'], $user->password)){
                 return response([
@@ -85,22 +88,26 @@ class UserController extends Controller
             }
         }
 
-        if (isset($data['password_old'])){
-            unset($data['password_old']);
-        }
-
         if ($avatar = $this->save_img($request, 'avatar', self::IMAGE_PATH)){
             $data['avatar'] = $avatar;
-            if (file_exists(base_path('public/storage/' . $user->avatar))){
+            if (is_file(base_path('public/storage/' . $user->avatar))){
+                unlink(base_path('public/storage/' . $user->avatar));
+            }
+        }elseif ($request->has('delete_avatar')){
+            $data['avatar'] = '';
+            if (is_file(base_path('public/storage/' . $user->avatar))){
                 unlink(base_path('public/storage/' . $user->avatar));
             }
         }
 
-        $data['password'] = Hash::make($data['password']);
-
         if ($request->has('new_email') and $data['new_email']){
             $data['email'] = $data['new_email'];
-            unset($data['new_email']);
+        }
+
+        unset($data['new_email']);
+        unset($data['password_old']);
+        if (is_null($data['password'])){
+            unset($data['password']);
         }
 
         $user->update($data);

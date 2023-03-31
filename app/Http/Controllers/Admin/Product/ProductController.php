@@ -39,14 +39,6 @@ class ProductController extends Controller
         $product = Product::create($this->base_fields($request, self::IMAGE_PATH));
 
         return $this->redirectAdmin($request, 'product', $product->id);
-
-        /*if ($request->has('save_and_edit')) {
-            return redirect()->route('admin.product.edit', ['id' => $product->id]);
-        } elseif ($request->has('save_and_back')) {
-            return redirect()->route('admin.product');
-        } elseif ($request->has('save_and_new')) {
-            return redirect()->route('admin.product.create');
-        }*/
     }
 
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateContactsRequest extends StoreContactsRequest
+class StorePagesRequest extends MetaGeneralRequest
 {
     /**
      * Determine if the user is authorized to make this request.

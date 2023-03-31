@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Contact;
+namespace App\Http\Controllers\Admin\Page;
 
 use App\Http\Controllers\Controller;
-use App\Models\ContactColumns;
+use App\Models\PageColumns;
 use Illuminate\Http\Request;
 
-class ContactColumnController extends Controller
+class PageColumnController extends Controller
 {
     public function update(Request $request)
     {
@@ -20,7 +20,7 @@ class ContactColumnController extends Controller
                     'is_show_single' => isset($column['is_show_single']) ? 1 : 0,
                 ];
 
-                ContactColumns::where('id', (int)$id)->update($item);
+                PageColumns::where('id', (int)$id)->update($item);
             }
         }
 

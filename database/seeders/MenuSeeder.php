@@ -10,7 +10,7 @@ class MenuSeeder extends Seeder
     public function run(): void
     {
         $menus = [
-            ['name' => 'Меню 1'],
+            ['name' => 'Верхнее меню'],
             ['name' => 'Меню 2'],
         ];
 

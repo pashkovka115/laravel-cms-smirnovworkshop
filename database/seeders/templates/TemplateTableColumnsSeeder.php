@@ -22,6 +22,15 @@ return new class
                     'type' => 'id'
                 ],
                 [
+                    'origin_name' => 'email',
+                    'show_name' => 'Email',
+                    'sort_list' => 500,
+                    'sort_single' => 10,
+                    'is_show_anons' => 1,
+                    'is_show_single' => 1,
+                    'type' => 'email'
+                ],
+                [
                     'origin_name' => 'title',
                     'show_name' => 'Заголовок окна',
                     'sort_list' => 500,
