@@ -3,7 +3,7 @@
         @if($column['is_show_single'] and isset($item->{$column['origin_name']}) and $column['type'] != 'actions_column')
             <div class="col-lg-12 col-md-12 col-12 mb-1">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body my-card-body">
                         <h5 class="card-title">{{ $column['show_name'] }}</h5>
                         <div class="">
                             @if($column['type'] == 'string' or $column['type'] == 'email')

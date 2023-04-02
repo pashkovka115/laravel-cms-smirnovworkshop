@@ -53,3 +53,6 @@ span.red {
 .my-table thead th{
     padding: 0.5rem;
 }
+.my-card-body{
+    padding: 0.5rem;
+}
