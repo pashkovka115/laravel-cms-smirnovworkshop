@@ -20,12 +20,12 @@
 	</div>
 	<div class="py-2">
 		<!-- row -->
-		<div class="row">
-			<div class="mb-10 card">
+		<div class="row my-row">
+			<div class="bg-white">
 				<div class="tab-pane tab-example-design fade show active" id="pills-striped-rows-design"
 						 role="tabpanel" aria-labelledby="pills-striped-rows-design-tab">
 					<div class="table-responsive">
-						<table class="table table-striped">
+						<table class="table table-bordered my-table">
 							<thead>
 							<tr>
 								<th>Название</th>

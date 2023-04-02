@@ -21,14 +21,13 @@
                 <div class="navbar-heading">Меню</div>
             </li>
 
-
             <!-- Nav item -->
             <li class="nav-item">
-                <a class="nav-link has-arrow " href="#!" data-bs-toggle="collapse" data-bs-target="#navPages" aria-expanded="false" aria-controls="navPages">
-                    <i data-feather="layers" class="nav-icon icon-xs me-2"></i> Товары
+                <a class="nav-link has-arrow {{ active(['not:admin.product*'], 'collapsed') }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navPages" aria-expanded="false" aria-controls="navPages">
+                    <i data-feather="layers" class="nav-icon icon-xs me-2"></i> Каталог
                 </a>
 
-                <div id="navPages" class="collapse  show " data-bs-parent="#sideNavbar">
+                <div id="navPages" class="collapse  {{ active(['admin.product*'], 'show') }}" data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link  {{ active('admin.product_category*') }}" href="{{route('admin.product_category')}}">Категории</a>
@@ -40,15 +39,13 @@
                 </div>
             </li>
 
-
             <!-- Nav item -->
             <li class="nav-item">
-                <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navAuthentication" aria-expanded="false" aria-controls="navAuthentication">
+                <a class="nav-link has-arrow {{ active(['not:admin.feedback*', 'not:admin.page*'], 'collapsed') }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navAuthentication" aria-expanded="false" aria-controls="navAuthentication">
                     <i data-feather="lock" class="nav-icon icon-xs me-2"></i> Страницы
                 </a>
-                <div id="navAuthentication" class="collapse " data-bs-parent="#sideNavbar">
+                <div id="navAuthentication" class="collapse {{ active(['admin.feedback*', 'admin.page*'], 'show') }}" data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">
-
                         <li class="nav-item">
                             <a class="nav-link {{ active('admin.feedback*') }}" href="{{route('admin.feedback')}}">Сообщения</a>
                         </li>

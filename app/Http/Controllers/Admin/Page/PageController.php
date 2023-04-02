@@ -59,7 +59,7 @@ class PageController extends Controller
         /*
          * Работа со свойствами
          */
-        $this->updateProperties($request, 'product_id', $id, PageProperty::class);
+        $this->updateProperties($request, 'page_id', $id, PageProperty::class);
 
         /*
          * Работа со страницей
