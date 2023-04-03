@@ -6,8 +6,12 @@
                     <div class="card-body my-card-body">
                         <h5 class="card-title">{{ $column['show_name'] }}</h5>
                         <div class="">
-                            @if($column['type'] == 'string' or $column['type'] == 'email')
+                            @if($column['type'] == 'string')
                                 <input type="text" name="{{ $column['origin_name'] }}"
+                                       value="{{ $item->{$column['origin_name']} }}" class="form-control form-control-sm">
+
+                            @elseif($column['type'] == 'email')
+                                <input type="email" name="{{ $column['origin_name'] }}"
                                        value="{{ $item->{$column['origin_name']} }}" class="form-control form-control-sm">
 
                             @elseif($column['type'] == 'name_lavel')

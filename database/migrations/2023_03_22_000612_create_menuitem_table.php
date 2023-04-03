@@ -18,9 +18,6 @@ return new class extends Migration
 
             $table->foreign('menu_id')->references('id')->on('menu')
                 ->onDelete('cascade')->onUpdate('cascade');
-
-            /*$table->foreign('parent_id')->references('id')->on('menuitem')
-                ->onDelete('cascade')->onUpdate('cascade');*/
         });
     }
 
@@ -29,7 +26,6 @@ return new class extends Migration
     {
         Schema::table('menuitem', function (Blueprint $table) {
             $table->dropForeign(['menu_id']);
-//            $table->dropForeign(['parent_id']);
         });
 
         Schema::dropIfExists('menuitem');

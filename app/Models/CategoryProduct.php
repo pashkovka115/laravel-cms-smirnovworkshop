@@ -15,6 +15,13 @@ class CategoryProduct extends Model
     protected $table = 'categories_product';
     protected $guarded = ['id'];
 
+    public function children()
+    {
+        return $this->hasMany(self::class, 'parent_id')
+            ->with('children')
+            ->orderBy('sort');
+    }
+
 
     public function properties()
     {

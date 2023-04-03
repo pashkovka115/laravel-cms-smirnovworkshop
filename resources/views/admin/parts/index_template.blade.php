@@ -9,10 +9,11 @@
 						<thead>
 						<tr>
 							@foreach($columns as $column)
-								@if($column['is_show_anons'])
+								@if($column['is_show_anons'] and isset($items[0]) and isset($items[0]->{$column['origin_name']}))
 									<th>{{ $column['show_name'] }}</th>
 								@endif
 							@endforeach
+{{--                            <td>*</td>--}}
 						</tr>
 						</thead>
 						<tbody>
@@ -32,10 +33,9 @@
 													 class="btn btn-danger mt-1"
 													 onclick="return window.confirm('Удалить товар и все вложенные элементы?')"><i
 															class="bi bi-trash"></i></a>
-											@else
+                                            @elseif($column['is_show_anons'] and isset($item->{$column['origin_name']}))
 												{{ $item->{$column['origin_name']} }}
 											@endif
-
 										</td>
 									@endif
 								@endforeach

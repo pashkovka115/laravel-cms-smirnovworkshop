@@ -16,6 +16,7 @@ return new class {
 
             $table->string('name');
             $table->string('slug');
+            $table->integer('sort')->default(0);
             $table->string('img_announce')->nullable();
             $table->string('img_detail')->nullable();
             $table->text('announce')->nullable();

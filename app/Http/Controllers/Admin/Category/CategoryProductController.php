@@ -20,7 +20,7 @@ class CategoryProductController extends Controller
     {
         return view('admin.category.index', [
             'columns' => CategoryProductColumns::column_meta_sort_list(),
-            'items' => CategoryProduct::paginate()
+            'items' => CategoryProduct::with('children')->paginate()
         ]);
     }
 

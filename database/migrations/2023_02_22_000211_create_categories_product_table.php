@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('categories_product', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('parent_id')->nullable()->default(null);
 
             $class = include 'templates/TemplateMetaFieldsMigration.php';
             $class::template($table)();

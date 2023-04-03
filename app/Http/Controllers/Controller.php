@@ -15,6 +15,25 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
+    const WHITE_LIST = [
+        'id',
+        'name',
+        'email',
+        'slug',
+        'title',
+        'meta_keywords',
+        'meta_description',
+        'name_lavel',
+        'img_announce',
+        'img_detail',
+        'announce',
+        'description',
+        'created_at',
+        'updated_at',
+        'actions_column',
+        'img_gallery',
+    ];
+
     public function save_img(Request $request, $field_name, $path = '', $disk = 'public')
     {
         if ($request->has($field_name) and $request->file($field_name)) {
@@ -69,30 +88,10 @@ class Controller extends BaseController
      */
     protected function updateOrder(Request $request, string $model)
     {
-        // поля сортировки
-        $white_list = [
-            'id',
-            'name',
-            'email',
-            'slug',
-            'title',
-            'meta_keywords',
-            'meta_description',
-            'name_lavel',
-            'img_announce',
-            'img_detail',
-            'announce',
-            'description',
-            'created_at',
-            'updated_at',
-            'actions_column',
-            'img_gallery',
-        ];
-
         $fields = $request->all();
         $sort = 0;
         foreach ($fields as $field => $value) {
-            if (in_array($field, $white_list)) {
+            if (in_array($field, self::WHITE_LIST)) {
                 $sort += 100;
                 $model::where('origin_name', $field)->update(['sort_single' => $sort]);
             }
