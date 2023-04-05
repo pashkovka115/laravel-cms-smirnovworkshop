@@ -16,6 +16,15 @@ class ProductsColumnsSeeder extends Seeder
     {
         $class = include 'templates/TemplateTableColumnsSeeder.php';
         $fields = $class::template()();
+        $fields[] = [
+            'origin_name' => 'category_id',
+            'show_name' => 'Категория',
+            'sort_list' => 10,
+            'sort_single' => 10,
+            'is_show_anons' => 0,
+            'is_show_single' => 1,
+            'type' => 'items_with_children'
+        ];
 
         DB::table('products_columns')->insert($fields);
     }

@@ -7,6 +7,7 @@ use App\Http\Requests\StorePagesRequest;
 use App\Http\Requests\UpdatePagesRequest;
 use App\Models\Page;
 use App\Models\PageColumns;
+use App\Models\PageImages;
 use App\Models\PageProperty;
 use Illuminate\Support\Facades\DB;
 
@@ -28,6 +29,7 @@ class PageController extends Controller
     {
         return view('admin.page.create', [
             'columns' => PageColumns::column_meta_sort_single(),
+            'existing_fields' => $this->getFieldsModel(Page::class),
         ]);
     }
 
@@ -45,12 +47,22 @@ class PageController extends Controller
         return view('admin.page.edit', [
             'item' => Page::where('id', $id)->firstOrFail(),
             'columns' => PageColumns::column_meta_sort_single(),
+            'existing_fields' => $this->getFieldsModel(Page::class),
+            'gallery' => PageImages::where('page_id', $id)->orderBy('sort')->get(),
         ]);
     }
 
 
     public function update(UpdatePagesRequest $request, $id)
     {
+        /*
+         * Удаляем изображения из галереи
+         */
+        $this->deleteGallery($request, 'delete_gallery', PageImages::class);
+        /*
+         * Сохраняем галерею
+         */
+        $this->saveGallary($request, 'img_gallery', 'page_id', $id, PageImages::class);
         /*
          * Обновляем сортировку
          */

@@ -12,16 +12,25 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('parent_id')->nullable()->default(null);
 
-            $class = include 'templates/TemplateMetaFieldsMigration.php';
+            $class = include base_path('database/migrations/templates/TemplateMetaFieldsMigration.php');
             $class::template($table)();
 
             $table->timestamps();
+
+            $table->foreign('parent_id')
+                ->references('id')
+                ->on('categories_product')
+                ->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
         });
     }
 
 
     public function down(): void
     {
+        Schema::table('categories_product', function (Blueprint $table) {
+            $table->dropForeign(['parent_id']);
+        });
         Schema::dropIfExists('categories_product');
     }
 };

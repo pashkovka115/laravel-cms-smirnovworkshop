@@ -16,7 +16,9 @@ class StoreCategoryProductRequest extends MetaGeneralRequest
 
     public function rules(): array
     {
-        $rules = [];
+        $rules = [
+            'parent_id' => ['nullable', 'integer']
+        ];
 
         return array_merge(parent::rules(), $rules);
     }

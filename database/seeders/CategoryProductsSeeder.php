@@ -13,18 +13,23 @@ class CategoryProductsSeeder extends Seeder
 {
     public function run(Faker $faker): void
     {
-        $count = 5;
+        $count = 7;
 
         $categories = [];
+        $j = 0;
         for ($i = 1; $i <= $count; $i++){
             $name = "Категория $i";
             $category = [
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
+                'parent_id' => null
             ];
+            if ($i > 2){
+                $category['parent_id'] = ++$j;
+            }
 
             $class = include 'templates/TemplateMetaSeeder.php';
-            $template = $class::template($faker)();
+            $template = $class::template($faker, '', ['announce' => null, 'description' => null])();
 
             $categories[] = $category + $template;
         }

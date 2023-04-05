@@ -29,6 +29,7 @@ class CategoryProductController extends Controller
     {
         return view('admin.category.create', [
             'columns' => CategoryProductColumns::column_meta_sort_single(),
+            'existing_fields' => $this->getFieldsModel(CategoryProduct::class),
         ]);
     }
 
@@ -44,8 +45,13 @@ class CategoryProductController extends Controller
     public function edit($id)
     {
         return view('admin.category.edit', [
+            'items_with_children' => CategoryProduct::with('children')
+                ->whereNull('parent_id')
+                ->orderBy('sort')
+                ->get(),
             'item' => CategoryProduct::where('id', $id)->firstOrFail(),
             'columns' => CategoryProductColumns::column_meta_sort_single(),
+            'existing_fields' => $this->getFieldsModel(CategoryProduct::class),
         ]);
     }
 

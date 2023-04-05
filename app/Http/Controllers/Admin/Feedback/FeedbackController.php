@@ -28,6 +28,7 @@ class FeedbackController extends Controller
     {
         return view('admin.feedback.create', [
             'columns' => FeedbackColumns::column_meta_sort_single(),
+            'existing_fields' => $this->getFieldsModel(Feedback::class),
         ]);
     }
 
@@ -45,6 +46,7 @@ class FeedbackController extends Controller
         return view('admin.feedback.edit', [
             'item' => Feedback::where('id', $id)->firstOrFail(),
             'columns' => FeedbackColumns::column_meta_sort_single(),
+            'existing_fields' => $this->getFieldsModel(Feedback::class),
         ]);
     }
 

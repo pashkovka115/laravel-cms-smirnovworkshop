@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('page_properties', function (Blueprint $table) {
             $table->unsignedBigInteger('page_id');
 
-            $class = include "templates/TemplateProperties.php";
+            $class = include base_path('database/migrations/templates/TemplateProperties.php');
             $class::template($table)();
 
             $table->index(["page_id"], 'fk_page_properties2_idx');

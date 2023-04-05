@@ -18,8 +18,8 @@ return new class
             $table->string('origin_name');
             $table->string('type');
             $table->string('show_name');
-            $table->integer('sort_list');
-            $table->integer('sort_single')->default(100);
+            $table->integer('sort_list')->default(10);
+            $table->integer('sort_single')->default(10);
             $table->boolean('is_show_anons');
             $table->boolean('is_show_single');
         };

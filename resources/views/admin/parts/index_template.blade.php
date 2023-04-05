@@ -5,40 +5,46 @@
 			<div class="tab-pane tab-example-design fade show active" id="pills-striped-rows-design"
 					 role="tabpanel" aria-labelledby="pills-striped-rows-design-tab">
 				<div class="table-responsive">
+					@php
+						$existing_fields = [];
+						if (isset($items[0])){
+								$existing_fields = array_keys($items[0]->toArray());
+						}
+					@endphp
 					<table class="table table-bordered my-table">
 						<thead>
 						<tr>
 							@foreach($columns as $column)
-								@if($column['is_show_anons'] and isset($items[0]) and isset($items[0]->{$column['origin_name']}))
+								@if($column['is_show_anons'] and in_array($column['origin_name'], $existing_fields))
 									<th>{{ $column['show_name'] }}</th>
 								@endif
 							@endforeach
-{{--                            <td>*</td>--}}
+							@if($items->count() > 0)
+									<th>Действия</th>
+							@endif
 						</tr>
 						</thead>
 						<tbody>
 						@foreach($items as $item)
 							<tr>
 								@foreach($columns as $column)
-									@if($column['is_show_anons'])
+									@if($column['is_show_anons'] and in_array($column['origin_name'], $existing_fields))
 										<td>
-											@if($column['origin_name'] == 'actions_column')
-												@if($link_view)
-													<a class="btn btn-warning mt-1" target="_blank"><i
-																class="bi bi-eye"></i></a>
-												@endif
-												<a href="{{ route('admin.'.$route_name.'.edit', ['id' => $item->id]) }}"
-													 class="btn btn-info mt-1"><i class="bi bi-pencil-square"></i></a>
-												<a href="{{ route('admin.'.$route_name.'.destroy', ['id' => $item->id]) }}"
-													 class="btn btn-danger mt-1"
-													 onclick="return window.confirm('Удалить товар и все вложенные элементы?')"><i
-															class="bi bi-trash"></i></a>
-                                            @elseif($column['is_show_anons'] and isset($item->{$column['origin_name']}))
-												{{ $item->{$column['origin_name']} }}
-											@endif
+											{{ $item->{$column['origin_name']} }}
 										</td>
 									@endif
 								@endforeach
+								<td>
+									@if($link_view)
+										<a class="btn btn-warning mt-1" target="_blank"><i class="bi bi-eye"></i></a>
+									@endif
+									<a href="{{ route('admin.'.$route_name.'.edit', ['id' => $item->id]) }}"
+										 class="btn btn-info mt-1"><i class="bi bi-pencil-square"></i></a>
+									<a href="{{ route('admin.'.$route_name.'.destroy', ['id' => $item->id]) }}"
+										 class="btn btn-danger mt-1"
+										 onclick="return window.confirm('Удалить элемент и все вложенные элементы?')"><i
+												class="bi bi-trash"></i></a>
+								</td>
 							</tr>
 						@endforeach
 						</tbody>

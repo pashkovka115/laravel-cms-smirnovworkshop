@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\CategoryProduct;
 use App\Models\Product;
 use App\Models\ProductColumns;
 use App\Models\ProductImages;
@@ -30,6 +31,8 @@ class ProductController extends Controller
     {
         return view('admin.product.create', [
             'columns' => ProductColumns::column_meta_sort_single(),
+            'items_with_children' => CategoryProduct::with('children')->whereNull('parent_id')->get(),
+            'existing_fields' => $this->getFieldsModel(Product::class)
         ]);
     }
 
@@ -46,6 +49,8 @@ class ProductController extends Controller
     {
         return view('admin.product.edit', [
             'item' => Product::where('id', $id)->firstOrFail(),
+            'items_with_children' => CategoryProduct::with('children')->whereNull('parent_id')->get(),
+            'existing_fields' => $this->getFieldsModel(Product::class),
             'columns' => ProductColumns::column_meta_sort_single(),
             'gallery' => ProductImages::where('product_id', $id)->orderBy('sort')->get(),
         ]);

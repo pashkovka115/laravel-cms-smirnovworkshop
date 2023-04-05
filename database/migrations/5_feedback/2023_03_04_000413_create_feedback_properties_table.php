@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('feedback_properties', function (Blueprint $table) {
             $table->unsignedBigInteger('feedback_id');
 
-            $class = include "templates/TemplateProperties.php";
+            $class = include base_path('database/migrations/templates/TemplateProperties.php');
             $class::template($table)();
 
             $table->index(["feedback_id"], 'fk_feedback_properties2_idx');

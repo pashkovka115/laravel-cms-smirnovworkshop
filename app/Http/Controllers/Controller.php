@@ -2,37 +2,58 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductColumns;
-use App\Models\ProductImages;
-use App\Models\ProductProperty;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    const WHITE_LIST = [
-        'id',
-        'name',
-        'email',
-        'slug',
-        'title',
-        'meta_keywords',
-        'meta_description',
-        'name_lavel',
-        'img_announce',
-        'img_detail',
-        'announce',
-        'description',
-        'created_at',
-        'updated_at',
-        'actions_column',
-        'img_gallery',
+    const BLACK_LIST = [
+//        'id',
+//        'name',
+//        'email',
+//        'slug',
+//        'title',
+//        'meta_keywords',
+//        'meta_description',
+//        'name_lavel',
+//        'img_announce',
+//        'img_detail',
+//        'announce',
+//        'description',
+//        'created_at',
+//        'updated_at',
+//        'actions_column',
+//        'img_gallery',
     ];
+
+    /**
+     * @param string $model
+     * @return array|int[]|string[]
+     * Возвращает масив полей модели
+     */
+    public function getFieldsModel(string $model)
+    {
+        // firstOrNew будет запрашивать с использованием атрибутов, поэтому нет необходимости в двух запросах.
+        $item = $model::firstOrNew();
+
+        // если была найдена существующая запись
+        if($item->exists) {
+            $columns = array_keys($item->attributesToArray());
+        }
+        // в противном случае был создан новый экземпляр модели
+        else {
+            // получить имена столбцов для таблицы
+            $columns = Schema::getColumnListing($item->getTable());
+        }
+
+        return $columns;
+}
 
     public function save_img(Request $request, $field_name, $path = '', $disk = 'public')
     {
@@ -71,6 +92,9 @@ class Controller extends BaseController
             'title' => $request->title,
             'name_lavel' => $request->name_lavel,
         ];
+        if ($request->has('parent_id')){
+            $data['parent_id'] = $request->input('parent_id');
+        }
 
         if ($path_save_img) {
             $data['img_announce'] = $path_img_announce;
@@ -91,8 +115,8 @@ class Controller extends BaseController
         $fields = $request->all();
         $sort = 0;
         foreach ($fields as $field => $value) {
-            if (in_array($field, self::WHITE_LIST)) {
-                $sort += 100;
+            if (!in_array($field, self::BLACK_LIST)) {
+                $sort += 10;
                 $model::where('origin_name', $field)->update(['sort_single' => $sort]);
             }
         }

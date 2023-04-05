@@ -8,8 +8,8 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('products_columns', function (Blueprint $table) {
-            $class = include 'templates/TemplateColumnTableMigration.php';
+        Schema::create('feedback_columns', function (Blueprint $table) {
+            $class = include base_path('database/migrations/templates/TemplateColumnTableMigration.php');
             $class::template($table)();
         });
     }
@@ -17,6 +17,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('products_columns');
+        Schema::dropIfExists('feedback_columns');
     }
 };

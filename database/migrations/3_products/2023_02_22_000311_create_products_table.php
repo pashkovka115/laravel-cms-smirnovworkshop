@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
 
-            $class = include 'templates/TemplateMetaFieldsMigration.php';
+            $class = include base_path('database/migrations/templates/TemplateMetaFieldsMigration.php');
             $class::template($table)();
 
             $table->timestamps();

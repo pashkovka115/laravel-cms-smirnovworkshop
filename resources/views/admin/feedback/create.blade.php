@@ -21,7 +21,7 @@
 	<div class="py-2">
 		<form action="{{ route('admin.feedback.store') }}" method="post" enctype="multipart/form-data">
 			@csrf
-			<div class="row">
+			{{--<div class="row">
 				@foreach($columns as $column)
 					@if($column['is_show_single'] and
 							$column['type'] != 'actions_column' and
@@ -62,6 +62,15 @@
 						<button type="submit" class="btn btn-success" name="save_and_edit">Сохранить и продолжить редактирование
 						</button>
 					</div>
+				</div>
+			</div>--}}
+			@include('admin.parts.form_edit')
+			<div class="">
+				<div class="btn-group save-group" role="group" aria-label="Basic mixed styles example">
+					<button type="submit" class="btn btn-danger" name="save_and_back">Сохранить и вернуться в список</button>
+					<button type="submit" class="btn btn-warning" name="save_and_new">Сохранить и добавить новый</button>
+					<button type="submit" class="btn btn-success" name="save_and_edit">Сохранить и продолжить редактирование
+					</button>
 				</div>
 			</div>
 		</form>

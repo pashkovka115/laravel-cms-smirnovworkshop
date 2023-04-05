@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('categories_product_columns', function (Blueprint $table) {
-            $class = include 'templates/TemplateColumnTableMigration.php';
+            $class = include base_path('database/migrations/templates/TemplateColumnTableMigration.php');
             $class::template($table)();
         });
     }

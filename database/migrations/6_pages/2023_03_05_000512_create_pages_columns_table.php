@@ -8,19 +8,15 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('pages', function (Blueprint $table) {
-            $table->id();
-
-            $class = include 'templates/TemplateMetaFieldsMigration.php';
+        Schema::create('page_columns', function (Blueprint $table) {
+            $class = include base_path('database/migrations/templates/TemplateColumnTableMigration.php');
             $class::template($table)();
-
-            $table->timestamps();
         });
     }
 
 
     public function down(): void
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('page_columns');
     }
 };

@@ -38,6 +38,9 @@ span.red {
     justify-content: space-around;
 }
 
+.table thead th{
+    font-weight: 900;
+}
 .table > :not(caption) > * > * {
     padding: 0.5rem;
 }

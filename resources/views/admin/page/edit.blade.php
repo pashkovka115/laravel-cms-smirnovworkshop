@@ -17,6 +17,7 @@
         @include('admin.parts.modal_settings_columns', ["route" => "admin.page.columns.update"])
         @include('admin.parts.modal_add_property', ['field' => 'page_id', 'id' => $item->id, 'route' => 'admin.page.property.store'])
     </div>
+    @php //dd($item) @endphp
     <div class="py-2">
         <form action="{{ route('admin.page.update', ['id' => $item->id]) }}" method="post"
               enctype="multipart/form-data">
