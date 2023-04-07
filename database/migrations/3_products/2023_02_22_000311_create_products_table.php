@@ -15,6 +15,24 @@ return new class extends Migration
             $class = include base_path('database/migrations/templates/TemplateMetaFieldsMigration.php');
             $class::template($table)();
 
+            $table->unsignedFloat('price')->default(0.0);
+            $table->unsignedInteger('quantity')->default(0);
+            $table->unsignedSmallInteger('min_quantity')->default(0);
+
+            // todo: rename
+            $table->unsignedInteger('width')->default(0);
+            $table->unsignedInteger('height')->default(0);
+            $table->unsignedInteger('dlina')->default(0);
+            $table->unsignedInteger('ves')->default(0);
+
+            // Номера товара
+            $table->string('sku')->nullable();
+            $table->string('upc')->nullable();
+            $table->string('ean')->nullable();
+            $table->string('jan')->nullable();
+            $table->string('isbn')->nullable();
+            $table->string('mpn')->nullable();
+
             $table->timestamps();
 
 
