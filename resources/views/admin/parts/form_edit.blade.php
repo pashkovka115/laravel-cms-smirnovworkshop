@@ -1,6 +1,11 @@
 <div id="sortable" class="row">
+	@php
+		$excluded_fields = [
+            'additional_fields'
+            ];
+	@endphp
 	@foreach($columns as $column)
-		@if($column['is_show_single']  and in_array($column['origin_name'], $existing_fields))
+		@if($column['is_show_single']  and in_array($column['origin_name'], $existing_fields)  and !in_array($column['origin_name'], $excluded_fields))
 			<div class="col-lg-12 col-md-12 col-12 mb-1">
 				<div class="card">
 					<div class="card-body my-card-body">

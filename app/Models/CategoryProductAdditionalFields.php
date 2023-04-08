@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FeedbackProperty extends Model
+class CategoryProductAdditionalFields extends General //Model
 {
     use HasFactory;
 
-    protected $table = 'feedback_properties';
+    protected $table = 'categories_product_additional_fields';
     public $timestamps = false;
+//    protected $guarded = ['id'];
+
     protected $fillable = [
-        'feedback_id',
+        'category_id',
         'key',
-        'name',
         'type',
         'value',
-        'is_show',
     ];
 }

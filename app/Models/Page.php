@@ -14,9 +14,9 @@ class Page extends Model
 
     protected $guarded = ['id'];
 
-    public function properties()
+    public function additionalFields()
     {
-        return $this->hasMany(PageProperty::class, 'page_id');
+        return $this->hasMany(PageAdditionalFields::class, 'page_id');
     }
 
 

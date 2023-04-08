@@ -12,5 +12,5 @@ Route::get('destroy/{id}', [\App\Http\Controllers\Admin\Product\ProductControlle
 
 Route::post('product-category-columns-update', [\App\Http\Controllers\Admin\Product\ProductColumnController::class, 'update'])->name('admin.product.columns.update');
 
-Route::post('add-property', [\App\Http\Controllers\Admin\Product\ProductPropertyController::class, 'store'])->name('admin.product.property.store');
+Route::post('add-additional-field', [\App\Http\Controllers\Admin\Product\ProductAdditionalFieldsController::class, 'store'])->name('admin.product.additional_fields.store');
 

@@ -16,8 +16,8 @@ class PageColumns extends General
     /*
      * Заглушка. Пока не используется.
      */
-    public function properties()
+    public function additionalFields()
     {
-        return $this->hasMany(PageProperty::class, 'page_id', 'page_id');
+        return $this->hasMany(PageAdditionalFields::class, 'page_id', 'page_id');
     }
 }

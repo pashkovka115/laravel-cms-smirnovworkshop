@@ -72,7 +72,6 @@ Element.prototype.sortable = (function () {
             }
 
             item.draggable = draggable;
-            item.setAttribute('data-block', true);
             _unDraggable(item.children);
         });
 

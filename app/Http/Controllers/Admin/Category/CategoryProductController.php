@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateCategoryProductsRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\CategoryProduct;
 use App\Models\CategoryProductColumns;
-use App\Models\CategoryProductProperty;
+use App\Models\CategoryProductAdditionalFields;
 use Illuminate\Support\Facades\DB;
 
 class CategoryProductController extends Controller
@@ -66,7 +66,7 @@ class CategoryProductController extends Controller
         /*
          * Работа со свойствами
          */
-        $this->updateProperties($request, 'category_id', $id, CategoryProductProperty::class);
+        $this->updateAdditionalFields($request, 'category_id', $id, CategoryProductAdditionalFields::class);
 
         /*
          * Работа с категорией

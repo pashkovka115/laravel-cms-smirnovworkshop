@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Admin\Abstracts\AdminController;
-use App\Models\ProductProperty;
+use App\Models\ProductAdditionalFields;
 use Illuminate\Http\Request;
 
-class ProductPropertyController extends AdminController
+class ProductAdditionalFieldsController extends AdminController
 {
     const FOREIGN_FIELD = 'product_id';
-    const MODEL = ProductProperty::class;
+    const MODEL = ProductAdditionalFields::class;
+    const TABLE = 'product_additional_fields';
 
 
     public function store(Request $request){

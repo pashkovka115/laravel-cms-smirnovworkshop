@@ -12,5 +12,5 @@ Route::get('destroy/{id}', [\App\Http\Controllers\Admin\Feedback\FeedbackControl
 
 Route::post('product-category-columns-update', [\App\Http\Controllers\Admin\Feedback\FeedbackColumnController::class, 'update'])->name('admin.feedback.columns.update');
 
-Route::post('add-property', [\App\Http\Controllers\Admin\Feedback\FeedbackPropertyController::class, 'store'])->name('admin.feedback.property.store');
+Route::post('add-additional-field', [\App\Http\Controllers\Admin\Feedback\FeedbackAdditionalFieldsController::class, 'store'])->name('admin.feedback.additional_fields.store');
 

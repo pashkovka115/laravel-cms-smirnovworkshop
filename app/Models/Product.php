@@ -15,9 +15,9 @@ class Product extends Model
     protected $table = 'products';
     protected $guarded = ['id'];
 
-    public function properties()
+    public function additionalFields()
     {
-        return $this->hasMany(ProductProperty::class, 'product_id');
+        return $this->hasMany(ProductAdditionalFields::class, 'product_id', 'id');
     }
 
     public function category()

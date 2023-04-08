@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Abstracts;
 
 use App\Http\Controllers\Controller;
-use App\Models\CategoryProductProperty;
+use App\Models\CategoryProductAdditionalFields;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -60,13 +60,13 @@ abstract class AdminController extends Controller
         }
 
 
-        $property = new (static::MODEL)();
-        $property->{static::FOREIGN_FIELD} = $request->input(static::FOREIGN_FIELD);
-        $property->name = $request->input('name') ?? '';
-        $property->type = $request->input('type') ?? '';
-        $property->key = $request->input('key');
-        $property->value = $request->input('value') ?? '';
-        $property->save();
+        $additional_field = new (static::MODEL)();
+        $additional_field->{static::FOREIGN_FIELD} = $request->input(static::FOREIGN_FIELD);
+        $additional_field->name = $request->input('name') ?? '';
+        $additional_field->type = $request->input('type') ?? '';
+        $additional_field->key = $request->input('key');
+        $additional_field->value = $request->input('value') ?? '';
+        $additional_field->save();
 
         return back();
     }

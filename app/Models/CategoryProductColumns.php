@@ -16,8 +16,8 @@ class CategoryProductColumns extends General //Model
     /*
      * Заглушка. Пока не используется.
      */
-    public function properties()
+    public function additionalFields()
     {
-        return $this->hasMany(CategoryProductProperty::class, 'category_id', 'category_id');
+        return $this->hasMany(CategoryProductAdditionalFields::class, 'category_id', 'category_id');
     }
 }

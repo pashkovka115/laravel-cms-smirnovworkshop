@@ -9,7 +9,8 @@ use App\Models\CategoryProduct;
 use App\Models\Product;
 use App\Models\ProductColumns;
 use App\Models\ProductImages;
-use App\Models\ProductProperty;
+use App\Models\ProductAdditionalFields;
+use App\Models\ProductTabs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,11 +49,13 @@ class ProductController extends Controller
     public function edit($id)
     {
         return view('admin.product.edit', [
-            'item' => Product::where('id', $id)->firstOrFail(),
+            'item' => Product::with('additionalFields')->where('id', $id)->firstOrFail(),
             'items_with_children' => CategoryProduct::with('children')->whereNull('parent_id')->get(),
             'existing_fields' => $this->getFieldsModel(Product::class),
+            'tabs' => ProductTabs::with('columns')->orderBy('sort')->get()->toArray(),
             'columns' => ProductColumns::column_meta_sort_single(),
             'gallery' => ProductImages::where('product_id', $id)->orderBy('sort')->get(),
+            'parent_element' => false // у товара нет родительского товара
         ]);
     }
 
@@ -73,9 +76,9 @@ class ProductController extends Controller
         $this->updateOrder($request, ProductColumns::class);
 
         /*
-         * Работа со свойствами
+         * Работа с дополнительными полями
          */
-        $this->updateProperties($request, 'product_id', $id, ProductProperty::class);
+        $this->updateAdditionalFields($request, 'product_id', $id, ProductAdditionalFields::class);
 
         /*
          * Работа с товаром

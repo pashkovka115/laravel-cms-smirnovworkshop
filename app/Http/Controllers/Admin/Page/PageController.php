@@ -8,7 +8,7 @@ use App\Http\Requests\UpdatePagesRequest;
 use App\Models\Page;
 use App\Models\PageColumns;
 use App\Models\PageImages;
-use App\Models\PageProperty;
+use App\Models\PageAdditionalFields;
 use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
@@ -71,7 +71,7 @@ class PageController extends Controller
         /*
          * Работа со свойствами
          */
-        $this->updateProperties($request, 'page_id', $id, PageProperty::class);
+        $this->updateAdditionalFields($request, 'page_id', $id, PageAdditionalFields::class);
 
         /*
          * Работа со страницей

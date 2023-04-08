@@ -22,6 +22,10 @@ return new class
             $table->integer('sort_single')->default(10);
             $table->boolean('is_show_anons');
             $table->boolean('is_show_single');
+
+            // Первичный ключ не добавляю чтобы не удалить колонки вместе с табами
+            // Будет связь только в модели
+            $table->unsignedBigInteger('tab_id')->default(1);
         };
         return $func;
     }

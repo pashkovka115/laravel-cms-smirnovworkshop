@@ -13,35 +13,38 @@
 @section('content')
 	<!-- content -->
 	<div class="line">
-
 		@include('admin.parts.modal_settings_columns', ["route" => "admin.product.columns.update"])
-		@include('admin.parts.modal_add_property', ['field' => 'product_id', 'id' => $item->id, 'route' => 'admin.product.property.store'])
+		@include('admin.parts.modal_add_additional_fields', ['field' => 'product_id', 'id' => $item->id, 'route' => 'admin.product.additional_fields.store'])
 	</div>
+
 	<div class="py-2">
 		<form action="{{ route('admin.product.update', ['id' => $item->id]) }}" method="post"
 					enctype="multipart/form-data">
 			@csrf
 			<ul class="nav nav-line-bottom nav-example" id="pills-tabTwo" role="tablist">
-				<li class="nav-item">
-					<a class="nav-link active" id="pills-accordions-design-tab" data-bs-toggle="pill"
-						 href="#pills-accordions-design" role="tab" aria-controls="pills-accordions-design"
-						 aria-selected="true">Общее</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="pills-accordions-html-tab" data-bs-toggle="pill"
-						 href="#pills-accordions-html" role="tab" aria-controls="pills-accordions-html"
-						 aria-selected="false">Свойства</a>
-				</li>
+				@foreach($tabs as $tab)
+					@if($tab['is_show'])
+						<li class="nav-item">
+							<a class="nav-link @if($loop->first) active @endif" id="pills-accordions-design-tab{{ $loop->iteration }}"
+								 data-bs-toggle="pill"
+								 href="#pills-accordions-design{{ $loop->iteration }}" role="tab"
+								 aria-controls="pills-accordions-design{{ $loop->iteration }}"
+								 aria-selected="true">{{ $tab['name'] }}</a>
+						</li>
+					@endif
+				@endforeach
 			</ul>
+
 			<div class="tab-content py-4" id="pills-tabTwoContent">
-				<div class="tab-pane tab-example-design fade show active" id="pills-accordions-design"
-						 role="tabpanel" aria-labelledby="pills-accordions-design-tab">
-                        @include('admin.parts.form_edit')
-				</div>
-				<div class="tab-pane tab-example-html fade" id="pills-accordions-html" role="tabpanel"
-						 aria-labelledby="pills-accordions-html-tab">
-                    @include('admin.parts.template_properties')
-				</div>
+				@foreach($tabs as $tab)
+					@if($tab['is_show'])
+						<div class="tab-pane tab-example-design fade show @if($loop->first) active @endif"
+								 id="pills-accordions-design{{ $loop->iteration }}"
+								 role="tabpanel" aria-labelledby="pills-accordions-design-tab{{ $loop->iteration }}">
+							@include('admin.parts.form_edit', ['columns' => $tab['columns']])
+						</div>
+					@endif
+				@endforeach
 			</div>
 			<div class="">
 				<div class="btn-group save-group" role="group" aria-label="Basic mixed styles example">

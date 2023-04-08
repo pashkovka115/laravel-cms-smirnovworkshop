@@ -16,8 +16,8 @@ class FeedbackColumns extends General
     /*
      * Заглушка. Пока не используется.
      */
-    public function properties()
+    public function additionalFields()
     {
-        return $this->hasMany(FeedbackProperty::class, 'feedback_id', 'feedback_id');
+        return $this->hasMany(FeedbackAdditionalFields::class, 'feedback_id', 'feedback_id');
     }
 }

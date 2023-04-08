@@ -14,9 +14,9 @@ class Feedback extends Model
 
     protected $guarded = ['id'];
 
-    public function properties()
+    public function additionalFields()
     {
-        return $this->hasMany(FeedbackProperty::class, 'feedback_id');
+        return $this->hasMany(FeedbackAdditionalFields::class, 'feedback_id');
     }
 
 

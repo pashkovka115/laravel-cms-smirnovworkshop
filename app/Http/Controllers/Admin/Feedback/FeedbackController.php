@@ -7,7 +7,7 @@ use App\Http\Requests\StoreFeedbackRequest;
 use App\Http\Requests\UpdateFeedbackRequest;
 use App\Models\Feedback;
 use App\Models\FeedbackColumns;
-use App\Models\FeedbackProperty;
+use App\Models\FeedbackAdditionalFields;
 use Illuminate\Support\Facades\DB;
 
 class FeedbackController extends Controller
@@ -61,7 +61,7 @@ class FeedbackController extends Controller
         /*
          * Работа со свойствами
          */
-        $this->updateProperties($request, 'feedback_id', $id, FeedbackProperty::class);
+        $this->updateAdditionalFields($request, 'feedback_id', $id, FeedbackAdditionalFields::class);
 
 
         /*

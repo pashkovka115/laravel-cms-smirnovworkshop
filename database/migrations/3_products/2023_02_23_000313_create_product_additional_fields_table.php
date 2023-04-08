@@ -8,15 +8,15 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('product_properties', function (Blueprint $table) {
+        Schema::create('product_additional_fields', function (Blueprint $table) {
             $table->unsignedBigInteger('product_id');
 
-            $class = include base_path('database/migrations/templates/TemplateProperties.php');
+            $class = include base_path('database/migrations/templates/TemplateAdditionalFields.php');
             $class::template($table)();
 
-            $table->index(["product_id"], 'fk_product_property2_idx');
+            $table->index(["product_id"], 'fk_product_additional_fields2_idx');
 
-            $table->foreign('product_id', 'fk_product_property2_idx')
+            $table->foreign('product_id', 'fk_product_additional_fields2_idx')
                 ->references('id')->on('products')
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
@@ -28,9 +28,9 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::table('product_properties', function (Blueprint $table) {
-            $table->dropForeign('fk_product_property2_idx');
+        Schema::table('product_additional_fields', function (Blueprint $table) {
+            $table->dropForeign('fk_product_additional_fields2_idx');
         });
-        Schema::dropIfExists('product_properties');
+        Schema::dropIfExists('product_additional_fields');
     }
 };

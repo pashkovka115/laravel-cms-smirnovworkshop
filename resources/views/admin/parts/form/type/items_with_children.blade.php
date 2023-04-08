@@ -50,10 +50,14 @@ function nesting_for_store($item, $parent_name = '')
     }
 }
 
+// todo: проверить вывод категорий в товарах (select)
 ?>
 <select name="{{ $column['origin_name'] }}" class="form-select form-select-sm"
 				aria-label="Default select example">
-	<option value="">Без родитедьской</option>
+	@if(isset($parent_element) and $parent_element)
+		<option value="">Без родительской</option>
+	@endif
+
 	@if(isset($item) and isset($items_with_children))
 		@foreach($items_with_children as $item_with_children)
                 <?php nesting_for_update($item_with_children, $item->id, $item->parent_id); ?>

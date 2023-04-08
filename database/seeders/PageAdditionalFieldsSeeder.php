@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class PagePropertySeeder extends Seeder
+class PageAdditionalFieldsSeeder extends Seeder
 {
     public function run(): void
     {
@@ -52,6 +52,6 @@ class PagePropertySeeder extends Seeder
             ],
         ];
 
-        DB::table('page_properties')->insert($properties);
+        DB::table('page_additional_fields')->insert($properties);
     }
 }

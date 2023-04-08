@@ -23,7 +23,8 @@ class CategoriesProductColumnsSeeder extends Seeder
             'sort_single' => 10,
             'is_show_anons' => 0,
             'is_show_single' => 1,
-            'type' => 'items_with_children'
+            'type' => 'items_with_children',
+            'tab_id' => 1
         ];
 
         DB::table('categories_product_columns')->insert($fields);

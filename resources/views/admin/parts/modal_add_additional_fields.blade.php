@@ -1,13 +1,13 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addPropertyModalCenter">
-    Добавить свойство
+    Дополнительное поле
 </button>
 <!-- Modal -->
 <div class="modal fade" id="addPropertyModalCenter" tabindex="-1" role="dialog" aria-labelledby="addPropertyModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addPropertyModalCenterTitle">Новое свойство</h5>
+                <h5 class="modal-title" id="addPropertyModalCenterTitle">Новое дополнительное поле</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"></span>
                 </button>

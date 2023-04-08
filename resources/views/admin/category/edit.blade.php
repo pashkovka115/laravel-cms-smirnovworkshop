@@ -16,7 +16,7 @@
 		<!-- Modal -->
 		@include('admin.parts.modal_settings_columns', ['route' => 'admin.product_category.columns.update'])
 		<!-- End Modal -->
-		@include('admin.parts.modal_add_property', ['field' => 'category_id', 'id' => $item->id, 'route' => 'admin.product_category.property.store'])
+		@include('admin.parts.modal_add_additional_fields', ['field' => 'category_id', 'id' => $item->id, 'route' => 'admin.product_category.additional_fields.store'])
 	</div>
 	<div class="py-2">
 		<form action="{{ route('admin.product_category.update', ['id' => $item->id]) }}" method="post"
@@ -37,11 +37,11 @@
 			<div class="tab-content py-4" id="pills-tabTwoContent">
 				<div class="tab-pane tab-example-design fade show active" id="pills-accordions-design"
 						 role="tabpanel" aria-labelledby="pills-accordions-design-tab">
-                        @include('admin.parts.form_edit')
+					@include('admin.parts.form_edit')
 				</div>
 				<div class="tab-pane tab-example-html fade" id="pills-accordions-html" role="tabpanel"
 						 aria-labelledby="pills-accordions-html-tab">
-                    @include('admin.parts.template_properties')
+					@include('admin.parts.template_properties')
 				</div>
 			</div>
 			<div class="">

@@ -23,9 +23,9 @@ class CategoryProduct extends Model
     }
 
 
-    public function properties()
+    public function additionalFields()
     {
-        return $this->hasMany(CategoryProductProperty::class, 'category_id');
+        return $this->hasMany(CategoryProductAdditionalFields::class, 'category_id');
     }
 
     public function products()

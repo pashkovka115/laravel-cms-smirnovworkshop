@@ -23,19 +23,20 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CategoryProductsSeeder::class);
         $this->call(CategoriesProductColumnsSeeder::class);
-        $this->call(CategoriesProductPropertySeeder::class);
+        $this->call(CategoriesProductAdditionalFieldsSeeder::class);
 
         $this->call(ProductsSeeder::class);
+        $this->call(ProductsTabsSeeder::class);
         $this->call(ProductsColumnsSeeder::class);
-        $this->call(ProductsPropertySeeder::class);
+        $this->call(ProductsAdditionalFieldsSeeder::class);
 
         $this->call(FeedbackSeeder::class);
         $this->call(FeedbackColumnsSeeder::class);
-        $this->call(FeedbackPropertySeeder::class);
+        $this->call(FeedbackAdditionalFieldsSeeder::class);
 
         $this->call(PageSeeder::class);
         $this->call(PageColumnsSeeder::class);
-        $this->call(PagePropertySeeder::class);
+        $this->call(PageAdditionalFieldsSeeder::class);
 
         $this->call(ReviewsSeeder::class);
         $this->call(FeedbackSeeder::class);

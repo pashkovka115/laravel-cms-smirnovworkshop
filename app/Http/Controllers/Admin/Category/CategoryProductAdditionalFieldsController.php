@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin\Category;
 
 use App\Http\Controllers\Admin\Abstracts\AdminController;
-use App\Models\CategoryProductProperty;
+use App\Models\CategoryProductAdditionalFields;
 use Illuminate\Http\Request;
 
-class CategoryProductPropertyController extends AdminController
+class CategoryProductAdditionalFieldsController extends AdminController
 {
     const FOREIGN_FIELD = 'category_id';
-    const MODEL = CategoryProductProperty::class;
-    const TABLE = 'categories_product_property';
+    const MODEL = CategoryProductAdditionalFields::class;
+    const TABLE = 'categories_product_additional_fields';
 
     public function store(Request $request){
         return parent::store($request);

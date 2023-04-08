@@ -178,7 +178,7 @@ class Controller extends BaseController
     }
 
 
-    protected function updateProperties(Request $request, $foreign_key, $item_id, $model)
+    protected function updateAdditionalFields(Request $request, $foreign_key, $item_id, $model)
     {
         if ($request->has('properties')) {
             $data_properties = $request->input('properties');
