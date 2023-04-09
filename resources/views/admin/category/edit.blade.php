@@ -14,12 +14,12 @@
 	<!-- content -->
 	<div class="line">
 		<!-- Modal -->
-		@include('admin.parts.modal_settings_columns', ['route' => 'admin.product_category.columns.update'])
+		@include('admin.parts.modal_settings_columns', ['route' => 'admin.category_product.columns.update'])
 		<!-- End Modal -->
-		@include('admin.parts.modal_add_additional_fields', ['field' => 'category_id', 'id' => $item->id, 'route' => 'admin.product_category.additional_fields.store'])
+		@include('admin.parts.modal_add_additional_fields', ['field' => 'category_id', 'id' => $item->id, 'route' => 'admin.category_product.additional_fields.store'])
 	</div>
 	<div class="py-2">
-		<form action="{{ route('admin.product_category.update', ['id' => $item->id]) }}" method="post"
+		<form action="{{ route('admin.category_product.update', ['id' => $item->id]) }}" method="post"
 					enctype="multipart/form-data">
 			@csrf
 			<ul class="nav nav-line-bottom nav-example" id="pills-tabTwo" role="tablist">

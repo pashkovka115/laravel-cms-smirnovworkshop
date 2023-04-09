@@ -30,7 +30,7 @@
                 <div id="navPages" class="collapse  {{ active(['admin.product*'], 'show') }}" data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link  {{ active('admin.product_category*') }}" href="{{route('admin.product_category')}}">Категории</a>
+                            <a class="nav-link  {{ active('admin.category_product*') }}" href="{{route('admin.category_product')}}">Категории</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ active(['admin.product', 'admin.product.*']) }}" href="{{route('admin.product')}}">Товары</a>

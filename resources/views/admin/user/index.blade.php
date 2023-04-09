@@ -14,7 +14,7 @@
 	<!-- content -->
 	<div class="line">
 		<!-- Modal -->
-		{{--		@include('admin.parts.modal_settings_columns', ['route' => 'admin.product_category.columns.update'])--}}
+		{{--		@include('admin.parts.modal_settings_columns', ['route' => 'admin.category_product.columns.update'])--}}
 		<!-- End Modal -->
 		<a href="{{ route('admin.user.create') }}" class="btn btn-outline-success mb-2"><i
 					class="bi bi-plus-circle"></i></a>

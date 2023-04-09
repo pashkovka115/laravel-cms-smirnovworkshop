@@ -15,7 +15,7 @@
 	<div class="line"></div>
 
 	<div class="py-2">
-		<form action="{{ route('admin.product_category.store') }}" method="post" enctype="multipart/form-data">
+		<form action="{{ route('admin.category_product.store') }}" method="post" enctype="multipart/form-data">
 			@csrf
 			@include('admin.parts.form_edit')
 			<div class="">

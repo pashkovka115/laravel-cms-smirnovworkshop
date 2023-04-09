@@ -48,6 +48,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+//        return __FILE__;
         return view('admin.product.edit', [
             'item' => Product::with('additionalFields')->where('id', $id)->firstOrFail(),
             'items_with_children' => CategoryProduct::with('children')->whereNull('parent_id')->get(),

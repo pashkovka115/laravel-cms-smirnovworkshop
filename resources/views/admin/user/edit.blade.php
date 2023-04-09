@@ -14,9 +14,9 @@
     <!-- content -->
     <div class="line">
         <!-- Modal -->
-        {{--		@include('admin.parts.modal_settings_columns', ['route' => 'admin.product_category.columns.update'])--}}
+        {{--		@include('admin.parts.modal_settings_columns', ['route' => 'admin.category_product.columns.update'])--}}
         <!-- End Modal -->
-        {{--		@include('admin.parts.modal_add_property', ['field' => 'category_id', 'id' => $item->id, 'route' => 'admin.product_category.property.store'])--}}
+        {{--		@include('admin.parts.modal_add_property', ['field' => 'category_id', 'id' => $item->id, 'route' => 'admin.category_product.property.store'])--}}
     </div>
     <div class="py-2">
         <form action="{{ route('admin.user.update', ['id' => $item->id]) }}" method="post"

@@ -29,9 +29,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         base_path('routes/admin/category_product.php'),
     );
 
-    Route::prefix('product')->group(
+    /*Route::prefix('product')->group(
         base_path('routes/admin/product.php'),
-    );
+    );*/
 
     Route::prefix('feedback')->group(
         base_path('routes/admin/feedback.php'),
@@ -52,6 +52,19 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::prefix('ajax')->group(
         base_path('routes/admin/ajax.php'),
     );
+
+    // тестовый роутер для динамических модулей
+    Route::prefix('{module}')->group(function (){
+        Route::get('', [\App\Included\Classes\Modules\Module::class, 'index'])->name('admin.module');
+        Route::get('create', [\App\Included\Classes\Modules\Module::class, 'create'])->name('admin.module.create');
+        Route::post('store', [\App\Included\Classes\Modules\Module::class, 'store'])->name('admin.module.store');
+        Route::get('edit/{id}', [\App\Included\Classes\Modules\Module::class, 'edit'])->name('admin.module.edit');
+        Route::post('update/{id}', [\App\Included\Classes\Modules\Module::class, 'update'])->name('admin.module.update');
+        Route::get('destroy/{id}', [\App\Included\Classes\Modules\Module::class, 'destroy'])->name('admin.module.destroy');
+
+//        Route::post('product-category-columns-update', [\App\Http\Controllers\Admin\Product\ProductColumnController::class, 'update'])->name('admin.module.columns.update');
+//        Route::post('add-additional-field', [\App\Http\Controllers\Admin\Product\ProductAdditionalFieldsController::class, 'store'])->name('admin.product.module.store');
+    });
 });
 // ============================= END ADMIN =========================================================================
 

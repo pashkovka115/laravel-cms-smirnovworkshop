@@ -14,12 +14,12 @@
 	<!-- content -->
 	<div class="line">
 		<!-- Modal -->
-		@include('admin.parts.modal_settings_columns', ['route' => 'admin.product_category.columns.update'])
+		@include('admin.parts.modal_settings_columns', ['route' => 'admin.category_product.columns.update'])
 		<!-- End Modal -->
-		<a href="{{ route('admin.product_category.create') }}" class="btn btn-outline-success mb-2"><i
+		<a href="{{ route('admin.category_product.create') }}" class="btn btn-outline-success mb-2"><i
 					class="bi bi-plus-circle"></i></a>
 	</div>
-	@include('admin.parts.index_template', ['link_view' => true, 'route_name' => 'product_category'])
+	@include('admin.parts.index_template', ['link_view' => true, 'route_name' => 'category_product'])
 @endsection
 
 @section('script_buttom')
