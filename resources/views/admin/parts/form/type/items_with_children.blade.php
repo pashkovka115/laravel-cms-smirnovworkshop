@@ -51,6 +51,12 @@ function nesting_for_store($item, $parent_name = '')
 }
 
 // todo: проверить вывод категорий в товарах (select)
+/**
+ * @param bool $parent_element - есть ли у элемента родительский(такойже)
+ * @param \Illuminate\Database\Eloquent\Model $item - для редактирования текущий объект
+ * @param \Illuminate\Database\Eloquent\Model $items_with_children - например список категорий с потомками для
+ *        страницы категорий или товаров
+ */
 ?>
 <select name="{{ $column['origin_name'] }}" class="form-select form-select-sm"
 				aria-label="Default select example">
@@ -58,11 +64,13 @@ function nesting_for_store($item, $parent_name = '')
 		<option value="">Без родительской</option>
 	@endif
 
-	@if(isset($item) and isset($items_with_children))
+	@if(isset($item) and isset($items_with_children) and isset($parent_element) and $parent_element)
+                <?= __LINE__ ?>
 		@foreach($items_with_children as $item_with_children)
                 <?php nesting_for_update($item_with_children, $item->id, $item->parent_id); ?>
 		@endforeach
 	@elseif(isset($items_with_children))
+                <?= __LINE__ ?>
 		@foreach($items_with_children as $item_with_children)
                 <?php nesting_for_store($item_with_children); ?>
 		@endforeach

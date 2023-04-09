@@ -29,6 +29,7 @@ class CategoryProductController extends Controller
     {
         return view('admin.category.create', [
             'columns' => CategoryProductColumns::column_meta_sort_single(),
+            'items_with_children' => CategoryProduct::with('children')->whereNull('parent_id')->get(),
             'existing_fields' => $this->getFieldsModel(CategoryProduct::class),
         ]);
     }

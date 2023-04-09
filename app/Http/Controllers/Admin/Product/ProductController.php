@@ -55,7 +55,6 @@ class ProductController extends Controller
             'tabs' => ProductTabs::with('columns')->orderBy('sort')->get()->toArray(),
             'columns' => ProductColumns::column_meta_sort_single(),
             'gallery' => ProductImages::where('product_id', $id)->orderBy('sort')->get(),
-            'parent_element' => false // у товара нет родительского товара
         ]);
     }
 
