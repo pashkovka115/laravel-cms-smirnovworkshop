@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Feedback;
 
 use App\Http\Controllers\Controller;
-use App\Models\FeedbackColumns;
+use App\Models\Feedback\FeedbackColumns;
 use Illuminate\Http\Request;
 
 class FeedbackColumnController extends Controller

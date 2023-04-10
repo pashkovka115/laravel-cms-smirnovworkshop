@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin\Abstracts;
 
 use App\Http\Controllers\Controller;
-use App\Models\CategoryProductAdditionalFields;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

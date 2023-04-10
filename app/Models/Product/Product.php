@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Product;
 
+use App\Models\CategoryProduct\CategoryProduct;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;

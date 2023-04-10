@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Page;
 
 use App\Http\Controllers\Admin\Abstracts\AdminController;
-use App\Models\PageAdditionalFields;
+use App\Models\Page\PageAdditionalFields;
 use Illuminate\Http\Request;
 
 class PageAdditionalFieldsController extends AdminController

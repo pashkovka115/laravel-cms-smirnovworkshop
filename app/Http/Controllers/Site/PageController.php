@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\Models\Page;
-use Illuminate\Http\Request;
+use App\Models\Page\Page;
 
 class PageController extends Controller
 {

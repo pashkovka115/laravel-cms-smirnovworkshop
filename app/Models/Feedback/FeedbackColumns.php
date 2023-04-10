@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Feedback;
 
+use App\Models\General;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class ProductColumns extends General
+class FeedbackColumns extends General
 {
     use HasFactory;
 
-    protected $table = 'products_columns';
+    protected $table = 'feedback_columns';
     public $timestamps = false;
 
 
@@ -18,6 +18,6 @@ class ProductColumns extends General
      */
     public function additionalFields()
     {
-        return $this->hasMany(ProductAdditionalFields::class, 'product_id', 'product_id');
+        return $this->hasMany(FeedbackAdditionalFields::class, 'feedback_id', 'feedback_id');
     }
 }

@@ -115,7 +115,7 @@ class Controller extends BaseController
         $fields = $request->all();
         $sort = 0;
         foreach ($fields as $field => $value) {
-            if (!in_array($field, self::BLACK_LIST)) {
+            if (!in_array($field, self::BLACK_LIST) and !str_starts_with($field, '_')) {
                 $sort += 10;
                 $model::where('origin_name', $field)->update(['sort_single' => $sort]);
             }

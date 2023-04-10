@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Page;
 
 use App\Http\Controllers\Controller;
-use App\Models\PageColumns;
+use App\Models\Page\PageColumns;
 use Illuminate\Http\Request;
 
 class PageColumnController extends Controller

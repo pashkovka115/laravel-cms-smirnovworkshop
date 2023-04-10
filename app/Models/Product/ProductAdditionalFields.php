@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PageImages extends Model
+class ProductAdditionalFields extends Model
 {
     use HasFactory;
 
-    protected $table = 'pages_images';
+    protected $table = 'product_additional_fields';
     public $timestamps = false;
-    protected $guarded = ['id'];
 }

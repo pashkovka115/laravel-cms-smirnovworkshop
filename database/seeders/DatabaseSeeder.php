@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
 
         $this->call(CategoryProductsSeeder::class);
+        $this->call(CategoriesProductTabsSeeder::class);
         $this->call(CategoriesProductColumnsSeeder::class);
         $this->call(CategoriesProductAdditionalFieldsSeeder::class);
 
@@ -31,10 +32,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductsAdditionalFieldsSeeder::class);
 
         $this->call(FeedbackSeeder::class);
+        $this->call(FeedbackTabsSeeder::class);
         $this->call(FeedbackColumnsSeeder::class);
         $this->call(FeedbackAdditionalFieldsSeeder::class);
 
         $this->call(PageSeeder::class);
+        $this->call(PagesTabsSeeder::class);
         $this->call(PageColumnsSeeder::class);
         $this->call(PageAdditionalFieldsSeeder::class);
 

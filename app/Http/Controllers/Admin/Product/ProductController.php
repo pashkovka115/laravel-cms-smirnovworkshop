@@ -5,14 +5,12 @@ namespace App\Http\Controllers\Admin\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\CategoryProduct;
-use App\Models\Product;
-use App\Models\ProductColumns;
-use App\Models\ProductImages;
-use App\Models\ProductAdditionalFields;
-use App\Models\ProductTabs;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\CategoryProduct\CategoryProduct;
+use App\Models\Product\Product;
+use App\Models\Product\ProductAdditionalFields;
+use App\Models\Product\ProductColumns;
+use App\Models\Product\ProductImages;
+use App\Models\Product\ProductTabs;
 
 class ProductController extends Controller
 {
@@ -48,10 +46,11 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-//        return __FILE__;
         return view('admin.product.edit', [
             'item' => Product::with('additionalFields')->where('id', $id)->firstOrFail(),
-            'items_with_children' => CategoryProduct::with('children')->whereNull('parent_id')->get(),
+            'items_with_children' => CategoryProduct::with('children')
+                ->whereNull('parent_id')
+                ->get(),
             'existing_fields' => $this->getFieldsModel(Product::class),
             'tabs' => ProductTabs::with('columns')->orderBy('sort')->get()->toArray(),
             'columns' => ProductColumns::column_meta_sort_single(),

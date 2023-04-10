@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Category;
 
 use App\Http\Controllers\Controller;
-use App\Models\CategoryProductColumns;
+use App\Models\CategoryProduct\CategoryProductColumns;
 use Illuminate\Http\Request;
 
 class CategoryProductColumnController extends Controller

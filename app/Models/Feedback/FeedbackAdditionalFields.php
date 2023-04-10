@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Feedback;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PageAdditionalFields extends Model
+class FeedbackAdditionalFields extends Model
 {
     use HasFactory;
 
-    protected $table = 'page_additional_fields';
+    protected $table = 'feedback_additional_fields';
     public $timestamps = false;
     protected $fillable = [
-        'page_id',
+        'feedback_id',
         'key',
         'name',
         'type',

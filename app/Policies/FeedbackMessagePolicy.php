@@ -2,9 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Feedback;
+use App\Models\Feedback\Feedback;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class FeedbackMessagePolicy
 {

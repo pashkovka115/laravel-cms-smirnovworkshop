@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\CategoryProduct;
 
+use App\Models\General;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class ProductTabs extends General
+class CategoryProductTabs extends General
 {
     use HasFactory;
 
-    protected $table = 'products_tabs';
+    protected $table = 'categories_product_tabs';
     public $timestamps = false;
 
 
@@ -19,7 +19,7 @@ class ProductTabs extends General
      */
     public function columns()
     {
-        return $this->hasMany(ProductColumns::class, 'tab_id')
+        return $this->hasMany(CategoryProductColumns::class, 'tab_id')
             ->orderBy('sort_single');
     }
 }

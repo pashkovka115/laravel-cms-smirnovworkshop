@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin\Page;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePagesRequest;
 use App\Http\Requests\UpdatePagesRequest;
-use App\Models\Page;
-use App\Models\PageColumns;
-use App\Models\PageImages;
-use App\Models\PageAdditionalFields;
-use Illuminate\Support\Facades\DB;
+use App\Models\Page\Page;
+use App\Models\Page\PageAdditionalFields;
+use App\Models\Page\PageColumns;
+use App\Models\Page\PageImages;
+use App\Models\Page\PageTabs;
 
 class PageController extends Controller
 {
@@ -46,8 +46,9 @@ class PageController extends Controller
     {
         return view('admin.page.edit', [
             'item' => Page::where('id', $id)->firstOrFail(),
-            'columns' => PageColumns::column_meta_sort_single(),
             'existing_fields' => $this->getFieldsModel(Page::class),
+            'tabs' => PageTabs::with('columns')->orderBy('sort')->get()->toArray(),
+            'columns' => PageColumns::column_meta_sort_single(),
             'gallery' => PageImages::where('page_id', $id)->orderBy('sort')->get(),
         ]);
     }

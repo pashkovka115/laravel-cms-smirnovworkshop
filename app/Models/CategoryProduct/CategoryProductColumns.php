@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\CategoryProduct;
 
+use App\Models\General;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class CategoryProductColumns extends General //Model
 {

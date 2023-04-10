@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin\Menu;
 
 use App\Http\Controllers\Controller;
-use App\Models\Menu;
-use App\Models\MenuItem;
+use App\Models\Menu\Menu;
+use App\Models\Menu\MenuItem;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller

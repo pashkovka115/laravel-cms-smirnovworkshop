@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin\Feedback;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFeedbackRequest;
 use App\Http\Requests\UpdateFeedbackRequest;
-use App\Models\Feedback;
-use App\Models\FeedbackColumns;
-use App\Models\FeedbackAdditionalFields;
-use Illuminate\Support\Facades\DB;
+use App\Models\Feedback\Feedback;
+use App\Models\Feedback\FeedbackAdditionalFields;
+use App\Models\Feedback\FeedbackColumns;
+use App\Models\Feedback\FeedbackTabs;
 
 class FeedbackController extends Controller
 {
@@ -45,8 +45,9 @@ class FeedbackController extends Controller
     {
         return view('admin.feedback.edit', [
             'item' => Feedback::where('id', $id)->firstOrFail(),
-            'columns' => FeedbackColumns::column_meta_sort_single(),
             'existing_fields' => $this->getFieldsModel(Feedback::class),
+            'tabs' => FeedbackTabs::with('columns')->orderBy('sort')->get()->toArray(),
+            'columns' => FeedbackColumns::column_meta_sort_single(),
         ]);
     }
 

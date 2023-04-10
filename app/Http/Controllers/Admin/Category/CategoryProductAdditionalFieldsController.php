@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Category;
 
 use App\Http\Controllers\Admin\Abstracts\AdminController;
-use App\Models\CategoryProductAdditionalFields;
+use App\Models\CategoryProduct\CategoryProductAdditionalFields;
 use Illuminate\Http\Request;
 
 class CategoryProductAdditionalFieldsController extends AdminController

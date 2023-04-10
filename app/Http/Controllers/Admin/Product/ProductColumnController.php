@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
-use App\Models\ProductColumns;
+use App\Models\Product\ProductColumns;
 use Illuminate\Http\Request;
 
 class ProductColumnController extends Controller

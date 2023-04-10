@@ -5,15 +5,14 @@ namespace App\Http\Controllers\Admin\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryProductRequest;
 use App\Http\Requests\UpdateCategoryProductsRequest;
-use App\Http\Requests\UpdateProductRequest;
-use App\Models\CategoryProduct;
-use App\Models\CategoryProductColumns;
-use App\Models\CategoryProductAdditionalFields;
-use Illuminate\Support\Facades\DB;
+use App\Models\CategoryProduct\CategoryProduct;
+use App\Models\CategoryProduct\CategoryProductAdditionalFields;
+use App\Models\CategoryProduct\CategoryProductColumns;
+use App\Models\CategoryProduct\CategoryProductTabs;
 
 class CategoryProductController extends Controller
 {
-    const IMAGE_PATH = 'product_category';
+    const IMAGE_PATH = 'category_product';
 
 
     public function index()
@@ -39,20 +38,21 @@ class CategoryProductController extends Controller
     {
         $category = CategoryProduct::create($this->base_fields($request, self::IMAGE_PATH));
 
-        $this->redirectAdmin($request, 'product_category', $category->id);
+        $this->redirectAdmin($request, 'category_product', $category->id);
     }
 
 
     public function edit($id)
     {
         return view('admin.category.edit', [
+            'item' => CategoryProduct::where('id', $id)->firstOrFail(),
             'items_with_children' => CategoryProduct::with('children')
                 ->whereNull('parent_id')
                 ->orderBy('sort')
                 ->get(),
-            'item' => CategoryProduct::where('id', $id)->firstOrFail(),
-            'columns' => CategoryProductColumns::column_meta_sort_single(),
             'existing_fields' => $this->getFieldsModel(CategoryProduct::class),
+            'tabs' => CategoryProductTabs::with('columns')->orderBy('sort')->get()->toArray(),
+            'columns' => CategoryProductColumns::column_meta_sort_single(),
         ]);
     }
 
@@ -99,7 +99,7 @@ class CategoryProductController extends Controller
 
         $category->update($data);
 
-        return $this->redirectAdmin($request, 'product_category', $id);
+        return $this->redirectAdmin($request, 'category_product', $id);
     }
 
 

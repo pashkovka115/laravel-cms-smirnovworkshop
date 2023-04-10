@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Feedback;
 
 use App\Http\Controllers\Admin\Abstracts\AdminController;
-use App\Models\FeedbackAdditionalFields;
+use App\Models\Feedback\FeedbackAdditionalFields;
 use Illuminate\Http\Request;
 
 class FeedbackAdditionalFieldsController extends AdminController
