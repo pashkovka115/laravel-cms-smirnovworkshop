@@ -13,6 +13,7 @@
 @section('content')
 	<!-- content -->
 	<div class="line">
+		@include('admin.parts.modal_settings_tabs', ["route" => "admin.product.tab.update", 'route_store' => 'admin.product.tab.store'])
 		@include('admin.parts.modal_settings_columns', ["route" => "admin.product.columns.update"])
 		@include('admin.parts.modal_add_additional_fields', ['field' => 'product_id', 'id' => $item->id, 'route' => 'admin.product.additional_fields.store'])
 	</div>

@@ -1,8 +1,8 @@
 <div id="sortable" class="row">
 	@php
-		$excluded_fields = [
-            'additional_fields'
-            ];
+	if (!isset($excluded_fields)){
+        $excluded_fields = [];
+	}
 	@endphp
 	@foreach($columns as $column)
 		@if($column['is_show_single']  and in_array($column['origin_name'], $existing_fields)  and !in_array($column['origin_name'], $excluded_fields))

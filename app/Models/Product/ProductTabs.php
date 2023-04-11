@@ -11,6 +11,7 @@ class ProductTabs extends General
 
     protected $table = 'products_tabs';
     public $timestamps = false;
+    protected $guarded = ['id'];
 
 
     /**

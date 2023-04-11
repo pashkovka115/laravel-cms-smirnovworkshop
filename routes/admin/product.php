@@ -10,7 +10,16 @@ Route::get('edit/{id}', [\App\Http\Controllers\Admin\Product\ProductController::
 Route::post('update/{id}', [\App\Http\Controllers\Admin\Product\ProductController::class, 'update'])->name('admin.product.update');
 Route::get('destroy/{id}', [\App\Http\Controllers\Admin\Product\ProductController::class, 'destroy'])->name('admin.product.destroy');
 
-Route::post('product-category-columns-update', [\App\Http\Controllers\Admin\Product\ProductColumnController::class, 'update'])->name('admin.product.columns.update');
+Route::post('product-columns-update', [\App\Http\Controllers\Admin\Product\ProductColumnController::class, 'update'])->name('admin.product.columns.update');
 
 Route::post('add-additional-field', [\App\Http\Controllers\Admin\Product\ProductAdditionalFieldsController::class, 'store'])->name('admin.product.additional_fields.store');
 
+
+Route::prefix('tab')->group(function (){
+//    Route::get('', [\App\Http\Controllers\Admin\Product\ProductTabController::class, 'index'])->name('admin.product.tab');
+//    Route::get('create', [\App\Http\Controllers\Admin\Product\ProductTabController::class, 'create'])->name('admin.product.tab.create');
+    Route::post('store', [\App\Http\Controllers\Admin\Product\ProductTabController::class, 'store'])->name('admin.product.tab.store');
+//    Route::get('edit/{id}', [\App\Http\Controllers\Admin\Product\ProductTabController::class, 'edit'])->name('admin.product.tab.edit');
+    Route::post('update', [\App\Http\Controllers\Admin\Product\ProductTabController::class, 'update'])->name('admin.product.tab.update');
+//    Route::get('destroy/{id}', [\App\Http\Controllers\Admin\Product\ProductTabController::class, 'destroy'])->name('admin.product.tab.destroy');
+});

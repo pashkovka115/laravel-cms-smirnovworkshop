@@ -57,6 +57,11 @@ function nesting_for_store($item, $parent_name = '')
  * @param \Illuminate\Database\Eloquent\Model $items_with_children - например список категорий с потомками для
  *        страницы категорий или товаров
  */
+$current_action = Route::currentRouteAction();
+$sp = explode('@', $current_action);
+if (isset($sp[1])){
+    $current_method = $sp[1];
+}
 ?>
 <select name="{{ $column['origin_name'] }}" class="form-select form-select-sm"
 				aria-label="Default select example">
@@ -64,12 +69,14 @@ function nesting_for_store($item, $parent_name = '')
 		<option value="">Без родительской</option>
 	@endif
 
-	@if(isset($item) and isset($items_with_children) and isset($parent_element) and $parent_element)
-                <?= __LINE__ ?>
+	{{--@if(isset($item) and isset($items_with_children) and isset($parent_element) and $parent_element)--}}
+	@if($current_method == 'edit')
+        <?= __LINE__ ?>
 		@foreach($items_with_children as $item_with_children)
-                <?php nesting_for_update($item_with_children, $item->id, $item->parent_id); ?>
+                <?php nesting_for_update($item_with_children, $item->category_id, $item->parent_id); ?>
 		@endforeach
-	@elseif(isset($items_with_children))
+	{{--@elseif(isset($items_with_children))--}}
+	@elseif($current_method == 'create')
                 <?= __LINE__ ?>
 		@foreach($items_with_children as $item_with_children)
                 <?php nesting_for_store($item_with_children); ?>

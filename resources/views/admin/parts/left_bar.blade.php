@@ -55,6 +55,27 @@
                     </ul>
                 </div>
             </li>
+
+            <!-- Nav item -->
+            {{--<li class="nav-item">
+                <a class="nav-link has-arrow" href="#!" data-bs-toggle="collapse" data-bs-target="#navTabsControllers" aria-expanded="false" aria-controls="navTabsControllers">
+                    <i data-feather="lock" class="nav-icon icon-xs me-2"></i> Вкладки
+                </a>
+                <div id="navTabsControllers" class="collapse" data-bs-parent="#sideNavbar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Категории</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Товары</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Страницы</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>--}}
+
             <li class="nav-item">
                 <a class="nav-link {{ active('admin.menu') }}" href="{{ route('admin.menu') }}">
                     <i data-feather="sidebar" class="nav-icon icon-xs me-2"></i>

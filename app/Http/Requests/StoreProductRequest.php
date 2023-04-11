@@ -6,9 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProductRequest extends MetaGeneralRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
@@ -16,7 +13,9 @@ class StoreProductRequest extends MetaGeneralRequest
 
     public function rules(): array
     {
-        $rules = [];
+        $rules = [
+            'category_id' => ['required', 'integer']
+        ];
 
         return array_merge(parent::rules(), $rules);
     }

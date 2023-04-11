@@ -11,6 +11,7 @@ use App\Models\Product\ProductAdditionalFields;
 use App\Models\Product\ProductColumns;
 use App\Models\Product\ProductImages;
 use App\Models\Product\ProductTabs;
+use Route;
 
 class ProductController extends Controller
 {
@@ -20,6 +21,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('admin.product.index', [
+            'tabs' => ProductTabs::with('columns')->orderBy('sort')->get()->toArray(),
             'columns' => ProductColumns::column_meta_sort_list(),
             'items' => Product::paginate()
         ]);
@@ -31,14 +33,18 @@ class ProductController extends Controller
         return view('admin.product.create', [
             'columns' => ProductColumns::column_meta_sort_single(),
             'items_with_children' => CategoryProduct::with('children')->whereNull('parent_id')->get(),
-            'existing_fields' => $this->getFieldsModel(Product::class)
+            'existing_fields' => $this->getFieldsModel(Product::class),
+            'excluded_fields' => ['additional_fields']
         ]);
     }
 
 
     public function store(StoreProductRequest $request)
     {
-        $product = Product::create($this->base_fields($request, self::IMAGE_PATH));
+//        $request->dd();
+        $data = $this->base_fields($request, self::IMAGE_PATH);
+        $data['category_id'] = $request['category_id'];
+        $product = Product::create($data);
 
         return $this->redirectAdmin($request, 'product', $product->id);
     }
@@ -46,6 +52,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+//        dd(Route::currentRouteAction());
         return view('admin.product.edit', [
             'item' => Product::with('additionalFields')->where('id', $id)->firstOrFail(),
             'items_with_children' => CategoryProduct::with('children')
