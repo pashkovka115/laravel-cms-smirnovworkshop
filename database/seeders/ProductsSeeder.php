@@ -16,6 +16,32 @@ class ProductsSeeder extends Seeder
         $count = 10;
 
         $products = [];
+
+        $product1 = [
+            'name' => 'Ковёр',
+            'slug' => Str::slug('Ковёр'),
+            'description' => 'Классный ковер',
+            'category_id' => 1,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ];
+
+        $product2 = [
+            'name' => 'Чашка',
+            'slug' => Str::slug('Чашка'),
+            'description' => 'Кофейная чашка',
+            'category_id' => 1,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ];
+
+        $class = include 'templates/TemplateMetaSeeder.php';
+        $template = $class::template($faker)();
+
+        $products[] = array_merge($template, $product1);
+        $products[] = array_merge($template, $product2);
+
+
         for ($i = 1; $i <= $count; $i++){
 
             $product = [

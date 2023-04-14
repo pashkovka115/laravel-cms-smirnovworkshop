@@ -41,7 +41,6 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
-//        $request->dd();
         $data = $this->base_fields($request, self::IMAGE_PATH);
         $data['category_id'] = $request['category_id'];
         $product = Product::create($data);

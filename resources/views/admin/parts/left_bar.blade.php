@@ -68,6 +68,12 @@
                     Пользователи
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.attribute') }}">
+                    <i data-feather="sidebar" class="nav-icon icon-xs me-2"></i>
+                    Атрибуты
+                </a>
+            </li>
 
 
 

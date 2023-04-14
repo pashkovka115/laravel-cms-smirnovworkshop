@@ -2,6 +2,7 @@
 
 namespace App\Models\Product;
 
+use App\Models\Attributes\ItemVariant;
 use App\Models\CategoryProduct\CategoryProduct;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +25,11 @@ class Product extends Model
     public function category()
     {
         return $this->hasOne(CategoryProduct::class);
+    }
+
+    public function variants()
+    {
+        return $this->hasMany(ItemVariant::class, 'item_id');
     }
 
 

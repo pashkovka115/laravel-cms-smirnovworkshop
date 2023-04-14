@@ -28,6 +28,8 @@ return new class {
             $table->string('additional_fields')->nullable()->comment('Для привязки другой таблицы. Нужно для сортировки в админке');
         };
 
+        $table->unique('slug');
+
         return $fields;
     }
 };
