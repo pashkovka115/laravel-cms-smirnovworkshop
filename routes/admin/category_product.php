@@ -12,3 +12,8 @@ Route::get('destroy/{id}', [\App\Http\Controllers\Admin\Category\CategoryProduct
 Route::post('product-category-columns-update', [\App\Http\Controllers\Admin\Category\CategoryProductColumnController::class, 'update'])->name('admin.category_product.columns.update');
 
 Route::post('add-additional-field', [\App\Http\Controllers\Admin\Category\CategoryProductAdditionalFieldsController::class, 'store'])->name('admin.category_product.additional_fields.store');
+
+Route::prefix('tab')->group(function (){
+    Route::post('store', [\App\Http\Controllers\Admin\Category\CategoryProductTabController::class, 'store'])->name('admin.category_product.tab.store');
+    Route::post('update', [\App\Http\Controllers\Admin\Category\CategoryProductTabController::class, 'update'])->name('admin.category_product.tab.update');
+});

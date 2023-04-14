@@ -13,6 +13,9 @@
 @section('content')
 	<!-- content -->
 	<div class="line">
+        <a href="{{ route('admin.category_product.create') }}" class="btn btn-outline-success mb-2"><i
+                class="bi bi-plus-circle"></i></a>
+        @include('admin.parts.modal_settings_tabs', ["route" => "admin.category_product.tab.update", 'route_store' => 'admin.category_product.tab.store'])
 		<!-- Modal -->
 		@include('admin.parts.modal_settings_columns', ['route' => 'admin.category_product.columns.update'])
 		<!-- End Modal -->

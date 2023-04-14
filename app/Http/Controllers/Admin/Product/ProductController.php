@@ -52,7 +52,6 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-//        dd(Route::currentRouteAction());
         return view('admin.product.edit', [
             'item' => Product::with('additionalFields')->where('id', $id)->firstOrFail(),
             'items_with_children' => CategoryProduct::with('children')
@@ -92,6 +91,9 @@ class ProductController extends Controller
         $product = Product::where('id', $id)->firstOrFail();
 
         $data = $this->base_fields($request, self::IMAGE_PATH);
+        if ($request->has('category_id')){
+            $data['category_id'] = $request->input('category_id');
+        }
 
         if (is_null($data['img_announce'])) {
             unset($data['img_announce']);

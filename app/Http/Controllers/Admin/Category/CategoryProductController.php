@@ -18,6 +18,7 @@ class CategoryProductController extends Controller
     public function index()
     {
         return view('admin.category.index', [
+            'tabs' => CategoryProductTabs::with('columns')->orderBy('sort')->get()->toArray(),
             'columns' => CategoryProductColumns::column_meta_sort_list(),
             'items' => CategoryProduct::with('children')->paginate()
         ]);

@@ -16,10 +16,6 @@ Route::post('add-additional-field', [\App\Http\Controllers\Admin\Product\Product
 
 
 Route::prefix('tab')->group(function (){
-//    Route::get('', [\App\Http\Controllers\Admin\Product\ProductTabController::class, 'index'])->name('admin.product.tab');
-//    Route::get('create', [\App\Http\Controllers\Admin\Product\ProductTabController::class, 'create'])->name('admin.product.tab.create');
     Route::post('store', [\App\Http\Controllers\Admin\Product\ProductTabController::class, 'store'])->name('admin.product.tab.store');
-//    Route::get('edit/{id}', [\App\Http\Controllers\Admin\Product\ProductTabController::class, 'edit'])->name('admin.product.tab.edit');
     Route::post('update', [\App\Http\Controllers\Admin\Product\ProductTabController::class, 'update'])->name('admin.product.tab.update');
-//    Route::get('destroy/{id}', [\App\Http\Controllers\Admin\Product\ProductTabController::class, 'destroy'])->name('admin.product.tab.destroy');
 });

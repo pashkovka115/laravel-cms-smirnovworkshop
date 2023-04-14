@@ -27,7 +27,7 @@
                     <i data-feather="layers" class="nav-icon icon-xs me-2"></i> Каталог
                 </a>
 
-                <div id="navPages" class="collapse  {{ active(['admin.product*'], 'show') }}" data-bs-parent="#sideNavbar">
+                <div id="navPages" class="collapse  {{ active(['admin.product*', 'admin.category_product*'], 'show') }}" data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link  {{ active('admin.category_product*') }}" href="{{route('admin.category_product')}}">Категории</a>
@@ -55,26 +55,6 @@
                     </ul>
                 </div>
             </li>
-
-            <!-- Nav item -->
-            {{--<li class="nav-item">
-                <a class="nav-link has-arrow" href="#!" data-bs-toggle="collapse" data-bs-target="#navTabsControllers" aria-expanded="false" aria-controls="navTabsControllers">
-                    <i data-feather="lock" class="nav-icon icon-xs me-2"></i> Вкладки
-                </a>
-                <div id="navTabsControllers" class="collapse" data-bs-parent="#sideNavbar">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Категории</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Товары</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Страницы</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>--}}
 
             <li class="nav-item">
                 <a class="nav-link {{ active('admin.menu') }}" href="{{ route('admin.menu') }}">

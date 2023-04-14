@@ -20,6 +20,7 @@
 								<div class="tab-pane tab-example-design fade show active" id="pills-striped-rows-design"
 										 role="tabpanel" aria-labelledby="pills-striped-rows-design-tab">
 									<form action="{{ route($route) }}" method="post">
+                                        @csrf
 									<div class="table-responsive">
 										<table class="table table-bordered my-table">
 										<tr>
@@ -30,7 +31,6 @@
 												<th class="bg-light-dark">Показывать на детальной</th>
 												<th class="bg-light-secondary">Вкладка</th>
 										</tr>
-										@csrf
 												@foreach($columns as $column)
 													<tr>
 														<td class="bg-light-primary">
