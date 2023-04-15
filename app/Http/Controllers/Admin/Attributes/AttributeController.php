@@ -10,10 +10,15 @@ class AttributeController extends Controller
 {
     public function index()
     {
-        $product = Product::with('variants')->where('id', 1)->firstOrFail();
-        dd($product);
+        $product = Product::with('attributeGroups')->where('id', 1)->firstOrFail();
+        /*dd(
+            $product->name,
+            $product->attributeGroups[0]->name,
+            $product->attributeGroups[0]->attributes[0]->name,
+            $product->attributeGroups[0]->attributes[0]->values[0]->name,
+        );*/
 
-        return view('admin.attributes.index');
+        return view('admin.attributes.index', compact('product'));
     }
 
     /**

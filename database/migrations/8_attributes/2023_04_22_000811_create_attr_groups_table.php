@@ -8,9 +8,9 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('attr_variants', function (Blueprint $table) {
+        Schema::create('attr_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('variant');
+            $table->string('name');
 
 
 
@@ -29,6 +29,6 @@ return new class extends Migration
         /*Schema::table('variants', function (Blueprint $table) {
             $table->dropForeign('fk_category1_idx');
         });*/
-        Schema::dropIfExists('attr_variants');
+        Schema::dropIfExists('attr_groups');
     }
 };

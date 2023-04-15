@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('parent_id')->nullable()->default(null);
 
             $class = include base_path('database/migrations/templates/TemplateMetaFieldsMigration.php');
             $class::template($table)();
@@ -40,6 +41,12 @@ return new class extends Migration
 
             $table->foreign('category_id', 'fk_category1_idx')
                 ->references('id')->on('categories_product')
+                ->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
+
+            $table->foreign('parent_id')
+                ->references('id')
+                ->on('products')
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
         });

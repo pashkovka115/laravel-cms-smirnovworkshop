@@ -2,6 +2,8 @@
 
 namespace App\Models\Product;
 
+use App\Models\Attributes\Group;
+use App\Models\Attributes\ItemGroup;
 use App\Models\Attributes\ItemVariant;
 use App\Models\CategoryProduct\CategoryProduct;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,9 +29,14 @@ class Product extends Model
         return $this->hasOne(CategoryProduct::class);
     }
 
-    public function variants()
+    public function attributeGroups()
     {
-        return $this->hasMany(ItemVariant::class, 'item_id');
+        return $this->belongsToMany(
+            Group::class,
+            ItemGroup::class,
+            'item_id',
+            'group_id'
+        )->with('attributes');
     }
 
 

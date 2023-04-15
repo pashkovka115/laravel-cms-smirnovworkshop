@@ -20,6 +20,28 @@
 					class="bi bi-plus-circle"></i></a>--}}
 	</div>
 {{--	@include('admin.parts.index_template', ['link_view' => true, 'route_name' => 'category_product'])--}}
+
+    <p>{{ $product->name }}</p>
+    <ul>
+        @foreach($product->attributeGroups as $group)
+            <li>{{ $group->name }}</li>
+        @endforeach
+        <li>
+            <ul>
+                @foreach($group->attributes as $attr)
+                    <li>{{ $attr->name }}</li>
+                @endforeach
+                <li>
+                    <ul>
+                        @foreach($attr->values as $value)
+                            <li>{{ $value->name }}</li>
+                        @endforeach
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
 @endsection
 
 @section('script_buttom')
