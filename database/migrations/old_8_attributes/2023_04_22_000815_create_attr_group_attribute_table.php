@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('attr_group_attribute', function (Blueprint $table) {
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('attribute_id');
+            $table->unsignedBigInteger('item_id');
 
             $table->foreign('group_id')
                 ->references('id')->on('attr_groups')

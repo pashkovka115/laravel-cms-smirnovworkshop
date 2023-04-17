@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('attr_atributes_values', function (Blueprint $table) {
             $table->unsignedBigInteger('value_id');
             $table->unsignedBigInteger('attribute_id');
+            $table->unsignedBigInteger('item_id');
 
 
             $table->foreign('value_id')

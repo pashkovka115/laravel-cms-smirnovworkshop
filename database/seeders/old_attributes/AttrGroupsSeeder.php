@@ -1,8 +1,6 @@
 <?php
 
-namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AttrGroupsSeeder extends Seeder
@@ -11,13 +9,13 @@ class AttrGroupsSeeder extends Seeder
     {
         $groups = [
             [
-                'name' => 'Группа 1',
+                'name' => 'Дизайн',
             ],
             [
-                'name' => 'Группа 2',
+                'name' => 'Шины',
             ],
             [
-                'name' => 'Группа 3',
+                'name' => 'Пустая группа',
             ],
         ];
 

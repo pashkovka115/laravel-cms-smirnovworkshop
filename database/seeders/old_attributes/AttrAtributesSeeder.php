@@ -1,8 +1,6 @@
 <?php
 
-namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AttrAtributesSeeder extends Seeder
@@ -11,7 +9,10 @@ class AttrAtributesSeeder extends Seeder
     {
         $attributes = [
             [
-                'name' => 'Цвет',
+                'name' => 'Цвет фона',
+            ],
+            [
+                'name' => 'Главный цвет',
             ],
             [
                 'name' => 'Материал',

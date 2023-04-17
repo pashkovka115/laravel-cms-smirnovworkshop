@@ -22,25 +22,52 @@
 {{--	@include('admin.parts.index_template', ['link_view' => true, 'route_name' => 'category_product'])--}}
 
     <p>{{ $product->name }}</p>
-    <ul>
+    <?php //dd($product); ?>
+    <ol>
+    @foreach($product->properties as $prop)
+        <li>
+            <b>{{ $prop->title }}</b>
+            ---
+            <b>{{ $prop->pivot->value }}</b>
+        </li>
+    @endforeach
+    </ol>
+
+    <ol>
+        @foreach($options as $option => $values)
+            <li>{{ $option }}
+            <ol>
+                @foreach($values as $value)
+                    <li>{{ $value->title }}</li>
+                @endforeach
+            </ol>
+            </li>
+        @endforeach
+    </ol>
+
+    {{--<ul>
         @foreach($product->attributeGroups as $group)
             <li>{{ $group->name }}</li>
-        @endforeach
-        <li>
-            <ul>
-                @foreach($group->attributes as $attr)
-                    <li>{{ $attr->name }}</li>
-                @endforeach
+        @if($group->attributes->count())
                 <li>
                     <ul>
-                        @foreach($attr->values as $value)
-                            <li>{{ $value->name }}</li>
+                        @foreach($group->attributes as $attr)
+                            <li>{{ $attr->name }}</li>
+                            @if($attr->values->count())
+                                <li>
+                                    <ul>
+                                        @foreach($attr->values as $value)
+                                            <li>{{ $value->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endif
                         @endforeach
                     </ul>
                 </li>
-            </ul>
-        </li>
-    </ul>
+        @endif
+        @endforeach
+    </ul>--}}
 
 @endsection
 

@@ -1,9 +1,7 @@
 <?php
 
-namespace Database\Seeders;
 
 use App\Models\Product\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AttrItemsGroupsSeeder extends Seeder
@@ -11,6 +9,7 @@ class AttrItemsGroupsSeeder extends Seeder
     public function run(): void
     {
         $igs = [
+            // id 1
             [
                 'item_id' => 1,
                 'group_id' => 1,
@@ -26,6 +25,7 @@ class AttrItemsGroupsSeeder extends Seeder
                 'group_id' => 3,
                 'item_model' => Product::class,
             ],
+            // id 2
             [
                 'item_id' => 2,
                 'group_id' => 1,

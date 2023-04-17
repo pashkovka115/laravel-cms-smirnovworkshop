@@ -5,6 +5,8 @@ namespace App\Models\Product;
 use App\Models\Attributes\Group;
 use App\Models\Attributes\ItemGroup;
 use App\Models\Attributes\ItemVariant;
+use App\Models\Attributes\OptionValue;
+use App\Models\Attributes\Property;
 use App\Models\CategoryProduct\CategoryProduct;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,7 +31,20 @@ class Product extends Model
         return $this->hasOne(CategoryProduct::class);
     }
 
-    public function attributeGroups()
+
+    public function properties()
+    {
+        return $this->belongsToMany(
+            Property::class
+        )->withPivot('value');
+    }
+
+    public function optionValues()
+    {
+        return $this->belongsToMany(OptionValue::class);
+    }
+
+    /*public function attributeGroups()
     {
         return $this->belongsToMany(
             Group::class,
@@ -37,7 +52,7 @@ class Product extends Model
             'item_id',
             'group_id'
         )->with('attributes');
-    }
+    }*/
 
 
     public function getRouteKeyName(): string

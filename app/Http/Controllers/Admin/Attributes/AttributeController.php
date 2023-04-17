@@ -10,7 +10,7 @@ class AttributeController extends Controller
 {
     public function index()
     {
-        $product = Product::with('attributeGroups')->where('id', 1)->firstOrFail();
+//        $product = Product::with('attributeGroups')->where('id', 1)->firstOrFail();
         /*dd(
             $product->name,
             $product->attributeGroups[0]->name,
@@ -18,7 +18,15 @@ class AttributeController extends Controller
             $product->attributeGroups[0]->attributes[0]->values[0]->name,
         );*/
 
-        return view('admin.attributes.index', compact('product'));
+        $product = Product::with('properties')->where('id', 1)->firstOrFail();
+
+        $product->load('optionValues.option');
+
+        $options = $product->optionValues->mapToGroups(function ($item){
+            return [$item->option->title => $item];
+        });
+
+        return view('admin.attributes.index', compact('product', 'options'));
     }
 
     /**
