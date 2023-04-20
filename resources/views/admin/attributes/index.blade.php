@@ -21,7 +21,7 @@
 	</div>
 {{--	@include('admin.parts.index_template', ['link_view' => true, 'route_name' => 'category_product'])--}}
 
-    <p>{{ $product->name }}</p>
+    <p>Товар: <b>{{ $product->name }}</b></p>
     <?php //dd($product); ?>
     <ol>
     @foreach($product->properties as $prop)

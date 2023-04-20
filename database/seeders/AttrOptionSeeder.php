@@ -16,7 +16,8 @@ class AttrOptionSeeder extends Seeder
 
         for ($i = 1; $i <= 2; $i++){
             $options[] = [
-                'title' => ucfirst(strtolower($faker->word())),
+//                'title' => ucfirst(strtolower($faker->word())),
+                'title' => "Опция $i",
             ];
         }
 

@@ -14,7 +14,8 @@ class AttrPropertiesSeeder extends Seeder
 
         for ($i = 1; $i <= 10; $i++){
             $properties[] = [
-                'title' => ucfirst(strtolower($faker->unique()->word()))
+//                'title' => ucfirst(strtolower($faker->unique()->word()))
+                'title' => "Свойство $i"
             ];
         }
 
@@ -27,7 +28,8 @@ class AttrPropertiesSeeder extends Seeder
             $pivot[] = [
                 'product_id' => random_int(1, 2),
                 'property_id' => random_int(1, count($properties)),
-                'value' => ucfirst(strtolower($faker->unique()->word()))
+//                'value' => ucfirst(strtolower($faker->unique()->word()))
+                'value' => "Значение $i свойства"
             ];
         }
 

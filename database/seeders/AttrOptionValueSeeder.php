@@ -16,7 +16,8 @@ class AttrOptionValueSeeder extends Seeder
 
         for ($i = 1; $i <= 10; $i++){
             $values[] = [
-                'title' => ucfirst(strtolower($faker->word())),
+//                'title' => ucfirst(strtolower($faker->word())),
+                'title' => "Значение $i опции",
                 'option_id' => Option::query()->inRandomOrder()->value('id')
             ];
         }
