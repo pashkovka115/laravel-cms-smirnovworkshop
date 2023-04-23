@@ -22,9 +22,10 @@
 {{--	@include('admin.parts.index_template', ['link_view' => true, 'route_name' => 'category_product'])--}}
 
     <p>Товар: <b>{{ $product->name }}</b></p>
-    <?php //dd($product); ?>
+    <?php $new_arr = []; ?>
     <ol>
     @foreach($product->properties as $prop)
+        <?php $new_arr[$prop->title][] = $prop->pivot->value; ?>
         <li>
             <b>{{ $prop->title }}</b>
             ---
@@ -32,6 +33,7 @@
         </li>
     @endforeach
     </ol>
+    <?php //dd($new_arr); ?>
 
     <ol>
         @foreach($options as $option => $values)

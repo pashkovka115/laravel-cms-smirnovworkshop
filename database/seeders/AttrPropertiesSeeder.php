@@ -19,20 +19,21 @@ class AttrPropertiesSeeder extends Seeder
             ];
         }
 
-        \DB::table('properties')->insert($properties);
+        \DB::table('attr_properties')->insert($properties);
 
 
         $pivot = [];
 
         for ($i = 1; $i <= 100; $i++){
+            $property_id = random_int(1, count($properties));
             $pivot[] = [
                 'product_id' => random_int(1, 2),
-                'property_id' => random_int(1, count($properties)),
+                'property_id' => $property_id,
 //                'value' => ucfirst(strtolower($faker->unique()->word()))
-                'value' => "Значение $i свойства"
+                'value' => "Значение $i свойства $property_id"
             ];
         }
 
-        \DB::table('product_property')->insert($pivot);
+        \DB::table('attr_product_property')->insert($pivot);
     }
 }

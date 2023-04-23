@@ -19,6 +19,12 @@ class AttributeController extends Controller
         );*/
 
         $product = Product::with('properties')->where('id', 1)->firstOrFail();
+//        $product = Product::with('propertiesWithValues')->where('id', 1)->firstOrFail();
+//        $product->properties;
+        /*$product->each(function ($product){
+            $product->setRelation('property_values', $product->pivot);
+        });*/
+        dd($product);
 
         $product->load('optionValues.option');
 

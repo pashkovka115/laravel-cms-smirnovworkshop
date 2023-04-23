@@ -2,12 +2,9 @@
 
 namespace App\Models\Product;
 
-use App\Models\Attributes\Group;
-use App\Models\Attributes\ItemGroup;
-use App\Models\Attributes\ItemVariant;
-use App\Models\Attributes\OptionValue;
-use App\Models\Attributes\Property;
 use App\Models\CategoryProduct\CategoryProduct;
+use App\Models\Product\Attributes\OptionValue;
+use App\Models\Product\Attributes\Property;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
@@ -35,13 +32,17 @@ class Product extends Model
     public function properties()
     {
         return $this->belongsToMany(
-            Property::class
+            Property::class,
+            'attr_product_property'
         )->withPivot('value');
     }
 
     public function optionValues()
     {
-        return $this->belongsToMany(OptionValue::class);
+        return $this->belongsToMany(
+            OptionValue::class,
+            'attr_option_value_product'
+        );
     }
 
     /*public function attributeGroups()

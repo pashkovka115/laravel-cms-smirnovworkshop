@@ -2,11 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Attributes\Option;
-use App\Models\Attributes\OptionValue;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Database\Seeder;
 
 class AttrOptionSeeder extends Seeder
 {
@@ -21,6 +18,6 @@ class AttrOptionSeeder extends Seeder
             ];
         }
 
-        \DB::table('options')->insert($options);
+        \DB::table('attr_options')->insert($options);
     }
 }

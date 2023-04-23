@@ -1,19 +1,14 @@
 <?php
 
-namespace App\Models\Attributes;
+namespace App\Models\Product\Attributes;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OptionValue extends Model
+class Option extends Model
 {
     use HasFactory;
 
+    protected $table = 'attr_options';
     protected $guarded = ['id'];
-
-
-    public function option()
-    {
-        return $this->belongsTo(Option::class);
-    }
 }

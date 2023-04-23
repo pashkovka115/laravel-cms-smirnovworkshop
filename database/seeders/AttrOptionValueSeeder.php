@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Attributes\Option;
-use App\Models\Attributes\OptionValue;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+use App\Models\Product\Attributes\Option;
+use App\Models\Product\Attributes\OptionValue;
 use Faker\Generator as Faker;
+use Illuminate\Database\Seeder;
 
 class AttrOptionValueSeeder extends Seeder
 {
@@ -15,14 +14,15 @@ class AttrOptionValueSeeder extends Seeder
         $values = [];
 
         for ($i = 1; $i <= 10; $i++){
+            $option_id = Option::query()->inRandomOrder()->value('id');
             $values[] = [
 //                'title' => ucfirst(strtolower($faker->word())),
-                'title' => "Значение $i опции",
-                'option_id' => Option::query()->inRandomOrder()->value('id')
+                'title' => "Значение $i опции $option_id",
+                'option_id' => $option_id
             ];
         }
 
-        \DB::table('option_values')->insert($values);
+        \DB::table('attr_option_values')->insert($values);
 
 
         $pivot = [];
@@ -34,6 +34,6 @@ class AttrOptionValueSeeder extends Seeder
             ];
         }
 
-        \DB::table('option_value_product')->insert($pivot);
+        \DB::table('attr_option_value_product')->insert($pivot);
     }
 }
