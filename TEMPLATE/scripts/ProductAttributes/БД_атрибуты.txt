@@ -1,8 +1,0 @@
-product - id|...; product_variant - id|parent_id|name|price|sku    (вариация товара в этой же таблице)
-
-4 - attr_items_groups - id|item_id|group_id|item_model
-1 - attr_groups - id|name
-5 - attr_group_attribute - group_id|attribute_id
-2 - attr_atributes - id|name
-6 - attr_atributes_values - atribute_id|value_id
-3 - attr_values - id|name
