@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class General extends Model
@@ -19,6 +18,7 @@ class General extends Model
 
     public static function column_meta_sort_single()
     {
-        return static::with('additionalFields')->orderBy('sort_single')->get()->toArray();
+        return static::orderBy('sort_single')->get()->toArray();
+//        return static::with('additionalFields')->orderBy('sort_single')->get()->toArray();
     }
 }

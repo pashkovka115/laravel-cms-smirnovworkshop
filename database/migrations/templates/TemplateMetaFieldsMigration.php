@@ -24,8 +24,8 @@ return new class {
             $table->boolean('is_show')->default(true);
 
             // Сама галерея хранится в другой таблице. Например "product_images"
-            $table->string('img_gallery')->nullable()->comment('Для привязки другой таблицы. Нужно для сортировки в админке');
-            $table->string('additional_fields')->nullable()->comment('Для привязки другой таблицы. Нужно для сортировки в админке');
+//            $table->string('img_gallery')->nullable()->comment('Для привязки другой таблицы. Нужно для сортировки в админке');
+//            $table->string('additional_fields')->nullable()->comment('Для привязки другой таблицы. Нужно для сортировки в админке');
         };
 
         $table->unique('slug');
