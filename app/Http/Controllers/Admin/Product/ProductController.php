@@ -62,9 +62,22 @@ class ProductController extends Controller
           */
         $existing_fields[] = 'additional_fields'; // === products_columns.origin_name
         $existing_fields[] = 'img_gallery';
+        $existing_fields[] = 'properties';
+        $existing_fields[] = 'options';
+
+        $product = Product::with(['additionalFields', 'properties'])->where('id', $id)->firstOrFail();
+
+        $product->load('optionValues.option');
+        $options = $product->optionValues->mapToGroups(function ($item){
+            return [$item->option->name => $item];
+        });
+
+        $product->setAttribute('options', $options);
+
+//        dd($product->);
 
         return view('admin.product.edit', [
-            'item' => Product::with('additionalFields')->where('id', $id)->firstOrFail(),
+            'item' => $product,
             'items_with_children' => CategoryProduct::with('children')
                 ->whereNull('parent_id')
                 ->get(),
@@ -78,6 +91,11 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, $id)
     {
+        /*
+         * Работа со свойствами
+         */
+        $this->updateProperties($request);
+        $request->dd();
         /*
          * Удаляем изображения из галереи
          */

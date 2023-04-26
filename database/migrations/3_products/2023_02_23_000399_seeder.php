@@ -14,7 +14,7 @@ return new class extends Migration
                 'name' => 'Общее',
             ],
             [
-                'name' => 'Свойства',
+                'name' => 'Связи',
             ],
             [
                 'name' => 'Третий таб',
@@ -34,6 +34,26 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'select.all_categories',
+            'tab_id' => 1
+        ];
+        $fields[] = [
+            'origin_name' => 'properties',
+            'show_name' => 'Свойства с одним значением',
+            'sort_list' => 10,
+            'sort_single' => 1,
+            'is_show_anons' => 0,
+            'is_show_single' => 1,
+            'type' => 'properties',
+            'tab_id' => 1
+        ];
+        $fields[] = [
+            'origin_name' => 'options',
+            'show_name' => 'Опции с множественными значениями',
+            'sort_list' => 10,
+            'sort_single' => 1,
+            'is_show_anons' => 0,
+            'is_show_single' => 1,
+            'type' => 'options',
             'tab_id' => 1
         ];
 

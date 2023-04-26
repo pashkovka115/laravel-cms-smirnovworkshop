@@ -22,24 +22,24 @@
           @foreach($additional_fields as $field)
             <tr>
               <td>
-                <input type="text" name="properties[name][{{ $loop->iteration }}]" class="form-control"
+                <input type="text" name="additional_fields[name][{{ $loop->iteration }}]" class="form-control"
                        value="{{ $field->name }}">
               </td>
               <td>
-                <input type="text" name="properties[type][{{ $loop->iteration }}]" class="form-control"
+                <input type="text" name="additional_fields[type][{{ $loop->iteration }}]" class="form-control"
                        value="{{ $field->type }}">
               </td>
               <td>
-                <input type="text" name="properties[key][{{ $loop->iteration }}]" class="form-control"
+                <input type="text" name="additional_fields[key][{{ $loop->iteration }}]" class="form-control"
                        value="{{ $field->key }}" required>
               </td>
               <td>
-          <textarea name="properties[value][{{ $loop->iteration }}]" class="form-control"
+          <textarea name="additional_fields[value][{{ $loop->iteration }}]" class="form-control"
                     title="Произвольно"
                     rows="1">{{ $field->value }}</textarea>
               </td>
               <td>
-                <input name="properties[delete_property][{{ $loop->iteration }}]"
+                <input name="additional_fields[delete_additional_field][{{ $loop->iteration }}]"
                        class="form-check-input delete-property" type="checkbox" value="{{ $loop->iteration }}">
               </td>
             </tr>

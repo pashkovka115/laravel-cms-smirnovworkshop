@@ -43,17 +43,16 @@ class Controller extends BaseController
         $item = $model::firstOrNew();
 
         // если была найдена существующая запись
-        if($item->exists) {
+        if ($item->exists) {
             $columns = array_keys($item->attributesToArray());
-        }
-        // в противном случае был создан новый экземпляр модели
+        } // в противном случае был создан новый экземпляр модели
         else {
             // получить имена столбцов для таблицы
             $columns = Schema::getColumnListing($item->getTable());
         }
 
         return $columns;
-}
+    }
 
     public function save_img(Request $request, $field_name, $path = '', $disk = 'public')
     {
@@ -92,7 +91,7 @@ class Controller extends BaseController
             'title' => $request->title,
             'name_lavel' => $request->name_lavel,
         ];
-        if ($request->has('parent_id')){
+        if ($request->has('parent_id')) {
             $data['parent_id'] = $request->input('parent_id');
         }
 
@@ -166,11 +165,12 @@ class Controller extends BaseController
     }
 
 
-    protected function deleteGallery(Request $request, $request_field, string $model){
-        if ($request->has($request_field) and $request->input($request_field)){
+    protected function deleteGallery(Request $request, $request_field, string $model)
+    {
+        if ($request->has($request_field) and $request->input($request_field)) {
             $model::whereIn('src', $request->input($request_field))->delete();
-            foreach ($request->input($request_field) as $path){
-                if (file_exists(base_path('public/storage/' . $path))){
+            foreach ($request->input($request_field) as $path) {
+                if (file_exists(base_path('public/storage/' . $path))) {
                     unlink(base_path('public/storage/' . $path));
                 }
             }
@@ -178,30 +178,42 @@ class Controller extends BaseController
     }
 
 
-    protected function updateAdditionalFields(Request $request, $foreign_key, $item_id, $model)
+    protected function updateProperties(Request $request)
     {
         if ($request->has('properties')) {
-            $data_properties = $request->input('properties');
-            foreach ($data_properties as $field => $property) {
-                if (isset($data_properties['delete_property']) and count($data_properties['delete_property']) > 0) {
-                    foreach ($data_properties['delete_property'] as $index) {
-                        if ($field != 'delete_property') {
-                            unset($data_properties[$field][$index]);
+            $properties = $request->input('properties');
+            dd($properties);
+            for ($i = 1; $i < count($properties->name); $i++){
+
+            }
+        }
+    }
+
+
+    protected function updateAdditionalFields(Request $request, $foreign_key, $item_id, $model)
+    {
+        if ($request->has('additional_fields')) {
+            $data_delete_additional_fields = $request->input('additional_fields');
+            foreach ($data_delete_additional_fields as $field => $property) {
+                if (isset($data_delete_additional_fields['delete_additional_field']) and count($data_delete_additional_fields['delete_additional_field']) > 0) {
+                    foreach ($data_delete_additional_fields['delete_additional_field'] as $index) {
+                        if ($field != 'delete_additional_field') {
+                            unset($data_delete_additional_fields[$field][$index]);
                         }
 
                     }
                 }
             }
-            unset($data_properties['delete_property']);
+            unset($data_delete_additional_fields['delete_additional_field']);
 
             $new_props = [];
-            foreach ($data_properties['key'] as $key => $value) {
+            foreach ($data_delete_additional_fields['key'] as $key => $value) {
                 $new_props[] = [
                     $foreign_key => $item_id,
-                    'name' => $data_properties['name'][$key],
-                    'type' => $data_properties['type'][$key],
-                    'key' => $data_properties['key'][$key],
-                    'value' => $data_properties['value'][$key],
+                    'name' => $data_delete_additional_fields['name'][$key],
+                    'type' => $data_delete_additional_fields['type'][$key],
+                    'key' => $data_delete_additional_fields['key'][$key],
+                    'value' => $data_delete_additional_fields['value'][$key],
                 ];
             }
 
