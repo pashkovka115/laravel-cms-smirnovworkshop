@@ -34,7 +34,7 @@ class Product extends Model
         return $this->belongsToMany(
             Property::class,
             'attr_product_property'
-        )->withPivot('value');
+        )->withPivot(['id', 'value']);
     }
 
     public function optionValues()

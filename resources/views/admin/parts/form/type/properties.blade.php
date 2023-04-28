@@ -14,9 +14,14 @@
             @if(isset($item->properties))
           @forelse($item->properties as $prop)
               <tr>
+                  <?php //dd($prop->pivot) ?>
                   <td>
                       <input type="text" name="properties[{{ $loop->iteration }}][name]" class="form-control"
                              value="{{ $prop->name }}">
+                      <input type="hidden" name="properties[{{ $loop->iteration }}][property_id]" class="form-control"
+                             value="{{ $prop->id }}">
+                      <input type="hidden" name="properties[{{ $loop->iteration }}][value_id]" class="form-control"
+                             value="{{ $prop->pivot->id }}">
                   </td>
                   <td>
                       <input type="text" name="properties[{{ $loop->iteration }}][value]" class="form-control"

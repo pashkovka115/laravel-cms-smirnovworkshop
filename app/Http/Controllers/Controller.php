@@ -183,7 +183,7 @@ class Controller extends BaseController
         if ($request->has('properties')) {
             $properties = $request->input('properties');
             dd($properties);
-            for ($i = 1; $i < count($properties->name); $i++){
+            foreach ($properties as $property){
 
             }
         }
