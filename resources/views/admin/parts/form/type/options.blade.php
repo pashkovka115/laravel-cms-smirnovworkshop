@@ -1,8 +1,5 @@
 <div class="">
   <div class="bg-white">
-
-    Опции
-
       <ol>
           @foreach($item->options as $option => $values)
               <li>{{ $option }}

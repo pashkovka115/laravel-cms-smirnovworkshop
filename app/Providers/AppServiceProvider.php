@@ -30,7 +30,6 @@ class AppServiceProvider extends ServiceProvider
             'database/migrations/5_feedback',
             'database/migrations/6_pages',
             'database/migrations/7_menu',
-            'database/migrations/8_attributes',
         ]);
     }
 }

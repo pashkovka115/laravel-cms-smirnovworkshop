@@ -78,4 +78,5 @@
 @endsection
 
 @section('script_buttom')
+    @parent
 @endsection

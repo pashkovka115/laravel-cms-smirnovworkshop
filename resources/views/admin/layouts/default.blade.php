@@ -110,7 +110,7 @@
         plugins: [
             'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
             'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'insertdatetime',
-            'media', 'table', 'emoticons', 'template', 'help'
+            'media', 'table', 'emoticons', 'help'
         ],
         toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
             'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
@@ -129,7 +129,7 @@
         plugins: [
             'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
             'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'insertdatetime',
-            'media', 'table', 'emoticons', 'template', 'help'
+            'media', 'table', 'emoticons', 'help'
         ],
         toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
             'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
@@ -140,7 +140,10 @@
         menubar: 'favs file edit view insert format tools table help',
     });
 </script>
-@yield('script_buttom')
+{{--@yield('script_buttom')--}}
+@section('script_buttom')
+    <script src="{{ asset('assets/admin/js/sortable-content-block.js') }}"></script>
+@show
 </body>
 
 </html>

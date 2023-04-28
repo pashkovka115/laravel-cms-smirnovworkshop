@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product\Attributes\Property;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -13,24 +14,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    const BLACK_LIST = [
-//        'id',
-//        'name',
-//        'email',
-//        'slug',
-//        'title',
-//        'meta_keywords',
-//        'meta_description',
-//        'name_lavel',
-//        'img_announce',
-//        'img_detail',
-//        'announce',
-//        'description',
-//        'created_at',
-//        'updated_at',
-//        'actions_column',
-//        'img_gallery',
-    ];
+    const BLACK_LIST = [];
 
     /**
      * @param string $model
@@ -112,6 +96,7 @@ class Controller extends BaseController
     protected function updateOrder(Request $request, string $model)
     {
         $fields = $request->all();
+//        dd($fields);
         $sort = 0;
         foreach ($fields as $field => $value) {
             if (!in_array($field, self::BLACK_LIST) and !str_starts_with($field, '_')) {
@@ -182,9 +167,27 @@ class Controller extends BaseController
     {
         if ($request->has('properties')) {
             $properties = $request->input('properties');
-            dd($properties);
-            foreach ($properties as $property){
-
+//dd($properties);
+            foreach ($properties as $id => $property){
+                if (isset($property['delete_property'])){
+                    Property::where('id', $id)->delete();
+                }else{
+                    // все поля свойств должны быть заполнены
+                    foreach ($property as $value){
+                        if (is_null($value)){
+                            return false;
+                        }
+                    }
+                    if (str_starts_with($id, 'new_')){
+                        $id = 0;
+                    }
+                    $prop = Property::where('id', $id)->first();
+                    if ($prop){
+                        $prop->update($property);
+                    }else{
+                        Property::create($property);
+                    }
+                }
             }
         }
     }

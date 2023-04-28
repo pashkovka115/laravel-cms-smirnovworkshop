@@ -47,9 +47,9 @@ class DatabaseSeeder extends Seeder
         $this->call(MenuSeeder::class);
         $this->call(MenuItemSeeder::class);
 
-        $this->call(AttrOptionSeeder::class);
-        $this->call(AttrPropertiesSeeder::class);
-        $this->call(AttrOptionValueSeeder::class);
+        $this->call(ProductAttrOptionSeeder::class);
+        $this->call(ProductAttrPropertiesSeeder::class);
+        $this->call(ProductAttrOptionValueSeeder::class);
 
 //        $this->call(AttrGroupsSeeder::class);
 //        $this->call(AttrAtributesSeeder::class);

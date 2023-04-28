@@ -31,17 +31,25 @@ class Product extends Model
 
     public function properties()
     {
+        return $this->hasMany(
+            Property::class,
+        );
+    }
+
+
+    /*public function properties()
+    {
         return $this->belongsToMany(
             Property::class,
-            'attr_product_property'
+            'product_attr_product_property'
         )->withPivot(['id', 'value']);
-    }
+    }*/
 
     public function optionValues()
     {
         return $this->belongsToMany(
             OptionValue::class,
-            'attr_option_value_product'
+            'product_attr_option_value_product'
         );
     }
 

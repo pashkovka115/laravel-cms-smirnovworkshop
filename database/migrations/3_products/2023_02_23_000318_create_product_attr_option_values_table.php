@@ -8,27 +8,26 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('attr_option_values', function (Blueprint $table) {
+        Schema::create('product_attr_option_values', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamps();
 
 
             $table->foreignIdFor(\App\Models\Product\Attributes\Option::class)
-                ->constrained('attr_options')
+                ->constrained('product_attr_options')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
         });
 
 
-        Schema::create('attr_option_value_product', function (Blueprint $table) {
+        Schema::create('product_attr_option_value_product', function (Blueprint $table) {
             $table->foreignIdFor(\App\Models\Product\Product::class)
                 ->constrained('products')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
             $table->foreignIdFor(\App\Models\Product\Attributes\OptionValue::class)
-                ->constrained('attr_option_values')
+                ->constrained('product_attr_option_values')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
         });
@@ -37,16 +36,16 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::table('attr_option_values', function (Blueprint $table) {
+        Schema::table('product_attr_option_values', function (Blueprint $table) {
             $table->dropForeignIdFor(\App\Models\Product\Attributes\Option::class);
         });
 
-        Schema::table('attr_option_value_product', function (Blueprint $table) {
+        Schema::table('product_attr_option_value_product', function (Blueprint $table) {
             $table->dropForeignIdFor(\App\Models\Product\Product::class);
             $table->dropForeignIdFor(\App\Models\Product\Attributes\OptionValue::class);
         });
 
-        Schema::dropIfExists('attr_option_value_product');
-        Schema::dropIfExists('attr_option_values');
+        Schema::dropIfExists('product_attr_option_value_product');
+        Schema::dropIfExists('product_attr_option_values');
     }
 };

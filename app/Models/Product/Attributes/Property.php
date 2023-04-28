@@ -9,6 +9,7 @@ class Property extends Model
 {
     use HasFactory;
 
-    protected $table = 'attr_properties';
+    protected $table = 'product_attr_properties';
     protected $guarded = ['id'];
+    public $timestamps = false;
 }

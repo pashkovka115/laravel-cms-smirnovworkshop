@@ -44,7 +44,7 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'properties',
-            'tab_id' => 1
+            'tab_id' => 2
         ];
         $fields[] = [
             'origin_name' => 'options',

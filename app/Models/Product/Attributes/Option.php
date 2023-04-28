@@ -9,6 +9,7 @@ class Option extends Model
 {
     use HasFactory;
 
-    protected $table = 'attr_options';
+    protected $table = 'product_attr_options';
     protected $guarded = ['id'];
+    public $timestamps = false;
 }

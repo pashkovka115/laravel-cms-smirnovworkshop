@@ -7,7 +7,7 @@ use App\Models\Product\Attributes\OptionValue;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 
-class AttrOptionValueSeeder extends Seeder
+class ProductAttrOptionValueSeeder extends Seeder
 {
     public function run(Faker $faker): void
     {
@@ -21,7 +21,7 @@ class AttrOptionValueSeeder extends Seeder
             ];
         }
 
-        \DB::table('attr_option_values')->insert($values);
+        \DB::table('product_attr_option_values')->insert($values);
 
 
         $pivot = [];
@@ -33,6 +33,6 @@ class AttrOptionValueSeeder extends Seeder
             ];
         }
 
-        \DB::table('attr_option_value_product')->insert($pivot);
+        \DB::table('product_attr_option_value_product')->insert($pivot);
     }
 }

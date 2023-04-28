@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 
-class AttrOptionSeeder extends Seeder
+class ProductAttrOptionSeeder extends Seeder
 {
     public function run(Faker $faker): void
     {
@@ -17,6 +17,6 @@ class AttrOptionSeeder extends Seeder
             ];
         }
 
-        \DB::table('attr_options')->insert($options);
+        \DB::table('product_attr_options')->insert($options);
     }
 }

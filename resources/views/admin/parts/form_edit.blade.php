@@ -21,5 +21,6 @@
 </div>
 
 @section('script_buttom')
-	<script src="{{ asset('assets/admin/js/sortable-content-block.js') }}"></script>
+    @parent
+{{--	<script src="{{ asset('assets/admin/js/sortable-content-block.js') }}"></script>--}}
 @endsection

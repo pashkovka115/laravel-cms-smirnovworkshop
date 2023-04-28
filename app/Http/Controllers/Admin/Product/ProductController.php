@@ -74,7 +74,7 @@ class ProductController extends Controller
 
         $product->setAttribute('options', $options);
 
-//        dd($product->);
+//        dd($product);
 
         return view('admin.product.edit', [
             'item' => $product,
@@ -95,7 +95,7 @@ class ProductController extends Controller
          * Работа со свойствами
          */
         $this->updateProperties($request);
-        $request->dd();
+//        $request->dd();
         /*
          * Удаляем изображения из галереи
          */

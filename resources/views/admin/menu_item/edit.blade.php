@@ -120,6 +120,7 @@
 
 
 @section('script_buttom')
+    @parent
     <script src="{{ url('assets/admin/js/jquery-sortable.js')}}"></script>
     <script>
         $(function () {

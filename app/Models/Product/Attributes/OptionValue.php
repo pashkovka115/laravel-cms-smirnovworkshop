@@ -9,8 +9,9 @@ class OptionValue extends Model
 {
     use HasFactory;
 
-    protected $table = 'attr_option_values';
+    protected $table = 'product_attr_option_values';
     protected $guarded = ['id'];
+    public $timestamps = false;
 
 
     public function option()

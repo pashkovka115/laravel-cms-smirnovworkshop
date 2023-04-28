@@ -6,18 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    public $table = 'product_attr_options';
+
     public function up(): void
     {
-        Schema::create('attr_options', function (Blueprint $table) {
+        Schema::create($this->table, function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamps();
         });
     }
 
 
     public function down(): void
     {
-        Schema::dropIfExists('attr_options');
+        Schema::dropIfExists($this->table);
     }
 };
