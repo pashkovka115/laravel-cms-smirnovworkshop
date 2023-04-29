@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\CategoryProduct\CategoryProduct;
+use App\Models\Product\Attributes\Property;
 use App\Models\Product\Product;
 use App\Models\Product\ProductAdditionalFields;
 use App\Models\Product\ProductColumns;
@@ -65,16 +66,7 @@ class ProductController extends Controller
         $existing_fields[] = 'properties';
         $existing_fields[] = 'options';
 
-        $product = Product::with(['additionalFields', 'properties'])->where('id', $id)->firstOrFail();
-
-        $product->load('optionValues.option');
-        $options = $product->optionValues->mapToGroups(function ($item){
-            return [$item->option->name => $item];
-        });
-
-        $product->setAttribute('options', $options);
-
-//        dd($product);
+        $product = Product::with(['additionalFields', 'properties', 'options'])->where('id', $id)->firstOrFail();
 
         return view('admin.product.edit', [
             'item' => $product,
@@ -92,10 +84,13 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, $id)
     {
         /*
+         * Работа с опциями
+         */
+        $this->updateOptions($request, $id);
+        /*
          * Работа со свойствами
          */
-        $this->updateProperties($request);
-//        $request->dd();
+        $this->updateProperties($request, Property::class);
         /*
          * Удаляем изображения из галереи
          */

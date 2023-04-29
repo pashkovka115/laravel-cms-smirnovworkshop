@@ -12,6 +12,10 @@ return new class extends Migration
     {
         Schema::create($this->table, function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\Product\Product::class)
+                ->constrained('products')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->string('name');
         });
     }

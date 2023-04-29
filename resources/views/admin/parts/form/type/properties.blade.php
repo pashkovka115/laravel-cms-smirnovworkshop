@@ -54,7 +54,7 @@
     let i = 0;
     let button = $('#btn_add_property').on('click', function (e){
         i++;
-        let temlate = '<tr draggable="false">'+
+        let temlate_property = '<tr draggable="false">'+
             "<td>"+
             '<input type="text" name="properties[new_'+i+'][name]" class="form-control">'+
             '<input type="hidden" name="properties[new_'+i+'][product_id]" value="{{ $item->id }}">'+
@@ -67,7 +67,7 @@
         '</td>'+
     "</tr>";
         let content_props = $('#content_property');
-        content_props.append(temlate);
+        content_props.append(temlate_property);
 
         $('button.delete_property').each(function (index, element){
             $(element).off('click');

@@ -38,11 +38,18 @@ span.red {
     justify-content: space-around;
 }
 
-.table thead th{
+.table thead th {
     font-weight: 900;
 }
+
 .table > :not(caption) > * > * {
     padding: 0.5rem;
+}
+
+.td-with-inputs input {
+    max-width: 200px;
+    display: inline-block !important;
+    margin-bottom: 5px;
 }
 
 .my-row > * {
@@ -50,12 +57,15 @@ span.red {
     padding-right: 0;
 }
 
-.my-table{
+.my-table {
     margin-bottom: 0;
 }
-.my-table thead th{
+
+.my-table thead th {
     padding: 0.5rem;
 }
-.my-card-body{
+
+.my-card-body {
     padding: 0.5rem;
 }
+

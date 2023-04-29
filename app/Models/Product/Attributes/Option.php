@@ -12,4 +12,10 @@ class Option extends Model
     protected $table = 'product_attr_options';
     protected $guarded = ['id'];
     public $timestamps = false;
+
+
+    public function values()
+    {
+        return $this->hasMany(Value::class);
+    }
 }

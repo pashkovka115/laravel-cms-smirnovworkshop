@@ -11,8 +11,9 @@ class ProductAttrOptionSeeder extends Seeder
     {
         $options = [];
 
-        for ($i = 1; $i <= 2; $i++){
+        for ($i = 1; $i <= 6; $i++){
             $options[] = [
+                'product_id' => random_int(1, 2),
                 'name' => "Опция $i",
             ];
         }

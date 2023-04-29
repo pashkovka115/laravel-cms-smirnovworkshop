@@ -54,7 +54,7 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'options',
-            'tab_id' => 1
+            'tab_id' => 2
         ];
 
         DB::table('products_columns')->insert($fields);

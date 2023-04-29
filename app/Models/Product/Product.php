@@ -3,7 +3,8 @@
 namespace App\Models\Product;
 
 use App\Models\CategoryProduct\CategoryProduct;
-use App\Models\Product\Attributes\OptionValue;
+use App\Models\Product\Attributes\Option;
+use App\Models\Product\Attributes\Value;
 use App\Models\Product\Attributes\Property;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -37,6 +38,12 @@ class Product extends Model
     }
 
 
+    public function options()
+    {
+        return $this->hasMany(Option::class)->with('values');
+    }
+
+
     /*public function properties()
     {
         return $this->belongsToMany(
@@ -45,13 +52,13 @@ class Product extends Model
         )->withPivot(['id', 'value']);
     }*/
 
-    public function optionValues()
+    /*public function optionValues()
     {
         return $this->belongsToMany(
-            OptionValue::class,
+            Value::class,
             'product_attr_option_value_product'
         );
-    }
+    }*/
 
     /*public function attributeGroups()
     {

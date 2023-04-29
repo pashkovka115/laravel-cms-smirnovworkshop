@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product\Attributes\Option;
 use App\Models\Product\Attributes\Property;
+use App\Models\Product\Attributes\Value;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -163,29 +165,74 @@ class Controller extends BaseController
     }
 
 
-    protected function updateProperties(Request $request)
+    public function updateOptions(Request $request, $item_id)
+    {
+        if ($request->has('options')) {
+            $options = $request->input('options');
+
+            foreach ($options as $option_id => $option) {
+                // Если опция не указана удаляем её вместе со значениями
+                if (!isset($option['name'])){
+                    Option::where('id', $option_id)->delete();
+                }else{
+                    if (str_starts_with($option_id, 'new_')) {
+                        $option_id = 0;
+                    }
+                    $opt = Option::where('id', $option_id)->first();
+                    if ($opt){
+                        $opt->update(['name' => $option['name']]);
+                    }else{
+                        $opt = Option::create(['name' => $option['name'], 'product_id' => $item_id]);
+                        $option_id = $opt->id;
+                    }
+                }
+
+                // Если значение не указано удаляем его
+                if (isset($option['values'])) {
+                    foreach ($option['values'] as $value_id => $value) {
+                        if (!isset($value['name'])){
+                            Value::where('id', $value_id)->delete();
+                        }else{
+                            if (str_starts_with($value_id, 'new_')) {
+                                $value_id = 0;
+                            }
+                            $val = Value::where('id', $value_id)->first();
+                            if ($val){
+                                $val->update(['name' => $value['name']]);
+                            }else{
+                                Value::create(['name' => $value['name'], 'option_id' => $option_id]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    protected function updateProperties(Request $request, string $model)
     {
         if ($request->has('properties')) {
             $properties = $request->input('properties');
-//dd($properties);
-            foreach ($properties as $id => $property){
-                if (isset($property['delete_property'])){
-                    Property::where('id', $id)->delete();
-                }else{
+
+            foreach ($properties as $id => $property) {
+                if (isset($property['delete_property'])) {
+                    $model::where('id', $id)->delete();
+                } else {
                     // все поля свойств должны быть заполнены
-                    foreach ($property as $value){
-                        if (is_null($value)){
+                    foreach ($property as $value) {
+                        if (is_null($value)) {
                             return false;
                         }
                     }
-                    if (str_starts_with($id, 'new_')){
+                    if (str_starts_with($id, 'new_')) {
                         $id = 0;
                     }
-                    $prop = Property::where('id', $id)->first();
-                    if ($prop){
+                    $prop = $model::where('id', $id)->first();
+                    if ($prop) {
                         $prop->update($property);
-                    }else{
-                        Property::create($property);
+                    } else {
+                        $model::create($property);
                     }
                 }
             }
