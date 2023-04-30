@@ -1,9 +1,9 @@
-@extends('admin.layouts.default')
+{{--@extends('admin.layouts.default')--}}
 
-@section('title')
+{{--@section('title')--}}
 	Редактируем категорию
 @endsection
-@section('page_header')
+{{--@section('page_header')--}}
 	Редактируем категорию
 @endsection
 
@@ -19,7 +19,7 @@
 		<!-- Modal -->
 		@include('admin.parts.modal_settings_columns', ['route' => 'admin.category_product.columns.update'])
 		<!-- End Modal -->
-		@include('admin.parts.modal_add_additional_fields', ['field' => 'category_id', 'id' => $item->id, 'route' => 'admin.category_product.additional_fields.store'])
+{{--		@include('admin.parts.modal_add_additional_fields', ['field' => 'category_id', 'id' => $item->id, 'route' => 'admin.category_product.additional_fields.store'])--}}
 	</div>
 	<div class="py-2">
 		<form action="{{ route('admin.category_product.update', ['id' => $item->id]) }}" method="post"

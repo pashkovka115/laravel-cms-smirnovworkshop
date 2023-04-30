@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\CategoryProduct\CategoryProduct;
+use App\Models\Product\Attributes\Option;
 use App\Models\Product\Attributes\Property;
+use App\Models\Product\Attributes\Value;
 use App\Models\Product\Product;
 use App\Models\Product\ProductAdditionalFields;
 use App\Models\Product\ProductColumns;
@@ -69,13 +71,21 @@ class ProductController extends Controller
         $product = Product::with(['additionalFields', 'properties', 'options'])->where('id', $id)->firstOrFail();
 
         return view('admin.product.edit', [
+            // редактируемый объект
             'item' => $product,
+            // Наследуемые объекты
+            'items' => Product::whereNull('parent_id')->whereNot('id', $id)->get(['id', 'name']),
+            // Категории
             'items_with_children' => CategoryProduct::with('children')
                 ->whereNull('parent_id')
                 ->get(),
+            // Существующие поля
             'existing_fields' => $existing_fields,
+            // Вкладки
             'tabs' => ProductTabs::with('columns')->orderBy('sort')->get()->toArray(),
+            // Колонки(поля)
             'columns' => ProductColumns::column_meta_sort_single(),
+            // Галерея картинок
             'gallery' => ProductImages::where('product_id', $id)->orderBy('sort')->get(),
         ]);
     }
@@ -86,7 +96,7 @@ class ProductController extends Controller
         /*
          * Работа с опциями
          */
-        $this->updateOptions($request, $id);
+        $this->updateOptions($request, $id, Option::class, Value::class);
         /*
          * Работа со свойствами
          */
@@ -102,7 +112,7 @@ class ProductController extends Controller
         /*
          * Обновляем сортировку
          */
-        $this->updateOrder($request, ProductColumns::class);
+        $this->updateSort($request, ProductColumns::class);
 
         /*
          * Работа с дополнительными полями

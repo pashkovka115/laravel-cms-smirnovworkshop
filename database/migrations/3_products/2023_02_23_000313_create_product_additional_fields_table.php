@@ -9,10 +9,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_additional_fields', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_id');
-
             $class = include base_path('database/migrations/templates/TemplateAdditionalFields.php');
             $class::template($table)();
+
+            $table->unsignedBigInteger('product_id');
 
             $table->index(["product_id"], 'fk_product_additional_fields2_idx');
 

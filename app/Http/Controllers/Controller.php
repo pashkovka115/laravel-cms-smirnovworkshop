@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product\Attributes\Option;
 use App\Models\Product\Attributes\Property;
 use App\Models\Product\Attributes\Value;
+use App\Models\Product\ProductAdditionalFields;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -95,10 +96,9 @@ class Controller extends BaseController
      * @return void
      * Обновить сортировку полей.
      */
-    protected function updateOrder(Request $request, string $model)
+    protected function updateSort(Request $request, string $model)
     {
         $fields = $request->all();
-//        dd($fields);
         $sort = 0;
         foreach ($fields as $field => $value) {
             if (!in_array($field, self::BLACK_LIST) and !str_starts_with($field, '_')) {
@@ -165,7 +165,7 @@ class Controller extends BaseController
     }
 
 
-    public function updateOptions(Request $request, $item_id)
+    public function updateOptions(Request $request, $item_id, string $model_option, string $model_value)
     {
         if ($request->has('options')) {
             $options = $request->input('options');
@@ -173,34 +173,34 @@ class Controller extends BaseController
             foreach ($options as $option_id => $option) {
                 // Если опция не указана удаляем её вместе со значениями
                 if (!isset($option['name'])){
-                    Option::where('id', $option_id)->delete();
+                    $model_option::where('id', $option_id)->delete();
                 }else{
                     if (str_starts_with($option_id, 'new_')) {
                         $option_id = 0;
                     }
-                    $opt = Option::where('id', $option_id)->first();
+                    $opt = $model_option::where('id', $option_id)->first();
                     if ($opt){
                         $opt->update(['name' => $option['name']]);
                     }else{
-                        $opt = Option::create(['name' => $option['name'], 'product_id' => $item_id]);
+                        $opt = $model_option::create(['name' => $option['name'], 'product_id' => $item_id]);
                         $option_id = $opt->id;
                     }
                 }
 
-                // Если значение не указано удаляем его
                 if (isset($option['values'])) {
                     foreach ($option['values'] as $value_id => $value) {
+                        // Если значение не указано удаляем его
                         if (!isset($value['name'])){
-                            Value::where('id', $value_id)->delete();
+                            $model_value::where('id', $value_id)->delete();
                         }else{
                             if (str_starts_with($value_id, 'new_')) {
                                 $value_id = 0;
                             }
-                            $val = Value::where('id', $value_id)->first();
+                            $val = $model_value::where('id', $value_id)->first();
                             if ($val){
                                 $val->update(['name' => $value['name']]);
                             }else{
-                                Value::create(['name' => $value['name'], 'option_id' => $option_id]);
+                                $model_value::create(['name' => $value['name'], 'option_id' => $option_id]);
                             }
                         }
                     }
@@ -239,11 +239,32 @@ class Controller extends BaseController
         }
     }
 
+    protected function updateAdditionalFields(Request $request, $foreign_key, $id, $model){
+        if ($request->has('additional_fields')) {
+            $additional_fields = $request->input('additional_fields');
 
-    protected function updateAdditionalFields(Request $request, $foreign_key, $item_id, $model)
+            foreach ($additional_fields as $id_field => $field){
+                $field[$foreign_key] = $id;
+                if (str_starts_with($id_field, 'new_')){
+                    $model::create($field);
+                }else{
+                    $f = $model::where('id', $id_field)->first();
+                    if (isset($field['delete_additional_field'])){
+                        $f->delete();
+                    }else{
+                        $f->update($field);
+                    }
+                }
+
+            }
+        }
+    }
+
+    protected function updateAdditionalFields2(Request $request, $foreign_key, $item_id, $model)
     {
         if ($request->has('additional_fields')) {
             $data_delete_additional_fields = $request->input('additional_fields');
+            dd($data_delete_additional_fields);
             foreach ($data_delete_additional_fields as $field => $property) {
                 if (isset($data_delete_additional_fields['delete_additional_field']) and count($data_delete_additional_fields['delete_additional_field']) > 0) {
                     foreach ($data_delete_additional_fields['delete_additional_field'] as $index) {

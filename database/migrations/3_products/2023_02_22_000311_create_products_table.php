@@ -20,7 +20,6 @@ return new class extends Migration
             $table->unsignedInteger('quantity')->default(0);
             $table->unsignedSmallInteger('min_quantity')->default(0);
 
-            // todo: rename
             $table->unsignedInteger('width')->default(0);
             $table->unsignedInteger('height')->default(0);
             $table->unsignedInteger('dlina')->default(0);

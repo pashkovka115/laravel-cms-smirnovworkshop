@@ -67,7 +67,7 @@ class PageController extends Controller
         /*
          * Обновляем сортировку
          */
-        $this->updateOrder($request, PageColumns::class);
+        $this->updateSort($request, PageColumns::class);
 
         /*
          * Работа со свойствами

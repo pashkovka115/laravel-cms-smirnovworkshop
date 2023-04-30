@@ -63,7 +63,7 @@ class CategoryProductController extends Controller
         /*
          * Обновляем сортировку
          */
-        $this->updateOrder($request, CategoryProductColumns::class);
+        $this->updateSort($request, CategoryProductColumns::class);
 
         /*
          * Работа со свойствами

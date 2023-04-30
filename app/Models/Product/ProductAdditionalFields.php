@@ -11,4 +11,5 @@ class ProductAdditionalFields extends Model
 
     protected $table = 'product_additional_fields';
     public $timestamps = false;
+    protected $guarded = ['id'];
 }

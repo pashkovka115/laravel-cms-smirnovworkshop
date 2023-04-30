@@ -57,7 +57,7 @@ class FeedbackController extends Controller
         /*
          * Обновляем сортировку
          */
-        $this->updateOrder($request, FeedbackColumns::class);
+        $this->updateSort($request, FeedbackColumns::class);
 
         /*
          * Работа со свойствами

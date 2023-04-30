@@ -15,7 +15,7 @@
 	<div class="line">
 
 		@include('admin.parts.modal_settings_columns', ["route" => "admin.page.columns.update"])
-		@include('admin.parts.modal_add_additional_fields', ['field' => 'page_id', 'id' => $item->id, 'route' => 'admin.page.additional_fields.store'])
+{{--		@include('admin.parts.modal_add_additional_fields', ['field' => 'page_id', 'id' => $item->id, 'route' => 'admin.page.additional_fields.store'])--}}
 	</div>
 	@php //dd($item) @endphp
 	<div class="py-2">
