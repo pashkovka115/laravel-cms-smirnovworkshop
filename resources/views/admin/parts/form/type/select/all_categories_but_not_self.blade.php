@@ -33,7 +33,7 @@ if (!function_exists('all_categories_but_not_self')) {
 }
 
 ?>
-<select name="{{ $column['origin_name'] }}" class="form-select form-select-sm" aria-label="Default select example">
+<select id="{{ $column['origin_name'] }}" name="{{ $column['origin_name'] }}" class="form-select form-select-sm" aria-label="Default select example">
     <option value="">Нет родителя</option>
     @if(isset($items_with_children))
         @foreach($items_with_children as $item_with_children)

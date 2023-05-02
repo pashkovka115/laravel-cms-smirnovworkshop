@@ -1,4 +1,4 @@
-<input type="file" name="{{ $column['origin_name'] }}" class="form-control form-control-sm">
+<input type="file" id="{{ $column['origin_name'] }}" name="{{ $column['origin_name'] }}" class="form-control form-control-sm">
 {{--Для коректного сохранения сортировки--}}
 <input type="hidden" name="{{ $column['origin_name'] }}">
 @isset($item)

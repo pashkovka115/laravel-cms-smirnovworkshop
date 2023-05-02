@@ -9,7 +9,7 @@ class PageColumns extends General
 {
     use HasFactory;
 
-    protected $table = 'page_columns';
+    protected $table = 'pages_columns';
     public $timestamps = false;
 
 

@@ -13,17 +13,28 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('parent_id')->nullable()->default(null);
 
+            /*$table->boolean('is_show')->default(true);
+            $table->string('name_lavel', 2)->default('h2');
+            $table->integer('sort')->default(0);
+            $table->string('img_announce')->nullable();
+            $table->string('img_detail')->nullable();*/
+
             $class = include base_path('database/migrations/templates/TemplateMetaFieldsMigration.php');
             $class::template($table)();
 
             $table->unsignedFloat('price')->default(0.0);
+            $table->unsignedFloat('old_price')->default(0.0);
+
             $table->unsignedInteger('quantity')->default(0);
             $table->unsignedSmallInteger('min_quantity')->default(0);
 
+            $table->boolean('hit')->default(0);
+            $table->boolean('is_download')->default(0);
+
             $table->unsignedInteger('width')->default(0);
             $table->unsignedInteger('height')->default(0);
-            $table->unsignedInteger('dlina')->default(0);
-            $table->unsignedInteger('ves')->default(0);
+            $table->unsignedInteger('length')->default(0);
+            $table->unsignedInteger('weight')->default(0);
 
             // Номера товара
             $table->string('sku')->nullable();

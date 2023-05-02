@@ -1,9 +1,9 @@
-<input type="file" name="{{ $column['origin_name'] }}[]" class="form-control form-control-sm" multiple>
+<input type="file" id="{{ $column['origin_name'] }}" name="{{ $column['origin_name'] }}[]" class="form-control form-control-sm" multiple>
 {{--Для коректного сохранения сортировки--}}
 <input type="hidden" name="{{ $column['origin_name'] }}">
-@isset($gallery)
+@isset($item->gallery)
 	<div class="row">
-		@foreach($gallery as $img)
+		@foreach($item->gallery as $img)
 			<div class="col-2 mt-2">
 				<img src="/storage/{{ $img->src }}" alt=""
 						 style="width: auto; height: 110px">

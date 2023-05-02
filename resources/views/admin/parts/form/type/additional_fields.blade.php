@@ -1,3 +1,4 @@
+@isset($item->additionalFields)
 <div class="">
   <div class="bg-white">
 
@@ -14,7 +15,6 @@
         </thead>
         <tbody id="content_additional_fields">
           @foreach($item->additionalFields as $field)
-              <?php //dd($field) ?>
             <tr>
               <td>
                 <input type="text" name="additional_fields[{{ $field->id }}][name]" class="form-control"
@@ -75,3 +75,4 @@
         }
     </script>
 @endsection
+@endisset

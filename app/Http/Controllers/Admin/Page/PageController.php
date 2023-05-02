@@ -44,12 +44,12 @@ class PageController extends Controller
 
     public function edit($id)
     {
+        $item = Page::with(['additionalFields', 'gallery'])->where('id', $id)->firstOrFail();
+
         return view('admin.page.edit', [
-            'item' => Page::where('id', $id)->firstOrFail(),
-            'existing_fields' => $this->getFieldsModel(Page::class),
+            'item' => $item,
             'tabs' => PageTabs::with('columns')->orderBy('sort')->get()->toArray(),
             'columns' => PageColumns::column_meta_sort_single(),
-            'gallery' => PageImages::where('page_id', $id)->orderBy('sort')->get(),
         ]);
     }
 

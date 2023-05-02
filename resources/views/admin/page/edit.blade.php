@@ -13,11 +13,12 @@
 @section('content')
 	<!-- content -->
 	<div class="line">
-
-		@include('admin.parts.modal_settings_columns', ["route" => "admin.page.columns.update"])
-{{--		@include('admin.parts.modal_add_additional_fields', ['field' => 'page_id', 'id' => $item->id, 'route' => 'admin.page.additional_fields.store'])--}}
+        <a href="{{ route('admin.page.create') }}" class="btn btn-outline-success mb-2"><i
+                class="bi bi-plus-circle"></i></a>
+        @include('admin.parts.modal_settings_tabs', ["route" => "admin.page.tab.update", 'route_store' => 'admin.page.tab.store'])
+        @include('admin.parts.modal_settings_columns', ["route" => "admin.page.columns.update"])
 	</div>
-	@php //dd($item) @endphp
+	@php //dd($item, $columns) @endphp
 	<div class="py-2">
 		<form action="{{ route('admin.page.update', ['id' => $item->id]) }}" method="post"
 					enctype="multipart/form-data">

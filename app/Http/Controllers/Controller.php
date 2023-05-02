@@ -23,6 +23,7 @@ class Controller extends BaseController
      * @param string $model
      * @return array|int[]|string[]
      * Возвращает масив полей модели
+     * @deprecated
      */
     public function getFieldsModel(string $model)
     {

@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoriesProductAdditionalFieldsSeeder::class);
 
         $this->call(ProductsSeeder::class);
+        $this->call(ProductsDescriptionSeeder::class);
 //        $this->call(ProductsTabsSeeder::class);
 //        $this->call(ProductsColumnsSeeder::class);
         $this->call(ProductsAdditionalFieldsSeeder::class);
@@ -37,8 +38,8 @@ class DatabaseSeeder extends Seeder
         $this->call(FeedbackAdditionalFieldsSeeder::class);
 
         $this->call(PageSeeder::class);
-        $this->call(PagesTabsSeeder::class);
-        $this->call(PageColumnsSeeder::class);
+//        $this->call(PagesTabsSeeder::class);
+//        $this->call(PageColumnsSeeder::class);
         $this->call(PageAdditionalFieldsSeeder::class);
 
         $this->call(ReviewsSeeder::class);
@@ -50,13 +51,5 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductAttrOptionSeeder::class);
         $this->call(ProductAttrPropertiesSeeder::class);
         $this->call(ProductAttrOptionValueSeeder::class);
-
-//        $this->call(AttrGroupsSeeder::class);
-//        $this->call(AttrAtributesSeeder::class);
-//        $this->call(AttrValuesSeeder::class);
-//        $this->call(AttrItemsGroupsSeeder::class);
-//        $this->call(AttrGroupAttributeSeeder::class);
-//        $this->call(AttrAttributesValuesSeeder::class);
-
     }
 }

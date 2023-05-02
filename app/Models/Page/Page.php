@@ -20,6 +20,12 @@ class Page extends Model
     }
 
 
+    public function gallery()
+    {
+        return $this->hasMany(PageImages::class)->orderBy('sort');
+    }
+
+
     public function getRouteKeyName(): string
     {
         return 'slug';

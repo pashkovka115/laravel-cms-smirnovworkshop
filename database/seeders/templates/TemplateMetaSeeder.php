@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 
 /**
- * Используется как шаблон для заполнения одинаковых полей в таблицах
+ * Используется как шаблон для заполнения одинаковых полей в таблицах основной сущности
  */
 return new class {
     public static function template(Faker $faker, $number = '', $options = []): \Closure

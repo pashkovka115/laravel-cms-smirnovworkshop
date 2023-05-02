@@ -54,21 +54,15 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $existing_fields = $this->getFieldsModel(Product::class);
+        $product = Product::with([
+            'additionalFields',
+            'properties',
+            'options',
+            'gallery',
+            'langAll'
+        ])->where('id', $id)->firstOrFail();
 
-         /**
-          * Todo: документация
-          * @var $existing_fields - т.к. в таблице БД нет такого поля
-         * то для отображения его в интерфейсе добавим его название в масив существующих полей.
-          * Название должно соответствовать записи в колонке "origin_name" соответствующей таблицы *_columns.
-          * А также существовать шаблон с названием из колонки "type" в папке resources/views/admin/parts/form/type
-          */
-        $existing_fields[] = 'additional_fields'; // === products_columns.origin_name
-        $existing_fields[] = 'img_gallery';
-        $existing_fields[] = 'properties';
-        $existing_fields[] = 'options';
-
-        $product = Product::with(['additionalFields', 'properties', 'options'])->where('id', $id)->firstOrFail();
+        dd($product);
 
         return view('admin.product.edit', [
             // редактируемый объект
@@ -79,14 +73,10 @@ class ProductController extends Controller
             'items_with_children' => CategoryProduct::with('children')
                 ->whereNull('parent_id')
                 ->get(),
-            // Существующие поля
-            'existing_fields' => $existing_fields,
             // Вкладки
             'tabs' => ProductTabs::with('columns')->orderBy('sort')->get()->toArray(),
             // Колонки(поля)
             'columns' => ProductColumns::column_meta_sort_single(),
-            // Галерея картинок
-            'gallery' => ProductImages::where('product_id', $id)->orderBy('sort')->get(),
         ]);
     }
 

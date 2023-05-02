@@ -1,4 +1,4 @@
-@if(isset($item))
+@if(isset($item->{$column['origin_name']}))
 	<p>{{ $item->{$column['origin_name']} }}</p>
 @else
 	<p><?= date('Y-m-d H:i:s') ?></p>

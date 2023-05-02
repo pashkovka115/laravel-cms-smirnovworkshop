@@ -31,6 +31,7 @@
 												<th class="bg-light-dark">Показывать на детальной</th>
 												<th class="bg-light-secondary">Вкладка</th>
 										</tr>
+                                            @isset($columns)
 												@foreach($columns as $column)
 													<tr>
 														<td class="bg-light-primary">
@@ -54,14 +55,17 @@
 																		 @if($column['is_show_single'] == '1') checked @endif>
 														</td>
 														<td class="bg-light-secondary" style="min-width: 150px">
-															<select name="{{ $column['id'] }}[tab_id]" class="form-select form-select-sm" style="width: auto" aria-label=".form-select-sm пример">
-																@foreach($tabs as $tab)
+                                                            @isset($tabs)
+                                                            <select name="{{ $column['id'] }}[tab_id]" class="form-select form-select-sm" style="width: auto" aria-label=".form-select-sm пример">
+                                                                @foreach($tabs as $tab)
 																<option value="{{ $tab['id'] }}" @if($tab['id'] == $column['tab_id']) selected @endif>{{ $tab['name'] }}</option>
 																@endforeach
 															</select>
-														</td>
+                                                            @endisset
+                                                        </td>
 													</tr>
 												@endforeach
+                                            @endisset
 											</table>
 										</div>
 										<div class="modal-footer">

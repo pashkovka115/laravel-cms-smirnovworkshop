@@ -1,3 +1,4 @@
+@isset($item->options)
 <div class="">
     <div class="bg-white">
         <div class="table-responsive">
@@ -79,3 +80,4 @@
         }
     </script>
 @endsection
+@endisset

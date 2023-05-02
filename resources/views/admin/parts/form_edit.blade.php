@@ -1,26 +1,18 @@
-<div id="sortable" class="row">
-	@php
-	if (!isset($excluded_fields)){
-        $excluded_fields = [];
-	}
-	@endphp
-	@foreach($columns as $column)
-		@if($column['is_show_single']  and in_array($column['origin_name'], $existing_fields)  and !in_array($column['origin_name'], $excluded_fields))
-			<div class="col-lg-12 col-md-12 col-12 mb-1">
-				<div class="card">
-					<div class="card-body my-card-body">
-						<h5 class="card-title">{{ $column['show_name'] }}</h5>
-						<div class="">
-							@includeIf('admin.parts.form.type.' . $column['type'])
-						</div>
-					</div>
-				</div>
-			</div>
-		@endif
-	@endforeach
+<div id="sortable" class="row bg-white pt-3">
+    @php
+        if (!isset($excluded_fields)){
+            $excluded_fields = [];
+        }
+    @endphp
+    @foreach($columns as $column)
+        @if($column['is_show_single']  and !in_array($column['origin_name'], $excluded_fields) and array_key_exists($column['origin_name'], $item->toArray()))
+            <div class="form-group row mb-4">
+                <label for="{{ $column['origin_name'] }}"
+                       class="col-sm-2 col-form-label">{{ $column['show_name'] }}</label>
+                <div class="col-sm-10">
+                    @includeIf('admin.parts.form.type.' . $column['type'])
+                </div>
+            </div>
+        @endif
+    @endforeach
 </div>
-
-@section('script_buttom')
-    @parent
-{{--	<script src="{{ asset('assets/admin/js/sortable-content-block.js') }}"></script>--}}
-@endsection

@@ -13,11 +13,11 @@
 @section('content')
     <!-- content -->
     <div class="line">
-        <!-- Modal -->
-        @include('admin.parts.modal_settings_columns', ['route' => 'admin.page.columns.update'])
         <!-- End Modal -->
         <a href="{{ route('admin.page.create') }}" class="btn btn-outline-success mb-2"><i
                 class="bi bi-plus-circle"></i></a>
+        <!-- Modal -->
+        @include('admin.parts.modal_settings_columns', ['route' => 'admin.page.columns.update'])
     </div>
     @include('admin.parts.index_template', ['link_view' => true, 'route_name' => 'page'])
 @endsection

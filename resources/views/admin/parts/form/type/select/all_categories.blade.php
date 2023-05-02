@@ -30,7 +30,7 @@ if (!function_exists('all_categories')) {
 }
 
 ?>
-<select name="{{ $column['origin_name'] }}" class="form-select form-select-sm" aria-label="Default select example">
+<select id="{{ $column['origin_name'] }}" name="{{ $column['origin_name'] }}" class="form-select form-select-sm" aria-label="Default select example">
     @if(isset($items_with_children))
             <?php
             if (isset($item)) {

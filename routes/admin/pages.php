@@ -14,3 +14,7 @@ Route::post('product-category-columns-update', [\App\Http\Controllers\Admin\Page
 
 Route::post('add-additional-field', [\App\Http\Controllers\Admin\Page\PageAdditionalFieldsController::class, 'store'])->name('admin.page.additional_fields.store');
 
+Route::prefix('tab')->group(function (){
+    Route::post('store', [\App\Http\Controllers\Admin\Page\PageTabController::class, 'store'])->name('admin.page.tab.store');
+    Route::post('update', [\App\Http\Controllers\Admin\Page\PageTabController::class, 'update'])->name('admin.page.tab.update');
+});

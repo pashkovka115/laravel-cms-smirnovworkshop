@@ -44,31 +44,16 @@ class Product extends Model
     }
 
 
-    /*public function properties()
+    public function gallery()
     {
-        return $this->belongsToMany(
-            Property::class,
-            'product_attr_product_property'
-        )->withPivot(['id', 'value']);
-    }*/
+        return $this->hasMany(ProductImages::class)->orderBy('sort');
+    }
 
-    /*public function optionValues()
-    {
-        return $this->belongsToMany(
-            Value::class,
-            'product_attr_option_value_product'
-        );
-    }*/
 
-    /*public function attributeGroups()
+    public function langAll()
     {
-        return $this->belongsToMany(
-            Group::class,
-            ItemGroup::class,
-            'item_id',
-            'group_id'
-        )->with('attributes');
-    }*/
+        return $this->hasMany(ProductsDescription::class);
+    }
 
 
     public function getRouteKeyName(): string
