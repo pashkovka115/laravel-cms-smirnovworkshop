@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SiteController;
+use App\Models\Product\Product;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController extends SiteController
 {
     public function index()
     {
-        return view('site.home.index');
+        $product = Product::where('id', 1)->first();
+
+        return view('site.home.index', compact('product'));
     }
 }

@@ -1307,7 +1307,7 @@ section .container-fluid {
 .header-action-area .header-action .currency-menu .title {
   color: #222;
   font-size: 16px;
-  min-width: 50px;
+  min-width: 54px;
   display: inline-block;
   position: relative;
   transition: all 0.4s ease-out;
@@ -1388,7 +1388,7 @@ section .container-fluid {
 .header-action-area .header-action .user-menu .title {
   color: #222;
   font-size: 22px;
-  min-width: 50px;
+  min-width: 54px;
   display: inline-block;
   position: relative;
   transition: all 0.4s ease-out;

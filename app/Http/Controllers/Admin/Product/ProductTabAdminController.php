@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Page;
+namespace App\Http\Controllers\Admin\Product;
 
-use App\Http\Controllers\Controller;
-use App\Models\Page\PageTabs;
+use App\Http\Controllers\AdminController;
+use App\Models\Product\ProductTabs;
 use Illuminate\Http\Request;
 
-class PageTabController extends Controller
+class ProductTabAdminController extends AdminController
 {
     public function store(Request $request)
     {
@@ -24,7 +24,7 @@ class PageTabController extends Controller
             $data['sort'] = 10;
         }
 
-        PageTabs::create($data);
+        ProductTabs::create($data);
 
         return back();
     }
@@ -39,10 +39,10 @@ class PageTabController extends Controller
                 continue;
             }
             if (isset($tab['delete'])){
-                PageTabs::where('id', $id)->delete();
+                ProductTabs::where('id', $id)->delete();
                 continue;
             }
-            PageTabs::where('id', $id)->update([
+            ProductTabs::where('id', $id)->update([
                 'name' => $tab['name'],
                 'sort' => $tab['sort'],
                 'is_show' => isset($tab['is_show']) ? 1 : 0,

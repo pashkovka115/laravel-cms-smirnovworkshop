@@ -108,6 +108,9 @@
   $(".user-menu .title").on('click', function() {
     $(".user-dropdown").toggleClass("show").focus();
   });
+  $(".language-menu .title").on('click', function() {
+    $(".language-dropdown").toggleClass("show").focus();
+  });
   $(".header-search .search-toggle").on('click', function() {
     $(".header-search-form").toggleClass("search-open").focus();
   });

@@ -35,6 +35,7 @@
 
 	<!--== Main Style CSS ==-->
 	<link href=" <?= asset('assets/site') ?>/css/style.css" rel="stylesheet" />
+	<link href=" <?= asset('assets/site') ?>/style.css" rel="stylesheet" />
 
 	<!--[if lt IE 9]>
 	<script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>

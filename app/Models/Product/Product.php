@@ -2,6 +2,7 @@
 
 namespace App\Models\Product;
 
+use App\Included\Classes\CurrencyConversion;
 use App\Models\CategoryProduct\CategoryProduct;
 use App\Models\Product\Attributes\Option;
 use App\Models\Product\Attributes\Value;
@@ -50,10 +51,16 @@ class Product extends Model
     }
 
 
-    public function langAll()
+    public function getPriceAttribute($value)
+    {
+        return round(CurrencyConversion::convert($value), 2);
+    }
+
+
+    /*public function langAll()
     {
         return $this->hasMany(ProductsDescription::class);
-    }
+    }*/
 
 
     public function getRouteKeyName(): string

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin\Menu;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Models\Menu\Menu;
 use App\Models\Menu\MenuItem;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class MenuAdminController extends AdminController
 {
     public function index()
     {

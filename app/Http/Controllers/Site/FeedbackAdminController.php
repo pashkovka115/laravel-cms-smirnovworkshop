@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\SiteController;
 use App\Models\Feedback\Feedback;
 use Illuminate\Http\Request;
 
-class FeedbackController extends Controller
+class FeedbackAdminController extends SiteController
 {
     public function store(Request $request)
     {

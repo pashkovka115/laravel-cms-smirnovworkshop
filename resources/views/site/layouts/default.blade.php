@@ -45,24 +45,39 @@
 					<div class="header-action-area">
 						<ul class="header-action">
 							<li class="currency-menu">
-								<a class="title" href="javascript:;">USD</a>
+								<a class="title" href="javascript:;">{{ session('currency', 'RUB') }}</a>
 								<ul class="currency-dropdown">
 									<li class="currency">
 										<ul>
-											<li class="active"><a href="#/">USD - US Dollar</a></li>
-											<li class="#/"><a href="#/">EUR - Euro</a></li>
-											<li class="#/"><a href="#/">GBP - British Pound</a></li>
-											<li class="#/"><a href="#/">INR - Indian Rupee</a></li>
-											<li class="#/"><a href="#/">USD - Bangladesh Taka</a></li>
-											<li class="#/"><a href="#/">JPY - Japan Yen</a></li>
-											<li class="#/"><a href="#/">CAD - Canada Dollar</a></li>
-											<li class="#/"><a href="#/">AUD - Australian Dollar</a></li>
+                                            {{--Todo: допилить     site.currency --}}
+                                            @foreach(\App\Models\Currency::all() as $currency)
+											<li class="@if($currency->base) active @endif">
+                                                <a href="{{ route('site.currency', $currency->code) }}">{{ $currency->name }}</a>
+                                            </li>
+                                            @endforeach
 										</ul>
 									</li>
 								</ul>
 							</li>
 						</ul>
-						<ul class="header-action">
+
+                        <ul class="header-action">
+                            <li class="language-menu">
+                                <a class="title" href="javascript:;">RU</a>
+                                <ul class="language-dropdown">
+                                    <li class="language">
+                                        <ul>
+                                            {{--Todo: допилить--}}
+                                            <li class="active"><a href="#/">RU - Русский</a></li>
+                                            <li class="#/"><a href="#/">US - English</a></li>
+                                            <li class="#/"><a href="#/">JPY - Japan</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="header-action">
 							<li class="user-menu">
 								<a class="title" href="javascript:;"><i class="fa fa-user-o"></i></a>
 								<ul class="user-dropdown">

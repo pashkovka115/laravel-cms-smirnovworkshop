@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Category;
+namespace App\Http\Controllers\Admin\Feedback;
 
-use App\Http\Controllers\Controller;
-use App\Models\CategoryProduct\CategoryProductColumns;
+use App\Http\Controllers\AdminController;
+use App\Models\Feedback\FeedbackColumns;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class CategoryProductColumnController extends Controller
+class FeedbackColumnAdminController extends AdminController
 {
     public function update(Request $request)
     {
@@ -26,7 +26,7 @@ class CategoryProductColumnController extends Controller
             $column['is_show_anons'] = isset($column['is_show_anons']) ? 1 : 0;
             $column['is_show_single'] = isset($column['is_show_single']) ? 1 : 0;
 
-            CategoryProductColumns::where('id', (int)$id)->update($column);
+            FeedbackColumns::where('id', (int)$id)->update($column);
         }
 
         return back();

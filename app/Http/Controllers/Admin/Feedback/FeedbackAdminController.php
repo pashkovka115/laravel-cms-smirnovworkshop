@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Feedback;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Http\Requests\StoreFeedbackRequest;
 use App\Http\Requests\UpdateFeedbackRequest;
 use App\Models\Feedback\Feedback;
@@ -10,7 +10,7 @@ use App\Models\Feedback\FeedbackAdditionalFields;
 use App\Models\Feedback\FeedbackColumns;
 use App\Models\Feedback\FeedbackTabs;
 
-class FeedbackController extends Controller
+class FeedbackAdminController extends AdminController
 {
     const IMAGE_PATH = 'feedback';
 

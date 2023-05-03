@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Abstracts;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-abstract class AdminController extends Controller
+abstract class AdminAdminController extends AdminController
 {
     /**
      * @const MODEL - Модель.

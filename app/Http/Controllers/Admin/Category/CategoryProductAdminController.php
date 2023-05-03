@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Category;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Http\Requests\StoreCategoryProductRequest;
 use App\Http\Requests\UpdateCategoryProductsRequest;
 use App\Models\CategoryProduct\CategoryProduct;
@@ -10,7 +10,7 @@ use App\Models\CategoryProduct\CategoryProductAdditionalFields;
 use App\Models\CategoryProduct\CategoryProductColumns;
 use App\Models\CategoryProduct\CategoryProductTabs;
 
-class CategoryProductController extends Controller
+class CategoryProductAdminController extends AdminController
 {
     const IMAGE_PATH = 'category_product';
 

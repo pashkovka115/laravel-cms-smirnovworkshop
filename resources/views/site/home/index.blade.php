@@ -120,7 +120,7 @@
 																			<i class="fa fa-star-o"></i>
 																		</div>
 																		<div class="prices">
-																			<span class="price">Tk 110.00 </span>
+																			<span class="price">{{ $product->price }}</span>
 																			<span class="price-old">Tk 130.00</span>
 																		</div>
 																	</div>

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Page;
 
-use App\Http\Controllers\Admin\Abstracts\AdminController;
+use App\Http\Controllers\Admin\Abstracts\AdminAdminController;
 use App\Models\Page\PageAdditionalFields;
 use Illuminate\Http\Request;
 
-class PageAdditionalFieldsController extends AdminController
+class PageAdditionalFieldsController extends AdminAdminController
 {
     const FOREIGN_FIELD = 'page_id';
     const MODEL = PageAdditionalFields::class;

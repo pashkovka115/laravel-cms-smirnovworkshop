@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin\Menu;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Models\Menu\Menu;
 use App\Models\Menu\MenuItem;
 use App\Models\Page\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-class MenuItemController extends Controller
+class MenuItemAdminController extends AdminController
 {
     /**
      * Display a listing of the resource.

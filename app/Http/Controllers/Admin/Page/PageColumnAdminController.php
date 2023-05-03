@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin\Page;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Models\Page\PageColumns;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class PageColumnController extends Controller
+class PageColumnAdminController extends AdminController
 {
     public function update(Request $request)
     {

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\SiteController;
 use App\Models\Page\Page;
 
-class PageController extends Controller
+class PageController extends SiteController
 {
     public function show($alias)
     {

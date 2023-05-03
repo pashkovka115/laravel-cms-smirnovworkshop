@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Http\Requests\StoreReviewsRequest;
 use App\Http\Requests\UpdateReviewsRequest;
 use App\Models\Reviews;
 
-class ReviewsController extends Controller
+class ReviewsAdminController extends AdminController
 {
     /**
      * Display a listing of the resource.

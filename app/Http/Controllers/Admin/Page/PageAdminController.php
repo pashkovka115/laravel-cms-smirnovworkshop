@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Page;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Http\Requests\StorePagesRequest;
 use App\Http\Requests\UpdatePagesRequest;
 use App\Models\Page\Page;
@@ -11,7 +11,7 @@ use App\Models\Page\PageColumns;
 use App\Models\Page\PageImages;
 use App\Models\Page\PageTabs;
 
-class PageController extends Controller
+class PageAdminController extends AdminController
 {
     const IMAGE_PATH = 'page';
 

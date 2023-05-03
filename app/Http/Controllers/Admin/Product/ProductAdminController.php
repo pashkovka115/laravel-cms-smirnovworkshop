@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Product;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\CategoryProduct\CategoryProduct;
@@ -16,7 +16,7 @@ use App\Models\Product\ProductImages;
 use App\Models\Product\ProductTabs;
 use Route;
 
-class ProductController extends Controller
+class ProductAdminController extends AdminController
 {
     const IMAGE_PATH = 'products';
 
@@ -59,10 +59,10 @@ class ProductController extends Controller
             'properties',
             'options',
             'gallery',
-            'langAll'
+//            'langAll'
         ])->where('id', $id)->firstOrFail();
 
-        dd($product);
+//        dd($product);
 
         return view('admin.product.edit', [
             // редактируемый объект
