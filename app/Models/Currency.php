@@ -12,4 +12,14 @@ class Currency extends Model
     protected $table = 'currencies';
     protected $guarded = ['id'];
     public $timestamps = false;
+
+    public static function baseCode()
+    {
+        $baseCurrency = self::where('base', true)->first();
+        if ($baseCurrency){
+            return $baseCurrency->code;
+        }
+
+        return false;
+    }
 }

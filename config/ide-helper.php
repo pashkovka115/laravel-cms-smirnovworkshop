@@ -114,8 +114,8 @@ return [
     | Helper files to include
     |--------------------------------------------------------------------------
     |
-    | Include helper files. By default not Included, but can be toggled with the
-    | -- helpers (-H) option. Extra helper files can be Included.
+    | Include helper files. By default not Servises, but can be toggled with the
+    | -- helpers (-H) option. Extra helper files can be Servises.
     |
     */
 

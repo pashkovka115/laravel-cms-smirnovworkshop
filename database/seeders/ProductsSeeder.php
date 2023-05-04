@@ -55,6 +55,11 @@ class ProductsSeeder extends Seeder
 
             $products[] = $product + $template;
         }
+        foreach ($products as $key => $product){
+            $price = $faker->numberBetween(1200, 3000);
+            $products[$key]['price'] = $price;
+            $products[$key]['old_price'] = $price + random_int(100, 900);
+        }
 
         DB::table('products')->insert($products);
     }

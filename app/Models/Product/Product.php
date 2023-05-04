@@ -2,11 +2,11 @@
 
 namespace App\Models\Product;
 
-use App\Included\Classes\CurrencyConversion;
 use App\Models\CategoryProduct\CategoryProduct;
+use App\Models\Currency;
 use App\Models\Product\Attributes\Option;
-use App\Models\Product\Attributes\Value;
 use App\Models\Product\Attributes\Property;
+use App\Servises\CurrencyConversion;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
@@ -51,9 +51,36 @@ class Product extends Model
     }
 
 
+    private static function currency()
+    {
+        $originCurrency = Currency::where('base', true)->first();
+        if ($originCurrency) {
+            $targetCurrencyCode = session('currency', $originCurrency->code);
+            if ($targetCurrencyCode){
+                return Currency::where('code', $targetCurrencyCode)->first();
+            }
+        }
+        return false;
+    }
+
+
     public function getPriceAttribute($value)
     {
-        return round(CurrencyConversion::convert($value), 2);
+        if(request()->segment(1) != 'admin'){
+            $currency = self::currency();
+            return $currency->symbol_left . round(CurrencyConversion::convert($value), 2) . $currency->symbol_right;
+        }
+        return $value;
+    }
+
+
+    public function getOldPriceAttribute($value)
+    {
+        if(request()->segment(1) != 'admin'){
+            $currency = self::currency();
+            return $currency->symbol_left . round(CurrencyConversion::convert($value), 2) . $currency->symbol_right;
+        }
+        return $value;
     }
 
 

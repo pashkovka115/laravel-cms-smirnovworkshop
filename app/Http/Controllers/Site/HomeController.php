@@ -12,6 +12,7 @@ class HomeController extends SiteController
     public function index()
     {
         $product = Product::where('id', 1)->first();
+//        dump(app()->getLocale());
 
         return view('site.home.index', compact('product'));
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Included\Classes;
+namespace App\Servises;
 
 class Menu
 {

@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        require base_path('app/Included/functions.php');
+        require base_path('app/Servises/functions.php');
         $this->loadMigrationsFrom([
             'database/migrations/1_base',
             'database/migrations/2_categories_product',

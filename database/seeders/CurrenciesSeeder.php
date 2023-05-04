@@ -23,15 +23,15 @@ class CurrenciesSeeder extends Seeder
             'name' => 'Рубль',
             'code' => 'RUB',
             'symbol_left' => '',
-            'symbol_right' => 'руб.',
+            'symbol_right' => ' ₽',
             'base' => 1,
             'rate' => 1,
         ];
         $currencies[] = [
             'name' => 'Euro',
             'code' => 'EUR',
-            'symbol_left' => 'евр',
-            'symbol_right' => '',
+            'symbol_left' => '',
+            'symbol_right' => ' €',
             'base' => 0,
             'rate' => 75,
         ];

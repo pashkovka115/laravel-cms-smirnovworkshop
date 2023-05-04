@@ -119,9 +119,10 @@
 																			<i class="fa fa-star-o"></i>
 																			<i class="fa fa-star-o"></i>
 																		</div>
+                                                                        <?php //dump(session()) ?>
 																		<div class="prices">
 																			<span class="price">{{ $product->price }}</span>
-																			<span class="price-old">Tk 130.00</span>
+																			<span class="price-old">{{ $product->old_price }}</span>
 																		</div>
 																	</div>
 																</div>
