@@ -103,7 +103,8 @@
         }
     });*/
     tinymce.init({
-        selector: 'textarea#announce',
+        // selector: 'textarea#announce',
+        selector: 'textarea.mcetxt',
         language: 'ru',
         // width: 600,
         height: 300,
@@ -121,7 +122,7 @@
         menubar: 'favs file edit view insert format tools table help',
     });
 
-    tinymce.init({
+    /*tinymce.init({
         selector: 'textarea#description',
         language: 'ru',
         // width: 600,
@@ -138,7 +139,7 @@
             favs: { title: 'Мои инструменты', items: 'code visualaid | searchreplace | emoticons' }
         },
         menubar: 'favs file edit view insert format tools table help',
-    });
+    });*/
 </script>
 {{--@yield('script_buttom')--}}
 @section('script_buttom')

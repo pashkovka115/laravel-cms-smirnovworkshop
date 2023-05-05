@@ -4,6 +4,7 @@ namespace App\Models\Product;
 
 use App\Models\CategoryProduct\CategoryProduct;
 use App\Models\Currency;
+use App\Models\Language;
 use App\Models\Product\Attributes\Option;
 use App\Models\Product\Attributes\Property;
 use App\Servises\CurrencyConversion;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
@@ -83,11 +85,20 @@ class Product extends Model
         return $value;
     }
 
-
-    /*public function langAll()
+    public function langs()
     {
-        return $this->hasMany(ProductsDescription::class);
-    }*/
+        return $this->hasMany(ProductsDescription::class)->with('language');
+    }
+
+    public function baseLang()
+    {
+        $lang = Language::where('base', true)->first();
+
+        return $this->hasOne(ProductsDescription::class,
+            'product_id',
+            'id'
+        )->where('language_id', $lang->id)->with('language');
+    }
 
 
     public function getRouteKeyName(): string

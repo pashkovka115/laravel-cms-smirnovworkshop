@@ -16,9 +16,17 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('language_id');
 
-            $class = include base_path('database/migrations/templates/TemplateItemDescriptionMigration.php');
-            $class::template($table)();
+//            $class = include base_path('database/migrations/templates/TemplateItemDescriptionMigration.php');
+//            $class::template($table)();
 
+            $table->string('title')->nullable();
+            $table->string('meta_keywords')->nullable();
+            $table->string('meta_description')->nullable();
+
+            $table->string('name');
+            $table->string('slug');
+            $table->text('announce')->nullable();
+            $table->longText('description')->nullable();
 
 
 

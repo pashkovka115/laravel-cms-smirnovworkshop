@@ -28,8 +28,8 @@ class ProductsDescriptionSeeder extends Seeder
                 'title' => 'Русский ' . $faker->realText($faker->numberBetween(10, 30)),
                 'meta_keywords' => 'Русский ' . $faker->realText($faker->numberBetween(10, 30)),
                 'meta_description' => 'Русский ' . $faker->realText($faker->numberBetween(50, 100)),
-                'name' => $name,
-                'slug' => Str::slug($name),
+                'name' => 'Русский ' . $name,
+                'slug' => Str::slug('Русский ' . $name),
                 'announce' => 'Русский ' . $faker->realText($faker->numberBetween(100, 300)),
                 'description' => 'Русский ' . $faker->realText($faker->numberBetween(500, 1000)),
             ];
@@ -39,8 +39,8 @@ class ProductsDescriptionSeeder extends Seeder
                 'title' => 'English ' . $faker->realText($faker->numberBetween(10, 30)),
                 'meta_keywords' => 'English ' . $faker->realText($faker->numberBetween(10, 30)),
                 'meta_description' => 'English ' . $faker->realText($faker->numberBetween(50, 100)),
-                'name' => $name,
-                'slug' => Str::slug($name),
+                'name' => 'English ' . $name,
+                'slug' => Str::slug('English ' . $name),
                 'announce' => 'English ' . $faker->realText($faker->numberBetween(100, 300)),
                 'description' => 'English ' . $faker->realText($faker->numberBetween(500, 1000)),
             ];

@@ -12,14 +12,23 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('parent_id')->nullable()->default(null);
 
-            $class = include base_path('database/migrations/templates/TemplateMetaFieldsMigration.php');
-            $class::template($table)();
+//            $class = include base_path('database/migrations/templates/TemplateMetaFieldsMigration.php');
+//            $class::template($table)();
 
-            /*$table->boolean('is_show')->default(true);
+
+            $table->string('title')->nullable();
+            $table->string('meta_keywords')->nullable();
+            $table->string('meta_description')->nullable();
             $table->string('name_lavel', 2)->default('h2');
+
+            $table->string('name');
+            $table->string('slug');
             $table->integer('sort')->default(0);
             $table->string('img_announce')->nullable();
-            $table->string('img_detail')->nullable();*/
+            $table->string('img_detail')->nullable();
+            $table->text('announce')->nullable();
+            $table->longText('description')->nullable();
+            $table->boolean('is_show')->default(true);
 
             $table->timestamps();
 

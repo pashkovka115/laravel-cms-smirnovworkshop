@@ -30,7 +30,11 @@
 								@foreach($columns as $column)
 									@if($column['is_show_anons'] and in_array($column['origin_name'], $existing_fields))
 										<td>
-											{{ $item->{$column['origin_name']} }}
+                                            @if(isset($item->baseLang->{$column['origin_name']}))
+											    {{ $item->baseLang->{$column['origin_name']} }}
+                                            @else
+											    {{ $item->{$column['origin_name']} }}
+											@endif
 										</td>
 									@endif
 								@endforeach

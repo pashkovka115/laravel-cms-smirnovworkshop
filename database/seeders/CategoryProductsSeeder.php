@@ -18,8 +18,18 @@ class CategoryProductsSeeder extends Seeder
         $categories = [];
         $j = 0;
         for ($i = 1; $i <= $count; $i++){
-            $name = "Категория $i";
+            $name = $faker->realText($faker->numberBetween(10, 20));
             $category = [
+                'title' => $faker->realText($faker->numberBetween(10, 30)),
+                'meta_keywords' => $faker->realText($faker->numberBetween(10, 30)),
+                'meta_description' => $faker->realText($faker->numberBetween(50, 100)),
+                'name_lavel' => 'h2',
+                'name' => $name,
+                'slug' => Str::slug($name),
+                'img_announce' => '',
+                'img_detail' => '',
+                'announce' => $faker->realText($faker->numberBetween(100, 300)),
+                'description' => $faker->realText($faker->numberBetween(500, 1000)),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'parent_id' => null
@@ -28,10 +38,12 @@ class CategoryProductsSeeder extends Seeder
                 $category['parent_id'] = ++$j;
             }
 
-            $class = include 'templates/TemplateMetaSeeder.php';
-            $template = $class::template($faker, '', ['announce' => null, 'description' => null])();
+//            $class = include 'templates/TemplateMetaSeeder.php';
+//            $template = $class::template($faker, '', ['announce' => null, 'description' => null])();
 
-            $categories[] = $category + $template;
+
+
+            $categories[] = $category;
         }
 
         DB::table('categories_product')->insert($categories);

@@ -12,18 +12,27 @@ return new class extends Migration
         $tabs = [
             [
                 'name' => 'Общее',
+                'sort' =>20,
             ],
             [
                 'name' => 'Характеристики',
+                'sort' =>30,
             ],
             [
                 'name' => 'Связи',
+                'sort' =>40,
             ],
             [
                 'name' => 'Номера товара',
+                'sort' =>50,
             ],
             [
                 'name' => 'SEO',
+                'sort' =>60,
+            ],
+            [
+                'name' => 'Langs',
+                'sort' =>10,
             ],
         ];
 
@@ -211,6 +220,16 @@ return new class extends Migration
             'is_show_single' => 1,
             'type' => 'is_show',
             'tab_id' => 1
+        ];
+        $fields[] = [
+            'origin_name' => 'langs',
+            'show_name' => 'Переводы содержания',
+            'sort_list' => 10,
+            'sort_single' => 10,
+            'is_show_anons' => 0,
+            'is_show_single' => 1,
+            'type' => 'langs',
+            'tab_id' => 6
         ];
 
         DB::table('products_columns')->insert($fields);

@@ -18,42 +18,45 @@ class ProductsSeeder extends Seeder
         $products = [];
 
         $product1 = [
-            'name' => 'Ковёр',
-            'slug' => Str::slug('Ковёр'),
-            'description' => 'Классный ковер',
+//            'name' => 'Ковёр',
+//            'slug' => Str::slug('Ковёр'),
+//            'description' => 'Классный ковер',
+            'name_lavel' => 'h2',
             'category_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
 
         $product2 = [
-            'name' => 'Чашка',
-            'slug' => Str::slug('Чашка'),
-            'description' => 'Кофейная чашка',
+//            'name' => 'Чашка',
+//            'slug' => Str::slug('Чашка'),
+//            'description' => 'Кофейная чашка',
+            'name_lavel' => 'h2',
             'category_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
 
-        $class = include 'templates/TemplateMetaSeeder.php';
-        $template = $class::template($faker)();
+//        $class = include 'templates/TemplateMetaSeeder.php';
+//        $template = $class::template($faker)();
 
-        $products[] = array_merge($template, $product1);
-        $products[] = array_merge($template, $product2);
+        $products[] =  $product1;
+        $products[] = $product2;
 
 
         for ($i = 1; $i <= $count; $i++){
 
             $product = [
+                'name_lavel' => 'h2',
                 'category_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
 
-            $class = include 'templates/TemplateMetaSeeder.php';
-            $template = $class::template($faker)();
+//            $class = include 'templates/TemplateMetaSeeder.php';
+//            $template = $class::template($faker)();
 
-            $products[] = $product + $template;
+            $products[] = $product;
         }
         foreach ($products as $key => $product){
             $price = $faker->numberBetween(1200, 3000);

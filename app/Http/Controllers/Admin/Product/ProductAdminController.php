@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\CategoryProduct\CategoryProduct;
+use App\Models\Language;
 use App\Models\Product\Attributes\Option;
 use App\Models\Product\Attributes\Property;
 use App\Models\Product\Attributes\Value;
@@ -13,8 +14,13 @@ use App\Models\Product\Product;
 use App\Models\Product\ProductAdditionalFields;
 use App\Models\Product\ProductColumns;
 use App\Models\Product\ProductImages;
+use App\Models\Product\ProductsDescription;
 use App\Models\Product\ProductTabs;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Eloquent\Builder;
 use Route;
+use Illuminate\Support\Facades\View;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProductAdminController extends AdminController
 {
@@ -23,10 +29,22 @@ class ProductAdminController extends AdminController
 
     public function index()
     {
+//        $lang = Language::where('base', true)->first();
+//        $query->where('products_description.language_id', $lang->id);
+
+        /*$products = Product::with(['langs' => function(HasMany $query){
+            $lang = Language::where('base', true)->first();
+            $query->where('language_id', $lang->id);
+        }])->paginate();*/
+
+        $products = Product::with('baseLang')->paginate();
+
+//        dump($products);
+
         return view('admin.product.index', [
             'tabs' => ProductTabs::with('columns')->orderBy('sort')->get()->toArray(),
             'columns' => ProductColumns::column_meta_sort_list(),
-            'items' => Product::paginate()
+            'items' => $products,
         ]);
     }
 
@@ -59,16 +77,19 @@ class ProductAdminController extends AdminController
             'properties',
             'options',
             'gallery',
-//            'langAll'
+            'langs'
         ])->where('id', $id)->firstOrFail();
 
-//        dd($product);
+//        dd(ProductColumns::column_meta_sort_single());
+        $columns = $global_columns = ProductColumns::column_meta_sort_single();
+        View::share('global_columns', $global_columns);
 
         return view('admin.product.edit', [
             // редактируемый объект
             'item' => $product,
             // Наследуемые объекты
-            'items' => Product::whereNull('parent_id')->whereNot('id', $id)->get(['id', 'name']),
+//            'items' => Product::whereNull('parent_id')->whereNot('id', $id)->get(['id', 'name']),
+            'items' => Product::whereNull('parent_id')->whereNot('id', $id)->get(),
             // Категории
             'items_with_children' => CategoryProduct::with('children')
                 ->whereNull('parent_id')
@@ -76,7 +97,7 @@ class ProductAdminController extends AdminController
             // Вкладки
             'tabs' => ProductTabs::with('columns')->orderBy('sort')->get()->toArray(),
             // Колонки(поля)
-            'columns' => ProductColumns::column_meta_sort_single(),
+            'columns' => $columns,
         ]);
     }
 
