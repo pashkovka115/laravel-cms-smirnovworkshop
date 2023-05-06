@@ -5,7 +5,7 @@
         }
     @endphp
     @foreach($columns as $column)
-        @if($column['is_show_single']  and !in_array($column['origin_name'], $excluded_fields) /*and array_key_exists($column['origin_name'], $item->toArray())*/)
+        @if($column['is_show_single']  and !in_array($column['origin_name'], $excluded_fields) and array_key_exists($column['origin_name'], $item->toArray()))
 {{--    todo:  изменить условие, избавиться от "langs"       --}}
             @if($column['origin_name'] != 'langs')
                 <div class="form-group row mb-4">

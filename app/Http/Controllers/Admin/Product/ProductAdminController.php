@@ -80,15 +80,15 @@ class ProductAdminController extends AdminController
             'langs'
         ])->where('id', $id)->firstOrFail();
 
-//        dd(ProductColumns::column_meta_sort_single());
         $columns = $global_columns = ProductColumns::column_meta_sort_single();
+        // Расшариваем для всех чтобы было видно при глубокой вложенности шаблонов
         View::share('global_columns', $global_columns);
+        View::share('global_langs', Language::all());
 
         return view('admin.product.edit', [
             // редактируемый объект
             'item' => $product,
             // Наследуемые объекты
-//            'items' => Product::whereNull('parent_id')->whereNot('id', $id)->get(['id', 'name']),
             'items' => Product::whereNull('parent_id')->whereNot('id', $id)->get(),
             // Категории
             'items_with_children' => CategoryProduct::with('children')

@@ -8,6 +8,7 @@ use App\Models\Language;
 use App\Models\Product\Attributes\Option;
 use App\Models\Product\Attributes\Property;
 use App\Servises\CurrencyConversion;
+use App\Servises\Localization\Localization;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
@@ -92,12 +93,12 @@ class Product extends Model
 
     public function baseLang()
     {
-        $lang = Language::where('base', true)->first();
+        $id_lang = Localization::getIdBaseLocale();
 
         return $this->hasOne(ProductsDescription::class,
             'product_id',
             'id'
-        )->where('language_id', $lang->id)->with('language');
+        )->where('language_id', $id_lang)->with('language');
     }
 
 

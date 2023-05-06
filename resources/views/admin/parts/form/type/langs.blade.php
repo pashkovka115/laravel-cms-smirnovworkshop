@@ -27,33 +27,73 @@
         padding: 16px;
     }
 </style>
-
-
 <div class="tabs" data-tabs>
     <div class="tabs__list" data-list>
-        @foreach($item->{$column['origin_name']} as $lang)
-            <button class="tabs__button" data-target="tab{{ $loop->iteration }}">{{ $lang->language->name }}</button>
+        @foreach($global_langs as $lang)
+            <button class="tabs__button" data-target="tab{{ $loop->iteration }}">{{ $lang->name }}</button>
         @endforeach
     </div>
-    @foreach($item->{$column['origin_name']} as $lang)
-        <div class="tabs__container" data-tab="tab{{ $loop->iteration }}">
-            @foreach($global_columns as $column)
-                @if(isset($lang->{$column['origin_name']}))
-                    <div class="form-group row mb-4">
-                        <label for="{{ $column['origin_name'] }}"
-                               class="col-sm-2 col-form-label">{{ $column['show_name'] }}</label>
-                        <div class="col-sm-10">
-                            @includeIf('admin.parts.form.type.' . $column['type'],
-                                    [
-                                        'item' => $lang,
-                                        'lang_name' => $column['origin_name'] . '_' . $lang->language->code
-                                    ])
+    @php
+        $cnt_langs = $global_langs->count();
+        $langs = $item->{$column['origin_name']};
+    @endphp
+    @foreach($global_langs as $global_lang)
+            <?php $flag = false; ?>
+        @foreach($langs as $lang)
+            @if($global_lang->id == $lang->language_id)
+                    <?php
+                    --$cnt_langs;
+                    $num_tab = $loop->iteration;
+                    $flag = true;
+                    $ex_fields = [];
+                    ?>
+                <div class="tabs__container" data-tab="tab{{ $num_tab }}">
+                    @foreach($global_columns as $column)
+                        @if($column['is_show_single'] and isset($lang->{$column['origin_name']}))
+                                <?php $ex_fields[] = $column; ?>
+                                <?php $lang_name = 'langs[' . $global_langs[$num_tab - 1]->id . '][' . $column['origin_name'] . ']'; ?>
+                            <div class="form-group row mb-4">
+                                <label for="{{ $lang_name }}"
+                                       class="col-sm-2 col-form-label">{{ $column['show_name'] }}</label>
+                                <div class="col-sm-10">
+                                    @includeIf('admin.parts.form.type.' . $column['type'],
+                                            [
+                                                'item' => $lang,
+                                                'lang_name' => $lang_name
+                                            ])
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            @endif
+        @endforeach
+        @if($flag)
+            @continue
+        @endif
+        @for($i = 0; $i < $cnt_langs; $i++)
+                <?php
+                --$cnt_langs;
+                $num_tab++;
+                ?>
+            <div class="tabs__container" data-tab="tab{{ $num_tab }}">
+                @foreach($ex_fields as $col)
+                    @if($col['is_show_single'])
+                            <?php $lang_name = 'langs[' . $global_langs[$num_tab - 1]->id . '][' . $col['origin_name'] . ']'; ?>
+                        <div class="form-group row mb-4">
+                            <label for="{{ $lang_name }}"
+                                   class="col-sm-2 col-form-label">{{ $col['show_name'] }}</label>
+                            <div class="col-sm-10">
+                                @includeIf('admin.parts.form.type.' . $col['type'],
+                                        [
+                                            'lang_name' => $lang_name
+                                        ])
+                            </div>
                         </div>
-                    </div>
-                @endif
-            @endforeach
-        </div>
-
+                    @endif
+                @endforeach
+            </div>
+        @endfor
     @endforeach
 </div>
 

@@ -13,7 +13,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('code');
             $table->boolean('base')->default(false);
-            $table->boolean('is_active')->default(false);
         });
 
 
@@ -22,13 +21,11 @@ return new class extends Migration
                 'name' => 'Русский',
                 'code' => 'ru',
                 'base' => 1,
-                'is_active' => 1,
             ],
             [
                 'name' => 'English',
                 'code' => 'en',
                 'base' => 0,
-                'is_active' => 1,
             ],
         ];
 

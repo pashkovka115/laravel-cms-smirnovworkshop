@@ -6,16 +6,17 @@
 					 role="tabpanel" aria-labelledby="pills-striped-rows-design-tab">
 				<div class="table-responsive">
 					@php
-						$existing_fields = [];
+						/*$existing_fields = [];
 						if (isset($items[0])){
 								$existing_fields = array_keys($items[0]->toArray());
 						}
+                        dd($existing_fields);*/
 					@endphp
 					<table class="table table-bordered my-table">
 						<thead>
 						<tr>
 							@foreach($columns as $column)
-								@if($column['is_show_anons'] and in_array($column['origin_name'], $existing_fields))
+								@if($column['is_show_anons'])
 									<th>{{ $column['show_name'] }}</th>
 								@endif
 							@endforeach
@@ -28,7 +29,7 @@
 						@foreach($items as $item)
 							<tr>
 								@foreach($columns as $column)
-									@if($column['is_show_anons'] and in_array($column['origin_name'], $existing_fields))
+									@if($column['is_show_anons'])
 										<td>
                                             @if(isset($item->baseLang->{$column['origin_name']}))
 											    {{ $item->baseLang->{$column['origin_name']} }}

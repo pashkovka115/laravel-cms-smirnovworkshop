@@ -12,12 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create($this->table, function (Blueprint $table) {
-//            $table->id();
+            $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('language_id');
-
-//            $class = include base_path('database/migrations/templates/TemplateItemDescriptionMigration.php');
-//            $class::template($table)();
 
             $table->string('title')->nullable();
             $table->string('meta_keywords')->nullable();
@@ -30,29 +27,27 @@ return new class extends Migration
 
 
 
-            $table->index(['product_id', 'language_id']);
+//            $table->index(['product_id', 'language_id']);
 
-            /*$table->index(["category_id"], 'fk_category1_idx');
-
-            $table->foreign('category_id', 'fk_category1_idx')
-                ->references('id')->on('categories_product')
+            $table->foreign('product_id')
+                ->references('id')->on('products')
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
 
-            $table->foreign('parent_id')
-                ->references('id')
-                ->on('products')
+            $table->foreign('language_id')
+                ->references('id')->on('languages')
                 ->onDelete('CASCADE')
-                ->onUpdate('CASCADE');*/
+                ->onUpdate('CASCADE');
         });
     }
 
 
     public function down(): void
     {
-        /*Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign('fk_category1_idx');
-        });*/
+        Schema::table($this->table, function (Blueprint $table) {
+            $table->dropForeign(['product_id']);
+            $table->dropForeign(['language_id']);
+        });
         Schema::dropIfExists($this->table);
     }
 };
