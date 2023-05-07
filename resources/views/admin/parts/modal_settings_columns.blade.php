@@ -36,7 +36,7 @@
 													<tr>
 														<td class="bg-light-primary">
 															<input type="text" name="{{ $column['id'] }}[show_name]"
-																		 value="{{ $column['show_name'] }}">
+																		 value="{!! $column['show_name'] !!}">
 														</td>
 														<td class="bg-light-secondary">
 															<input type="text" name="{{ $column['id'] }}[sort_list]"

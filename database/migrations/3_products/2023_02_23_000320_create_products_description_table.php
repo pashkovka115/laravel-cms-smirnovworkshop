@@ -27,7 +27,7 @@ return new class extends Migration
 
 
 
-//            $table->index(['product_id', 'language_id']);
+            $table->unique(['language_id', 'slug']);
 
             $table->foreign('product_id')
                 ->references('id')->on('products')

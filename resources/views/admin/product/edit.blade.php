@@ -24,7 +24,7 @@
 		<form action="{{ route('admin.product.update', ['id' => $item->id]) }}" method="post"
 					enctype="multipart/form-data">
 			@csrf
-			@include('admin.parts.template_form_with_tabs')
+			@include('admin.parts.template_form_with_tabs', ['item' => $item])
 		</form>
 	</div>
 @endsection

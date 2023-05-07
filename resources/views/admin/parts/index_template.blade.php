@@ -5,19 +5,12 @@
 			<div class="tab-pane tab-example-design fade show active" id="pills-striped-rows-design"
 					 role="tabpanel" aria-labelledby="pills-striped-rows-design-tab">
 				<div class="table-responsive">
-					@php
-						/*$existing_fields = [];
-						if (isset($items[0])){
-								$existing_fields = array_keys($items[0]->toArray());
-						}
-                        dd($existing_fields);*/
-					@endphp
 					<table class="table table-bordered my-table">
 						<thead>
 						<tr>
 							@foreach($columns as $column)
 								@if($column['is_show_anons'])
-									<th>{{ $column['show_name'] }}</th>
+									<th>{!! $column['show_name'] !!}</th>
 								@endif
 							@endforeach
 							@if($items->count() > 0)

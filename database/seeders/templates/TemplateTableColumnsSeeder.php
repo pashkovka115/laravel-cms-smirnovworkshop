@@ -44,7 +44,7 @@ return new class
                 ],
                 [
                     'origin_name' => 'name',
-                    'show_name' => 'Заголовок страницы',
+                    'show_name' => 'Название<br> (заголовок страницы)',
                     'sort_list' => 50,
                     'sort_single' => 10,
                     'is_show_anons' => 1,

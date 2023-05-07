@@ -18,7 +18,7 @@
 			<div class="tab-pane tab-example-design fade show @if($loop->first) active @endif"
 					 id="pills-accordions-design{{ $loop->iteration }}"
 					 role="tabpanel" aria-labelledby="pills-accordions-design-tab{{ $loop->iteration }}">
-				@include('admin.parts.form_edit', ['columns' => $tab['columns']])
+				@include('admin.parts.form_edit', ['columns' => $tab['columns'], 'item' => $item])
 			</div>
 		@endif
 	@endforeach

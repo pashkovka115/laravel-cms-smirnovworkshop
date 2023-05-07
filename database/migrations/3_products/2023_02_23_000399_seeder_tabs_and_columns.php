@@ -64,7 +64,7 @@ return new class extends Migration
             ],
             [
                 'origin_name' => 'name',
-                'show_name' => 'Заголовок страницы',
+                'show_name' => 'Название<br> (заголовок страницы)',
                 'sort_list' => 50,
                 'sort_single' => 10,
                 'is_show_anons' => 1,
@@ -169,7 +169,7 @@ return new class extends Migration
                 'sort_single' => 240,
                 'is_show_anons' => 0,
                 'is_show_single' => 1,
-                'type' => 'text',
+                'type' => 'text_not_editor',
                 'tab_id' => 5,
             ],
             [
