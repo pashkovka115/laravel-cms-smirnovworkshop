@@ -51,6 +51,7 @@ return new class extends Migration
                 'is_show_single' => 0,
                 'type' => 'id',
                 'tab_id' => 1,
+                'description' => '',
             ],
             [
                 'origin_name' => 'title',
@@ -61,6 +62,7 @@ return new class extends Migration
                 'is_show_single' => 1,
                 'type' => 'string',
                 'tab_id' => 5,
+                'description' => '',
             ],
             [
                 'origin_name' => 'name',
@@ -71,6 +73,7 @@ return new class extends Migration
                 'is_show_single' => 1,
                 'type' => 'string',
                 'tab_id' => 1,
+                'description' => '',
             ],
             [
                 'origin_name' => 'name_lavel',
@@ -81,6 +84,7 @@ return new class extends Migration
                 'is_show_single' => 1,
                 'type' => 'name_lavel',
                 'tab_id' => 5,
+                'description' => '',
             ],
             [
                 'origin_name' => 'slug',
@@ -91,6 +95,7 @@ return new class extends Migration
                 'is_show_single' => 1,
                 'type' => 'string',
                 'tab_id' => 5,
+                'description' => '',
             ],
             [
                 'origin_name' => 'announce',
@@ -101,6 +106,7 @@ return new class extends Migration
                 'is_show_single' => 1,
                 'type' => 'text',
                 'tab_id' => 1,
+                'description' => '',
             ],
             [
                 'origin_name' => 'img_announce',
@@ -111,6 +117,7 @@ return new class extends Migration
                 'is_show_single' => 1,
                 'type' => 'img',
                 'tab_id' => 1,
+                'description' => '',
             ],
             [
                 'origin_name' => 'description',
@@ -121,6 +128,7 @@ return new class extends Migration
                 'is_show_single' => 1,
                 'type' => 'text',
                 'tab_id' => 1,
+                'description' => '',
             ],
             [
                 'origin_name' => 'additional_fields',
@@ -131,6 +139,7 @@ return new class extends Migration
                 'is_show_single' => 1,
                 'type' => 'additional_fields',
                 'tab_id' => 3,
+                'description' => '',
             ],
             [
                 'origin_name' => 'img_detail',
@@ -141,6 +150,7 @@ return new class extends Migration
                 'is_show_single' => 1,
                 'type' => 'img',
                 'tab_id' => 1,
+                'description' => '',
             ],
             [
                 'origin_name' => 'gallery',
@@ -151,6 +161,7 @@ return new class extends Migration
                 'is_show_single' => 1,
                 'type' => 'img_gallery',
                 'tab_id' => 1,
+                'description' => '',
             ],
             [
                 'origin_name' => 'meta_keywords',
@@ -161,6 +172,7 @@ return new class extends Migration
                 'is_show_single' => 1,
                 'type' => 'string',
                 'tab_id' => 5,
+                'description' => '',
             ],
             [
                 'origin_name' => 'meta_description',
@@ -171,6 +183,7 @@ return new class extends Migration
                 'is_show_single' => 1,
                 'type' => 'text_not_editor',
                 'tab_id' => 5,
+                'description' => '',
             ],
             [
                 'origin_name' => 'created_at',
@@ -181,6 +194,7 @@ return new class extends Migration
                 'is_show_single' => 0,
                 'type' => 'date',
                 'tab_id' => 1,
+                'description' => '',
             ],
             [
                 'origin_name' => 'updated_at',
@@ -191,6 +205,7 @@ return new class extends Migration
                 'is_show_single' => 0,
                 'type' => 'date',
                 'tab_id' => 1,
+                'description' => '',
             ],
         ];
 
@@ -202,7 +217,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'select.all_categories',
-            'tab_id' => 1
+            'tab_id' => 1,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'properties',
@@ -212,7 +228,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'properties',
-            'tab_id' => 3
+            'tab_id' => 3,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'options',
@@ -222,7 +239,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'options',
-            'tab_id' => 3
+            'tab_id' => 3,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'sku',
@@ -232,7 +250,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'string',
-            'tab_id' => 4
+            'tab_id' => 4,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'upc',
@@ -242,7 +261,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'string',
-            'tab_id' => 4
+            'tab_id' => 4,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'ean',
@@ -252,7 +272,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'string',
-            'tab_id' => 4
+            'tab_id' => 4,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'jan',
@@ -262,7 +283,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'string',
-            'tab_id' => 4
+            'tab_id' => 4,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'isbn',
@@ -272,7 +294,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'string',
-            'tab_id' => 4
+            'tab_id' => 4,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'mpn',
@@ -282,7 +305,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'string',
-            'tab_id' => 4
+            'tab_id' => 4,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'parent_id',
@@ -292,7 +316,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'select.parent',
-            'tab_id' => 3
+            'tab_id' => 3,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'price',
@@ -302,7 +327,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'string',
-            'tab_id' => 1
+            'tab_id' => 1,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'quantity',
@@ -312,7 +338,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'number',
-            'tab_id' => 1
+            'tab_id' => 1,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'min_quantity',
@@ -322,7 +349,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'number',
-            'tab_id' => 2
+            'tab_id' => 2,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'width',
@@ -332,7 +360,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'string',
-            'tab_id' => 2
+            'tab_id' => 2,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'height',
@@ -342,7 +371,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'string',
-            'tab_id' => 2
+            'tab_id' => 2,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'length',
@@ -352,7 +382,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'string',
-            'tab_id' => 2
+            'tab_id' => 2,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'weight',
@@ -362,7 +393,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'string',
-            'tab_id' => 2
+            'tab_id' => 2,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'is_show',
@@ -372,7 +404,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'is_show',
-            'tab_id' => 1
+            'tab_id' => 1,
+            'description' => '',
         ];
         $fields[] = [
             'origin_name' => 'langs',
@@ -382,7 +415,8 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'langs',
-            'tab_id' => 6
+            'tab_id' => 6,
+            'description' => 'Служебное поле. На это место подставляются мультиязычные поля.',
         ];
 
         DB::table('products_columns')->insert($fields);

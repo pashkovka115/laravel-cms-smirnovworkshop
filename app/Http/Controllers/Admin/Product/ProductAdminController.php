@@ -16,6 +16,7 @@ use App\Models\Product\ProductColumns;
 use App\Models\Product\ProductImages;
 use App\Models\Product\ProductsDescription;
 use App\Models\Product\ProductTabs;
+use Illuminate\Http\Request;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Eloquent\Builder;
 use Route;
@@ -83,7 +84,7 @@ class ProductAdminController extends AdminController
         $columns = $global_columns = ProductColumns::column_meta_sort_single();
         // Расшариваем для всех чтобы было видно при глубокой вложенности шаблонов
         View::share('global_columns', $global_columns);
-        View::share('global_langs', Language::all());
+        View::share('global_langs', Language::all()); //- для старых шаблонов
 
         return view('admin.product.edit', [
             // редактируемый объект
@@ -102,8 +103,10 @@ class ProductAdminController extends AdminController
     }
 
 
-    public function update(UpdateProductRequest $request, $id)
+//    public function update(UpdateProductRequest $request, $id)
+    public function update(Request $request, $id)
     {
+        $request->dd();
         /*
          * Работа с опциями
          */
