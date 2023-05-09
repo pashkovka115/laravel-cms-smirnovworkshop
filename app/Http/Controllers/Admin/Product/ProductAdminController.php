@@ -83,8 +83,8 @@ class ProductAdminController extends AdminController
 
         $columns = $global_columns = ProductColumns::column_meta_sort_single();
         // Расшариваем для всех чтобы было видно при глубокой вложенности шаблонов
-        View::share('global_columns', $global_columns);
-        View::share('global_langs', Language::all()); //- для старых шаблонов
+        /*View::share('global_columns', $global_columns);
+        View::share('global_langs', Language::all()); //- для старых шаблонов*/
 
         return view('admin.product.edit', [
             // редактируемый объект

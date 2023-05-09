@@ -2,15 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Language;
+use App\Models\Product\ProductColumns;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
 
 class AdminController extends Controller
 {
     const BLACK_LIST = [];
+
+
+    public function __construct()
+    {
+        View::share('global_columns', ProductColumns::column_meta_sort_single());
+        View::share('global_langs', Language::all());
+    }
 
     /**
      * @param string $model

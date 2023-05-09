@@ -4,7 +4,7 @@
 	Редактируем товар
 @endsection
 @section('page_header')
-	Редактируем товар "{{ $item->name }}"
+	Редактируем товар
 @endsection
 
 @section('style_top') @endsection

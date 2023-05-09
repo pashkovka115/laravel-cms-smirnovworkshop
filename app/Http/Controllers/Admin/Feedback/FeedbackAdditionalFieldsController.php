@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Feedback;
 
-use App\Http\Controllers\Admin\Abstracts\AdminAdminController;
+use App\Http\Controllers\Admin\Abstracts\AdminAdditionalFieldsController;
 use App\Models\Feedback\FeedbackAdditionalFields;
 use Illuminate\Http\Request;
 
-class FeedbackAdditionalFieldsController extends AdminAdminController
+class FeedbackAdditionalFieldsController extends AdminAdditionalFieldsController
 {
     const FOREIGN_FIELD = 'feedback_id';
     const MODEL = FeedbackAdditionalFields::class;

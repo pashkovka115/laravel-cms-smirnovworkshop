@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-abstract class AdminAdminController extends AdminController
+/**
+ * Если у модуля должны быть дополнительные поля то надо создавать *AdditionalFieldsController
+ * и наследоваться от этого контроллера.
+ */
+abstract class AdminAdditionalFieldsController extends AdminController
 {
     /**
      * @const MODEL - Модель.
@@ -29,6 +33,8 @@ abstract class AdminAdminController extends AdminController
         {
             throw new Exception('Константа TABLE не определена в подклассе ' . get_class($this));
         }
+
+        parent::__construct();
     }
 
 
