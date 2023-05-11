@@ -13,16 +13,6 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('parent_id')->nullable()->default(null);
 
-
-//            $table->string('title')->nullable();
-//            $table->string('meta_keywords')->nullable();
-//            $table->string('meta_description')->nullable();
-//            $table->text('announce')->nullable();
-//            $table->longText('description')->nullable();
-//            $table->string('name');
-//            $table->string('slug');
-
-
             $table->string('name_lavel', 2)->default('h2');
 
             $table->integer('sort')->default(0);
@@ -31,11 +21,8 @@ return new class extends Migration
 
             $table->boolean('is_show')->default(true);
 
-//            $class = include base_path('database/migrations/templates/TemplateMetaFieldsMigration.php');
-//            $class::template($table)();
-
-            $table->unsignedFloat('price')->default(0.0);
-            $table->unsignedFloat('old_price')->default(0.0);
+            $table->unsignedDouble('price')->default(0.0);
+            $table->unsignedDouble('old_price')->default(0.0);
 
             $table->unsignedInteger('quantity')->default(0);
             $table->unsignedSmallInteger('min_quantity')->default(0);

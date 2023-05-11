@@ -4,9 +4,9 @@
            type="checkbox"
            value="1"
            id="{{ $column['origin_name'] }}"
-           @checked($item->is_show)
+           @checked($item->is_download)
     >
     <label class="form-check-label" for="{{ $column['origin_name'] }}">
-        Показывать в публичной части сайта
+        Цифровой(скачиваемый) товар
     </label>
 </div>

@@ -25,6 +25,8 @@ return new class extends Migration
             $table->text('announce')->nullable();
             $table->longText('description')->nullable();
 
+            $table->timestamps();
+
 
 
             $table->unique(['language_id', 'slug']);

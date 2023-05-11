@@ -32,6 +32,8 @@ class ProductsDescriptionSeeder extends Seeder
                 'slug' => Str::slug('Русский ' . $name),
                 'announce' => 'Русский ' . $faker->realText($faker->numberBetween(100, 300)),
                 'description' => 'Русский ' . $faker->realText($faker->numberBetween(500, 1000)),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ];
             $products[] = [
                 'product_id' => $id,
@@ -43,6 +45,8 @@ class ProductsDescriptionSeeder extends Seeder
                 'slug' => Str::slug('English ' . $name),
                 'announce' => 'English ' . $faker->realText($faker->numberBetween(100, 300)),
                 'description' => 'English ' . $faker->realText($faker->numberBetween(500, 1000)),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ];
         }
 

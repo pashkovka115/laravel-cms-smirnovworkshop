@@ -4,9 +4,9 @@
            type="checkbox"
            value="1"
            id="{{ $column['origin_name'] }}"
-           @checked($item->is_show)
+           @checked($item->hit)
     >
     <label class="form-check-label" for="{{ $column['origin_name'] }}">
-        Показывать в публичной части сайта
+        Хит продаж
     </label>
 </div>

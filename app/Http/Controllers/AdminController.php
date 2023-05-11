@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Language;
 use App\Models\Product\ProductColumns;
+use App\Models\Product\ProductsDescription;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -22,6 +23,26 @@ class AdminController extends Controller
         View::share('global_langs', Language::all());
     }
 
+
+    public function updateLangs(Request $request, $item_id, $save_model, $item_foreign_key, $language_foreign_key = 'language_id')
+    {
+        if ($request->has('langs')){
+            $langs = $request->input('langs');
+            if (is_array($langs)){
+                foreach ($langs as $language_id => $lang){
+                    $res = $save_model::where($item_foreign_key, $item_id)->where($language_foreign_key, $language_id)->first();
+                    if ($res){
+                        $res->update($lang);
+                    }else{
+                        $lang[$item_foreign_key] = $item_id;
+                        $lang[$language_foreign_key] = $language_id;
+
+                        $save_model::create($lang);
+                    }
+                }
+            }
+        }
+    }
     /**
      * @param string $model
      * @return array|int[]|string[]
@@ -82,13 +103,68 @@ class AdminController extends Controller
             'title' => $request->title,
             'name_lavel' => $request->name_lavel,
         ];
-        if ($request->has('parent_id')) {
-            $data['parent_id'] = $request->input('parent_id');
-        }
 
         if ($path_save_img) {
             $data['img_announce'] = $path_img_announce;
             $data['img_detail'] = $path_img_detail;
+        }
+
+        if ($request->has('parent_id')) {
+            $data['parent_id'] = $request->input('parent_id');
+        }
+        if ($request->has('hit')) {
+            $data['hit'] = $request->input('hit');
+        }
+        if ($request->has('is_download')) {
+            $data['is_download'] = $request->input('is_download');
+        }
+        if ($request->has('is_show')) {
+            $data['is_show'] = $request->input('is_show');
+        }
+        if ($request->has('min_quantity')) {
+            $data['min_quantity'] = $request->input('min_quantity');
+        }
+        if ($request->has('quantity')) {
+            $data['quantity'] = $request->input('quantity');
+        }
+        if ($request->has('sort')) {
+            $data['sort'] = $request->input('sort');
+        }
+        if ($request->has('price')) {
+            $data['price'] = $request->input('price');
+        }
+        if ($request->has('old_price')) {
+            $data['old_price'] = $request->input('old_price');
+        }
+        if ($request->has('width')) {
+            $data['width'] = $request->input('width');
+        }
+        if ($request->has('height')) {
+            $data['height'] = $request->input('height');
+        }
+        if ($request->has('length')) {
+            $data['length'] = $request->input('length');
+        }
+        if ($request->has('weight')) {
+            $data['weight'] = $request->input('weight');
+        }
+        if ($request->has('sku')) {
+            $data['sku'] = $request->input('sku');
+        }
+        if ($request->has('upc')) {
+            $data['upc'] = $request->input('upc');
+        }
+        if ($request->has('ean')) {
+            $data['ean'] = $request->input('ean');
+        }
+        if ($request->has('jan')) {
+            $data['jan'] = $request->input('jan');
+        }
+        if ($request->has('isbn')) {
+            $data['isbn'] = $request->input('isbn');
+        }
+        if ($request->has('mpn')) {
+            $data['mpn'] = $request->input('mpn');
         }
 
         return $data;
@@ -103,6 +179,17 @@ class AdminController extends Controller
     protected function updateSort(Request $request, string $model)
     {
         $fields = $request->all();
+
+        if (array_key_exists('langs', $fields) and is_array($fields['langs']) and count($fields['langs']) > 0){
+            foreach ($fields['langs'] as $lang){
+                foreach ($lang as $key => $value){
+                    $fields[$key] = $value;
+                }
+                break;
+            }
+            unset($fields['langs']);
+        }
+//                dd($fields);
         $sort = 0;
         foreach ($fields as $field => $value) {
             if (!in_array($field, self::BLACK_LIST) and !str_starts_with($field, '_')) {

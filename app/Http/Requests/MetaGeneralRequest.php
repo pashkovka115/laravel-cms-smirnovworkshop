@@ -17,8 +17,8 @@ class MetaGeneralRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
-            'slug' => ['nullable', 'string'],
+            'langs.name_*' => ['required', 'string'],
+            'langs.slug_*' => ['nullable', 'string'],
             'announce' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
             'meta_keywords' => ['nullable', 'string'],

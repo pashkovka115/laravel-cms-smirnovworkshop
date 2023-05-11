@@ -80,6 +80,7 @@ class ProductAdminController extends AdminController
             'gallery',
             'langs'
         ])->where('id', $id)->firstOrFail();
+//        dd($product);
 
         $columns = $global_columns = ProductColumns::column_meta_sort_single();
         // Расшариваем для всех чтобы было видно при глубокой вложенности шаблонов
@@ -90,7 +91,7 @@ class ProductAdminController extends AdminController
             // редактируемый объект
             'item' => $product,
             // Наследуемые объекты
-            'items' => Product::whereNull('parent_id')->whereNot('id', $id)->get(),
+            'items' => Product::with('baseLang')->whereNull('parent_id')->whereNot('id', $id)->get(),
             // Категории
             'items_with_children' => CategoryProduct::with('children')
                 ->whereNull('parent_id')
@@ -103,10 +104,14 @@ class ProductAdminController extends AdminController
     }
 
 
-//    public function update(UpdateProductRequest $request, $id)
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, $id)
+//    public function update(Request $request, $id)
     {
-        $request->dd();
+//        $request->dd();
+        /*
+         * Работа с мультиязычностью
+         */
+        $this->updateLangs($request, $id, ProductsDescription::class, 'product_id');
         /*
          * Работа с опциями
          */
@@ -139,6 +144,7 @@ class ProductAdminController extends AdminController
         $product = Product::where('id', $id)->firstOrFail();
 
         $data = $this->base_fields($request, self::IMAGE_PATH);
+
         if ($request->has('category_id')) {
             $data['category_id'] = $request->input('category_id');
         }

@@ -331,6 +331,17 @@ return new class extends Migration
             'description' => '',
         ];
         $fields[] = [
+            'origin_name' => 'old_price',
+            'show_name' => 'Старая цена',
+            'sort_list' => 10,
+            'sort_single' => 40,
+            'is_show_anons' => 0,
+            'is_show_single' => 1,
+            'type' => 'string',
+            'tab_id' => 1,
+            'description' => '',
+        ];
+        $fields[] = [
             'origin_name' => 'quantity',
             'show_name' => 'Количество товара',
             'sort_list' => 10,
@@ -349,7 +360,7 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'number',
-            'tab_id' => 2,
+            'tab_id' => 1,
             'description' => '',
         ];
         $fields[] = [
@@ -404,6 +415,39 @@ return new class extends Migration
             'is_show_anons' => 0,
             'is_show_single' => 1,
             'type' => 'is_show',
+            'tab_id' => 1,
+            'description' => '',
+        ];
+        $fields[] = [
+            'origin_name' => 'hit',
+            'show_name' => 'Хит продаж',
+            'sort_list' => 10,
+            'sort_single' => 10,
+            'is_show_anons' => 0,
+            'is_show_single' => 1,
+            'type' => 'hit',
+            'tab_id' => 1,
+            'description' => '',
+        ];
+        $fields[] = [
+            'origin_name' => 'is_download',
+            'show_name' => 'Цифровой(скачиваемый) товар',
+            'sort_list' => 10,
+            'sort_single' => 10,
+            'is_show_anons' => 0,
+            'is_show_single' => 1,
+            'type' => 'is_download',
+            'tab_id' => 1,
+            'description' => '',
+        ];
+        $fields[] = [
+            'origin_name' => 'sort',
+            'show_name' => 'Сортировка в ленте',
+            'sort_list' => 10,
+            'sort_single' => 10,
+            'is_show_anons' => 0,
+            'is_show_single' => 1,
+            'type' => 'number',
             'tab_id' => 1,
             'description' => '',
         ];
