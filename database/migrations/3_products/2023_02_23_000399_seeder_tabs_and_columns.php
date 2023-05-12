@@ -431,7 +431,7 @@ return new class extends Migration
         ];
         $fields[] = [
             'origin_name' => 'is_download',
-            'show_name' => 'Цифровой(скачиваемый) товар',
+            'show_name' => 'Цифровой товар',
             'sort_list' => 10,
             'sort_single' => 10,
             'is_show_anons' => 0,

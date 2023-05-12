@@ -54,9 +54,11 @@ class ProductAdminController extends AdminController
     {
         return view('admin.product.create', [
             'columns' => ProductColumns::column_meta_sort_single(),
+            // Наследуемые объекты
+            'items' => Product::with('baseLang')->whereNull('parent_id')->get(),
             'items_with_children' => CategoryProduct::with('children')->whereNull('parent_id')->get(),
-            'existing_fields' => $this->getFieldsModel(Product::class),
-            'excluded_fields' => ['additional_fields']
+            //'existing_fields' => $this->getFieldsModel(Product::class),
+//            'excluded_fields' => ['additional_fields']
         ]);
     }
 
